@@ -1089,7 +1089,7 @@
 </li>
 <li><p>用戶相關權限默認值設置</p>
 <ul>
-<li>cd /etc/default | file useradd  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> useradd defaults file</span></div><div class="line">GROUP=100 # </div><div class="line">HOME=/home</div><div class="line">INACTIVE=-1 # 密碼過期，用戶未禁用之間的期限 </div><div class="line">EXPIRE= # 非活動期限</div><div class="line">SHELL=/bin/bash</div><div class="line">SKEL=/etc/skel</div><div class="line">CREATE_MAIL_SPOOL=yes</div></pre></td></tr></table></figure>
+<li>cd /etc/default | file useradd  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> useradd defaults file</div><div class="line">GROUP=100 # </div><div class="line">HOME=/home</div><div class="line">INACTIVE=-1 # 密碼過期，用戶未禁用之間的期限 </div><div class="line">EXPIRE= # 非活動期限</div><div class="line">SHELL=/bin/bash</div><div class="line">SKEL=/etc/skel</div><div class="line">CREATE_MAIL_SPOOL=yes</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
