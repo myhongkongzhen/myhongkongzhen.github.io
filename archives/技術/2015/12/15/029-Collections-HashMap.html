@@ -1,0 +1,1099 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JAVA,JDK1.7," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="あなたがいる 、それだけでも" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-20151123105940450.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="myhongkongzhen" />
+  <meta property="fb:app_id" content="" />
+
+
+
+<meta name="description" content="簡介：JDK 1.7 Collections 之 HashMap 詳解 (24)由於 TreeSet,HashSet 引用了 Map 實現,所以這一節先學習 Map 接口相關這一節主要學習集合框架中的 HashMap 成員屬性、方法等具體實現相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/">
+<meta name="keywords" content="JAVA,JDK1.7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Collections -- HashMap -- (27)">
+<meta property="og:url" content="https://myhongkongzhen.github.io/archives/技術/2015/12/15/029-Collections-HashMap.html">
+<meta property="og:site_name" content="あなたがいる 、それだけでも">
+<meta property="og:description" content="簡介：JDK 1.7 Collections 之 HashMap 詳解 (24)由於 TreeSet,HashSet 引用了 Map 實現,所以這一節先學習 Map 接口相關這一節主要學習集合框架中的 HashMap 成員屬性、方法等具體實現相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/JDK/Collections/Collection-HashMap.png">
+<meta property="og:updated_time" content="2017-07-26T14:18:11.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Collections -- HashMap -- (27)">
+<meta name="twitter:description" content="簡介：JDK 1.7 Collections 之 HashMap 詳解 (24)由於 TreeSet,HashSet 引用了 Map 實現,所以這一節先學習 Map 接口相關這一節主要學習集合框架中的 HashMap 成員屬性、方法等具體實現相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/">
+<meta name="twitter:image" content="https://myhongkongzhen.github.io/images/JDK/Collections/Collection-HashMap.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://myhongkongzhen.github.io/archives/技術/2015/12/15/029-Collections-HashMap.html"/>
+
+
+
+
+
+  <title> Collections -- HashMap -- (27) | あなたがいる 、それだけでも </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70751910-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a53f74323c99608e344f6cc77c434d62";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">あなたがいる 、それだけでも</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Z_Z.W</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://myhongkongzhen.github.io/archives/技術/2015/12/15/029-Collections-HashMap.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z_Z.W">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-20151123105940450.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="あなたがいる 、それだけでも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Collections -- HashMap -- (27)
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-15T17:34:04+08:00">
+                2015-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技術/" itemprop="url" rel="index">
+                    <span itemprop="name">技術</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/archives/技術/2015/12/15/029-Collections-HashMap.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://myhongkongzhen.github.io/archives/技術/2015/12/15/029-Collections-HashMap.html" itemprop="commentCount">0</span> comments
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  983
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>簡介：JDK 1.7 Collections 之 HashMap 詳解 (24)<br><em>由於 TreeSet,HashSet 引用了 Map 實現,所以這一節先學習 Map 接口相關</em><br>這一節主要學習集合框架中的 HashMap 成員屬性、方法等具體實現<br>相關源碼分析及詳細api文檔移路→<a href="https://github.com/myhongkongzhen/pro-study-jdk/tree/master/src/main/java/z/z/w/jdk/collections" target="_blank" rel="external">Collection接口https://github.com/myhongkongzhen/pro-study-jdk/</a></p>
+</blockquote>
+<a id="more"></a>
+<h3 id="HashMap-說明"><a href="#HashMap-說明" class="headerlink" title="HashMap 說明:"></a>HashMap 說明:</h3><blockquote>
+<p>This implementation provides all of the optional map operations, and permits null values and the null key.<br>As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">static class Entry&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123; ... &#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="HashMap-UML"><a href="#HashMap-UML" class="headerlink" title="HashMap UML:"></a>HashMap UML:</h3><p><img src="/images/JDK/Collections/Collection-HashMap.png"></p>
+<h3 id="HashMap-源碼解析"><a href="#HashMap-源碼解析" class="headerlink" title="HashMap 源碼解析:"></a>HashMap 源碼解析:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    /**</div><div class="line">     * The default initial capacity - MUST be a power of two.</div><div class="line">     * 默認的初始化容量 - 必須是2的冪數</div><div class="line">     */</div><div class="line">    static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4; // aka 16 左移4位，就是2的4次方=16</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The maximum capacity, used if a higher value is implicitly specified</div><div class="line">     * 最大的容量，用於如果一個更大值隱含的由任何一個帶參的構造器指定</div><div class="line">     * by either of the constructors with arguments.</div><div class="line">     * MUST be a power of two &lt;= 1&lt;&lt;30.</div><div class="line">     * 其值必須小於 1 &lt;&lt; 30;</div><div class="line">     */</div><div class="line">    static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The load factor used when none specified in constructor.</div><div class="line">     * 當構造函數未指定時的負載因子</div><div class="line">     */</div><div class="line">    static final float DEFAULT_LOAD_FACTOR = 0.75f;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * An empty table instance to share when the table is not inflated.</div><div class="line">     * 為填充表共享一個空的表實例</div><div class="line">     */</div><div class="line">    static final Entry&lt;?,?&gt;[] EMPTY_TABLE = &#123;&#125;;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The table, resized as necessary. Length MUST Always be a power of two.</div><div class="line">     * 重新設置值的表，長度必須是2的冪數</div><div class="line">     */</div><div class="line">    transient Entry&lt;K,V&gt;[] table = (Entry&lt;K,V&gt;[]) EMPTY_TABLE;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The number of key-value mappings contained in this map.</div><div class="line">     * map中k-v影射包含的數量</div><div class="line">     */</div><div class="line">    transient int size;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The next size value at which to resize (capacity * load factor).</div><div class="line">     * 用於重新設置值的值，閥值</div><div class="line">     * @serial</div><div class="line">     */</div><div class="line">    // If table == EMPTY_TABLE then this is the initial capacity at which the</div><div class="line">//            如果table == EMPTY_TABLE 那麼初始的容量在table創建時</div><div class="line">    // table will be created when inflated.</div><div class="line">    int threshold;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The load factor for the hash table.</div><div class="line">     * 哈希表的負載因子</div><div class="line">     *</div><div class="line">     * @serial</div><div class="line">     */</div><div class="line">    final float loadFactor;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The number of times this HashMap has been structurally modified</div><div class="line">     * HashMap結構化改變的次數</div><div class="line">     * Structural modifications are those that change the number of mappings in</div><div class="line">     * 在hashMap中影射的改變或者</div><div class="line">     * the HashMap or otherwise modify its internal structure (e.g.,</div><div class="line">     * 內部結構的改變(例如rehash)</div><div class="line">     * rehash).  This field is used to make iterators on Collection-views of</div><div class="line">     * the HashMap fail-fast.  (See ConcurrentModificationException).</div><div class="line">     * 這個域用於HahsMap快速失敗集合視圖上的迭代器</div><div class="line">     */</div><div class="line">    transient int modCount;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * The default threshold of map capacity above which alternative hashing is</div><div class="line">     * 默認的超過替代散列的map容量的閥值用於字符串key</div><div class="line">     * used for String keys. Alternative hashing reduces the incidence of</div><div class="line">     * 替代散列減少發生碰撞提供對於字符串key的弱的代碼計算</div><div class="line">     * collisions due to weak hash code calculation for String keys.</div><div class="line">     * &lt;p/&gt;</div><div class="line">     * This value may be overridden by defining the system property</div><div class="line">     * 這個值可以重寫由系統屬性定義</div><div class="line">     * &#123;@code jdk.map.althashing.threshold&#125;. A property value of &#123;@code 1&#125;</div><div class="line">     * forces alternative hashing to be used at all times whereas</div><div class="line">     * 一個屬性值1 強迫在任何時間替代散列，而-1則確保任何時間都不會用到</div><div class="line">     * &#123;@code -1&#125; value ensures that alternative hashing is never used.</div><div class="line">     */</div><div class="line">    static final int ALTERNATIVE_HASHING_THRESHOLD_DEFAULT = Integer.MAX_VALUE;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * Returns index for hash code h.</div><div class="line">     * 返回哈希值的索引</div><div class="line">     */</div><div class="line">    static int indexFor(int h, int length) &#123;</div><div class="line">        // assert Integer.bitCount(length) == 1 : &quot;length must be a non-zero power of 2&quot;;</div><div class="line">        return h &amp; (length-1);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * Adds a new entry with the specified key, value and hash code to</div><div class="line">     * 添加一個新的實體由指定的key，value以及哈希值到指定的塊中</div><div class="line">     * the specified bucket.  It is the responsibility of this</div><div class="line">     * method to resize the table if appropriate.</div><div class="line">     * 這個方法響應的重新resize適當的表</div><div class="line">     *</div><div class="line">     * Subclass overrides this to alter the behavior of put method.</div><div class="line">     */</div><div class="line">    void addEntry(int hash, K key, V value, int bucketIndex) &#123;</div><div class="line">        if ((size &gt;= threshold) &amp;&amp; (null != table[bucketIndex])) &#123;</div><div class="line">            resize(2 * table.length);</div><div class="line">            hash = (null != key) ? hash(key) : 0;</div><div class="line">            bucketIndex = indexFor(hash, table.length);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        createEntry(hash, key, value, bucketIndex);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Like addEntry except that this version is used when creating entries</div><div class="line">     * 如同addEntry期望的這個版本用於當創建entries作為map構造器或偽構造器一部分時</div><div class="line">     * as part of Map construction or &quot;pseudo-construction&quot; (cloning,</div><div class="line">     * deserialization).  This version needn&apos;t worry about resizing the table.</div><div class="line">     * 這個版本不需要擔心重新resize表</div><div class="line">     *</div><div class="line">     * Subclass overrides this to alter the behavior of HashMap(Map),</div><div class="line">     * clone, and readObject.</div><div class="line">     */</div><div class="line">    void createEntry(int hash, K key, V value, int bucketIndex) &#123;</div><div class="line">        Entry&lt;K,V&gt; e = table[bucketIndex];</div><div class="line">        table[bucketIndex] = new Entry&lt;&gt;(hash, key, value, e);</div><div class="line">        size++;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>各位看官，打個賞唄~⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾*~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Z_Z.W Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Post author:</strong>
+      Z_Z.W
+    </li>
+     <li class="post-copyright-author">
+        <strong>Post created:</strong>
+        17:34 Dec 15 2015
+      </li>
+     <li class="post-copyright-author">
+        <strong>Post modified:</strong>
+        22:18 Jul 26 2017
+      </li>
+    <li class="post-copyright-link">
+      <strong>Post link:</strong>
+      <a href="https://myhongkongzhen.github.io/archives/技術/2015/12/15/029-Collections-HashMap.html" title="Collections -- HashMap -- (27)">https://myhongkongzhen.github.io/archives/技術/2015/12/15/029-Collections-HashMap.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright Notice: </strong>
+      All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/JDK1-7/" rel="tag"># JDK1.7</a>
+          
+        </div>
+      
+
+      
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/技術/2015/12/15/028-Collections-AbstractMap.html" rel="next" title="Collections -- AbstractMap -- (26)">
+                <i class="fa fa-chevron-left"></i> Collections -- AbstractMap -- (26)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/技術/2015/12/17/2015121716-Collections-LinkedHashMap.html" rel="prev" title="Collections -- LinkedHashMap -- (28)">
+                Collections -- LinkedHashMap -- (28) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="fb-comments"
+           data-href="https://myhongkongzhen.github.io/archives/技術/2015/12/15/029-Collections-HashMap.html"
+           data-numposts="10"
+           data-width="100%"
+           data-colorscheme="light">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon-20151123105940450.ico"
+               alt="Z_Z.W" />
+          <p class="site-author-name" itemprop="name">Z_Z.W</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/myhongkongzhen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/myhongkongzhen" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/#!/Z_ZW" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/myhongkongzhen" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-說明"><span class="nav-number">1.</span> <span class="nav-text">HashMap 說明:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-UML"><span class="nav-number">2.</span> <span class="nav-text">HashMap UML:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap-源碼解析"><span class="nav-number">3.</span> <span class="nav-text">HashMap 源碼解析:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z_Z.W</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://myhongkongzhen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://myhongkongzhen.github.io/archives/技術/2015/12/15/029-Collections-HashMap.html';
+          this.page.identifier = 'archives/技術/2015/12/15/029-Collections-HashMap.html';
+          this.page.title = 'Collections -- HashMap -- (27)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://myhongkongzhen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>

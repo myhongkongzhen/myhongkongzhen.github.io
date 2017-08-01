@@ -1,0 +1,1229 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JAVA,JDK1.7,TRANSLATING," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="あなたがいる 、それだけでも" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-20151123105940450.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="myhongkongzhen" />
+  <meta property="fb:app_id" content="" />
+
+
+
+<meta name="description" content="簡介：Collections Framework. JDK1.7 集合框架系統學習 (二) 概述集合框架API DOC簡介英文翻譯練習。相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/※ 注：此翻譯僅僅為個人學習JDK文檔及補習英文所做，如果您希望看到更加準確的翻譯，請自行搜尋中文文檔">
+<meta name="keywords" content="JAVA,JDK1.7,TRANSLATING">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Outline of the Collection Framework -- (二)">
+<meta property="og:url" content="https://myhongkongzhen.github.io/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html">
+<meta property="og:site_name" content="あなたがいる 、それだけでも">
+<meta property="og:description" content="簡介：Collections Framework. JDK1.7 集合框架系統學習 (二) 概述集合框架API DOC簡介英文翻譯練習。相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/※ 注：此翻譯僅僅為個人學習JDK文檔及補習英文所做，如果您希望看到更加準確的翻譯，請自行搜尋中文文檔">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-07-04T02:08:34.548Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Outline of the Collection Framework -- (二)">
+<meta name="twitter:description" content="簡介：Collections Framework. JDK1.7 集合框架系統學習 (二) 概述集合框架API DOC簡介英文翻譯練習。相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/※ 注：此翻譯僅僅為個人學習JDK文檔及補習英文所做，如果您希望看到更加準確的翻譯，請自行搜尋中文文檔">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://myhongkongzhen.github.io/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html"/>
+
+
+
+
+
+  <title> Outline of the Collection Framework -- (二) | あなたがいる 、それだけでも </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70751910-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a53f74323c99608e344f6cc77c434d62";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">あなたがいる 、それだけでも</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Z_Z.W</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://myhongkongzhen.github.io/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z_Z.W">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-20151123105940450.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="あなたがいる 、それだけでも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Outline of the Collection Framework -- (二)
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-30T12:23:26+08:00">
+                2015-11-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技術/" itemprop="url" rel="index">
+                    <span itemprop="name">技術</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://myhongkongzhen.github.io/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html" itemprop="commentCount">0</span> comments
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  5,262
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>簡介：Collections Framework. JDK1.7 集合框架系統學習 (二) 概述<br>集合框架API DOC簡介英文翻譯練習。<br>相關源碼分析及詳細api文檔移路→<a href="https://github.com/myhongkongzhen/pro-study-jdk/tree/master/src/main/java/z/z/w/jdk/collections" target="_blank" rel="external">Collection接口https://github.com/myhongkongzhen/pro-study-jdk/</a><br>※ 注：此翻譯僅僅為個人學習JDK文檔及補習英文所做，如果您希望看到更加準確的翻譯，請自行搜尋中文文檔<br>      因英文水平不足為您帶來的不便請諒解.</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="API-Specification"><a href="#API-Specification" class="headerlink" title="API Specification"></a>API Specification</h1><p>  API詳述</p>
+<ul>
+<li>API Reference - An annotated outline of the classes and interfaces comprising the collections framework, with links into the JavaDoc.<br>API參考 - 一個有注釋的類和接口的概述組成集合框架,連接至JavaDoc.<h2 id="The-collections-framework-consists-of"><a href="#The-collections-framework-consists-of" class="headerlink" title="The collections framework consists of:"></a>The collections framework consists of:</h2> 集合框架包含:</li>
+</ul>
+<h4 id="Collection-interfaces-The-primary-means-by-which-collections-are-manipulated"><a href="#Collection-interfaces-The-primary-means-by-which-collections-are-manipulated" class="headerlink" title="Collection interfaces - The primary means by which collections are manipulated."></a><strong>Collection interfaces</strong> - The primary means by which collections are manipulated.</h4><p>  <strong>集合接口</strong> - 通過集合操作的主要手段.</p>
+<ul>
+<li><strong>Collection</strong> - A group of objects.<br><strong>Clollection</strong> - 一組對象.<br>No assumptions are made about the order of the collection (if any) or whether it can contain duplicate elements.<br>沒有假設關於排序的集合是可用的,如果有的話,或者集合包含重複的元素.</li>
+<li><strong>Set</strong> - The familiar set abstraction.<br><strong>Set</strong> - 常見的抽象set.<br>No duplicate elements permitted.<br>不允許重複的元素.<br>May or may not be ordered.<br>可排序的.<br>Extends the Collection interface.<br>擴展Collection接口. </li>
+<li><strong>List</strong> - Ordered collection, also known as a sequence.<br><strong>List</strong> - 排序的集合,同時作為一個已知的序列.<br>Duplicates are generally permitted.<br>通常允許重複.<br>Allows positional access.<br>允許定位存取.<br>Extends the Collection interface.<br>擴展自Collection接口.</li>
+<li><strong>Queue</strong> - A collection designed for holding elements before processing.<br><strong>Queue</strong> - 集合可以在處理前保存元素.<br>Besides basic Collection operations,<br>包含基本的集合操作以外的操作,<br>queues provide additional insertion, extraction, and inspection operations.<br>隊列提供可添加的插入,提取和檢視操作.</li>
+<li><strong>Deque</strong> - A double ended queue, supporting element insertion and removal at both ends.<br><strong>Deque</strong> - 一個雙向的queue,支持元素在兩端插入和移除.<br>Extends the Queue interface.<br>擴展自Queue接口.</li>
+<li><strong>Map</strong> - A mapping from keys to values. Each key can map to one value.<br><strong>Map</strong> - 一個k-v影射Map.每個Key影射一個Value.</li>
+<li><strong>SortedSet</strong> - A set whose elements are automatically sorted,<br><strong>SortedSet</strong> - 元素自動排序的集合set,<br>either in their natural ordering (see the Comparable interface) or by a Comparator object provided when a SortedSet instance is created.<br>要麼使用自然排序(請看Comparable接口)要麼在SortedSet實例在創建時,由Comparator對象提供排序.<br>Extends the Set interface.<br>擴展自Set接口.</li>
+<li><strong>SortedMap</strong> - A map whose mappings are automatically sorted by key,<br><strong>SortedMap</strong> - 一個自動根據Key進行排序的Map,<br>either using the natural ordering of the keys or by a comparator provided when a SortedMap instance is created.<br>要麼使用key的自然排序,要麼在一個SortedMap實例創建時由Comparator提供排序.<br>Extends the Map interface.<br>擴展自Map接口.</li>
+<li><strong>NavigableSet</strong> - A SortedSet extended with navigation methods reporting closest matches for given search targets.<br><strong>NavigableSet</strong> - 一個SortedSet的擴展,給搜索目標報告由導航方法搜索到的最近的方法.<br>A NavigableSet may be accessed and traversed in either ascending or descending order.<br>一個NavigableSet可以存取和訪問遞增或遞減的集合.</li>
+<li><strong>NavigableMap</strong> - A SortedMap extended with navigation methods returning the closest matches for given search targets.<br><strong>NavigableMap</strong> - 一個SortedMap的擴展,給所搜索的目標返回導航方法搜索到的最近的方法.<br>A NavigableMap can be accessed and traversed in either ascending or descending key order.<br>一個NavigableMap能夠存取和訪問按照Key排序遞增或遞減的集合.</li>
+<li><strong>BlockingQueue</strong> - A Queue with operations<br><strong>BlockingQueue</strong> - queue操作,<br>that wait for the queue to become nonempty when retrieving an element<br>在隊列恢復一個元素成為非空時進行操作,<br>and that wait for space to become available in the queue when storing an element.<br>在隊列中存儲一個元素,成為可用隊列是進行操作.<br>(This interface is part of the java.util.concurrent package.)<br>(這個接口是java.util.concurrent包下的一部分.)</li>
+<li><strong>TransferQueue</strong> - A BlockingQueue in which producers can wait for consumers to receive elements.<br><strong>TransferQueue</strong> - 一個BlockingQueue,能夠讓生產者等待消費者接收elements.<br>(This interface is part of the java.util.concurrent package.)<br>(這個接口是java.util.concurrent包的一部分.)</li>
+<li><strong>BlockingDeque</strong> - A Deque with operations<br><strong>BlockingDeque</strong> - Deque操作<br>that wait for the deque to become nonempty when retrieving an element<br>在隊列恢復一個元素成為非空隊列時操作<br>and wait for space to become available in the deque when storing an element.<br>在隊列存儲一個元素成為可操作隊列時操作.<br>Extends both the Deque and BlockingQueue interfaces.<br>擴展自Deque與BlockingQueue兩個接口.<br>(This interface is part of the java.util.concurrent package.)<br>(這個接口是java.util.concurrent包的一部分.)</li>
+<li><strong>ConcurrentMap</strong> - A Map with atomic putIfAbsent, remove, and replace methods.<br><strong>ConcurrentMap</strong> - 原子操作,刪除,替換方法的Map.<br>(This interface is part of the java.util.concurrent package.)<br>(這個接口是java.util.concurrent包的一部分.)</li>
+<li><strong>ConcurrentNavigableMap</strong> - A ConcurrentMap that is also a NavigableMap.<br><strong>ConcurrentNavigableMap</strong> - 同樣是一個NavigableMap的ConcurrentMap.</li>
+</ul>
+<h4 id="General-purpose-implementations-The-primary-implementations-of-the-collection-interfaces"><a href="#General-purpose-implementations-The-primary-implementations-of-the-collection-interfaces" class="headerlink" title="General-purpose implementations - The primary implementations of the collection interfaces."></a><strong>General-purpose implementations</strong> - The primary implementations of the collection interfaces.</h4><p>  <strong>通用的實現</strong> - 集合接口主要的實現</p>
+<ul>
+<li><strong>HashSet</strong> - Hash table implementation of the Set interface.<br><strong>HashSet</strong> - 實現了set接口的Hash table.<br>The best all-around implementation of the Set interface.<br>set接口最完整的實現.</li>
+<li><strong>TreeSet</strong> - Red-black tree implementation of the NavigableSet interface.<br><strong>TredSet</strong> - NavigableSet接口的Red-black樹實現</li>
+<li><strong>LinkedHashSet</strong> - Hash table and linked list implementation of the Set interface.<br><strong>LinkedHashSet</strong> - Set接口的哈希表與鏈錶的實現<br>An insertion-ordered Set implementation that runs nearly as fast as HashSet.<br>如同HashSet一樣快速的插入排序的set集合</li>
+<li><strong>ArrayList</strong> - Resizable array implementation of the List interface (an unsynchronized Vector).<br><strong>ArrayList</strong> - List接口的可變大小的數組實現(一個非同步的Vector).<br>The best all-around implementation of the List interface.<br>List接口最完整的實現.</li>
+<li><strong>ArrayDeque</strong> - Efficient, resizable array implementation of the Deque interface.<br><strong>ArrayDeque</strong> - Deque接口的高效的,可變大小的數組實現.</li>
+<li><strong>LinkedList</strong> - Doubly-linked list implementation of the List interface.<br><strong>LinkedList</strong> - List接口的雙向鏈錶實現的接口<br>Provides better performance than the ArrayList implementation if elements are frequently inserted or deleted within the list.<br>提供比ArrayList實現更高性能的實現,如果在list內部元素是序列的插入或者刪除.<br>Also implements the Deque interface. When accessed through the Queue interface, LinkedList acts as a FIFO queue.<br>同樣實現于Deque接口.當存儲訪問Queue接口時,LinkedList當做是一個FIFO的queue.</li>
+<li><strong>PriorityQueue</strong> - Heap implementation of an unbounded priority queue.<br><strong>PriorityQueue</strong> - 一個不受限制的優先級queue的堆實現.</li>
+<li><strong>HashMap</strong> - Hash table implementation of the Map interface (an unsynchronized Hashtable that supports null keys and values).<br><strong>HashMap</strong> - Map接口的哈希表實現(允許null的key和value的非同步的HashTable).<br>The best all-around implementation of the Map interface.<br>Map接口的最完整的實現.</li>
+<li><strong>TreeMap</strong> Red-black tree implementation of the NavigableMap interface.<br><strong>TreeMap</strong> NavigableMap接口的Red-black樹的實現.</li>
+<li><strong>LinkedHashMap</strong> - Hash table and linked list implementation of the Map interface.<br><strong>LinkedHashMap</strong> - Map接口的哈希表與鏈錶的實現.<br>An insertion-ordered Map implementation that runs nearly as fast as HashMap.<br>如同HashMap一樣快速的的插入排序的Map.<br>Also useful for building caches (see removeEldestEntry(Map.Entry) ).<br>也可用於構建caches(看 moveEldestEntry(Map.Entry)).</li>
+</ul>
+<h4 id="Wrapper-implementations-Functionality-enhancing-implementations-for-use-with-other-implementations"><a href="#Wrapper-implementations-Functionality-enhancing-implementations-for-use-with-other-implementations" class="headerlink" title="Wrapper implementations - Functionality-enhancing implementations for use with other implementations."></a><strong>Wrapper implementations</strong> - Functionality-enhancing implementations for use with other implementations.</h4><p>  <strong>封裝的實現</strong> - 一些其他的實現用於功能增強的實現.<br>    Accessed solely through static factory methods.<br>    僅僅通過靜態工廠方法進行存儲訪問.</p>
+<ul>
+<li><strong>Collections.unmodifiableInterface</strong> - Returns an unmodifiable view of a specified collection<br><strong>Collections.unmodifiableInterface</strong> - 返回一個特定集合的不可修改的視圖.<br>that throws an UnsupportedOperationException if the user attempts to modify it.<br>如果用戶視圖修改這個視圖，將會拋出一個UnsupportedOperationException異常.</li>
+<li><strong>Collections.synchronizedInterface</strong> - Returns a synchronized collection<br><strong>collections.synchronizedInterface</strong> - 返回一個同步化的集合<br>that is backed by the specified (typically unsynchronized) collection.<br>這個集合由特定的接口支持(典型的代表非同步化的).<br>As long as all accesses to the backing collection are through the returned collection,<br>所有通過這個返回的集合存儲訪問的支持的接口,<br>thread safety is guaranteed.<br>線程安全是課保證的.</li>
+<li><strong>Collections.checkedInterface</strong> - Returns a dynamically type-safe view of the specified collection,<br><strong>Collections.checkedInterface</strong> - 返回特定集合的動態的類型安全的視圖,<br>which throws a ClassCastException if a client attempts to add an element of the wrong type.<br>如果客戶端視圖添加一個錯誤類型的元素，將會破出一個ClassCastException異常.<br>The generics mechanism in the language provides compile-time (static) type checking,<br>這種在語言中的泛型機制提供編譯時(靜態)類型檢查,<br>but it is possible to bypass this mechanism.<br>但是其是可以繞過這種機制的.<br>Dynamically type-safe views eliminate this possibility.<br>動態類型安全視圖排除這種可能.</li>
+</ul>
+<h4 id="Adapter-implementations-Implementations-that-adapt-one-collections-interface-to-another"><a href="#Adapter-implementations-Implementations-that-adapt-one-collections-interface-to-another" class="headerlink" title="Adapter implementations - Implementations that adapt one collections interface to another:"></a><strong>Adapter implementations</strong> - Implementations that adapt one collections interface to another:</h4><p>  <strong>適配器實現</strong> - 適配一個集合接口或者其他的實現:</p>
+<ul>
+<li><strong>newSetFromMap(Map)</strong> - Creates a general-purpose Set implementation from a general-purpose Map implementation.<br><strong>newSetFromMap(Map)</strong> - 通過一個通用的Map集合創建一個通用的Set集合實現.</li>
+<li><strong>asLifoQueue(Deque)</strong> - Returns a view of a Deque as a Last In First Out (LIFO) Queue.<br><strong>asLifoQueue(Deque)</strong> - 返回一個作為後勁先出(LIFO)的Queue的Deque的視圖.</li>
+</ul>
+<h4 id="Convenience-implementations-High-performance-“mini-implementations”-of-the-collection-interfaces"><a href="#Convenience-implementations-High-performance-“mini-implementations”-of-the-collection-interfaces" class="headerlink" title="Convenience implementations - High-performance “mini-implementations” of the collection interfaces."></a><strong>Convenience implementations</strong> - High-performance “mini-implementations” of the collection interfaces.</h4><p>  <strong>方便的實現</strong> - 集合接口中的高性能,小實現</p>
+<ul>
+<li><strong>Arrays.asList</strong> - Enables an array to be viewed as a list.<br><strong>Array.asList</strong> - 將一個array看做一個list</li>
+<li><strong>emptySet, emptyList and emptyMap</strong> - Return an immutable empty set, list, or map.<br><strong>emptySet, emptyList and emptyMap</strong> - 返回一個不變的空的set,list或者map.</li>
+<li><strong>singleton, singletonList, and singletonMap</strong> - Return an immutable singleton set, list, or map,<br><strong>singleton, singletonList, and singletonMap</strong> - 返回一個不變的單實例的set,list或者map,<br>containing only the specified object (or key-value mapping).<br>僅僅包含特定的object(或是key-value影射).</li>
+<li><strong>nCopies</strong> - Returns an immutable list consisting of n copies of a specified object.<br><strong>nCopies</strong> - 返回一個由特定object的N個備份組成的不變的list</li>
+</ul>
+<h4 id="Legacy-implementations-Older-collection-classes-were-retrofitted-to-implement-the-collection-interfaces"><a href="#Legacy-implementations-Older-collection-classes-were-retrofitted-to-implement-the-collection-interfaces" class="headerlink" title="Legacy implementations - Older collection classes were retrofitted to implement the collection interfaces."></a><strong>Legacy implementations</strong> - Older collection classes were retrofitted to implement the collection interfaces.</h4><p>  <strong>遺留實現</strong> - 實現集合的接口翻新舊的集合類.</p>
+<ul>
+<li><strong>Vector</strong> - Synchronized resizable array implementation of the List interface with additional legacy methods.<br><strong>Vector</strong> - 用於添加遺留方法的List接口中的同步化的可變大小的數組實現.</li>
+<li><strong>Hashtable</strong> - Synchronized hash table implementation of the Map interface that does not allow null keys or values,<br><strong>Hashtable</strong> - 同步化的Map接口哈希表實現,這個類型不允許空的key和value,<br>plus additional legacy methods.<br>加上額外的遺留方法.</li>
+</ul>
+<h4 id="Special-purpose-implementations"><a href="#Special-purpose-implementations" class="headerlink" title="Special-purpose implementations"></a><strong>Special-purpose implementations</strong></h4><p>  <strong>特殊的實現</strong></p>
+<ul>
+<li><strong>WeakHashMap</strong> - An implementation of the Map interface that stores only weak references to its keys.<br><strong>WeakHashMap</strong> - 僅僅存儲了弱引用作為key的map接口的一個實現.<br>Storing only weak references enables key-value pairs to be garbage collected when the key is no longer referenced outside of the WeakHashMap.<br>僅僅存儲弱引用是的key-value鍵值對能夠垃圾回收,當Key值在WeakHashMap外沒有更長的引用時.<br>This class is the easiest way to use the power of weak references.<br>這個列是弱引用使用精力中最簡單的方法.<br>It is useful for implementing registry-like data structures,<br>對於實現註冊表狀的數據結構是有用的.<br>where the utility of an entry vanishes when its key is no longer reachable by any thread.<br>一個實體的功能消失是他的Keys在任何線程中不會獲取到.</li>
+<li><strong>IdentityHashMap</strong> - Identity-based Map implementation based on a hash table.<br><strong>IdentityHashMap</strong> - 基於一個哈希表的以Map身份出現的實現.<br>This class is useful for topology-preserving object graph transformations (such as serialization or deep copying).<br>這個類有助於保留圖形變換的拓撲行的實體(例如序列化或者深拷貝).<br>To perform these transformations, you must maintain an identity-based “node table” that keeps track of which objects have already been seen.<br>要執行這些轉換,你必須維護一個基於身份標示的”node table”,持續追蹤這些以觀察到的實體.<br>Identity-based maps are also used to maintain object-to-meta-information mappings in dynamic debuggers and similar systems.<br>基於map的身份標示同樣擁有保持元實體meta信息在動態的調試和簡單的系統中影射.<br>Finally, identity-based maps are useful in preventing “spoof attacks” resulting from intentionally perverse equals methods.<br>最後,基於maps的身份標示有效防止故意造成的”欺騙攻擊”方法.<br>(IdentityHashMap never invokes the equals method on its keys.) An added benefit of this implementation is that it is fast.<br>(IdentityHashMap 永遠不能在他的keys中調用equals方法.)</li>
+<li><strong>CopyOnWriteArrayList</strong> - A List implementation backed by an copy-on-write array.<br><strong>CopyOnWriteArrayList</strong> - 一個基於copy-on-write數組實現的List實現.<br>All mutative operations (such as add, set, and remove) are implemented by making a new copy of the array.<br>所有的變化的操作(例如add,set和remove)都是在一個新的拷貝的數組中作用的.<br>No synchronization is necessary, even during iteration, and iterators are guaranteed never to throw ConcurrentModificationException.<br>在迭代中同步化是非必須的,迭代因子收到保護永遠都不回拋出ConcurrentModificationExceptoin.<br>This implementation is well-suited to maintaining event-handler lists<br>這個實先非常適合維護事件處理列表.<br>(where change is infrequent, and traversal is frequent and potentially time-consuming).<br>(改變是稀有的,遍歷是頻繁的而且可能耗時的).</li>
+<li><strong>CopyOnWriteArraySet</strong> - A Set implementation backed by a copy-on-write array.<br><strong>CopyOnWriteArraySet</strong> - 一個基於copy-on-write數組實現的set實現.<br>This implementation is similar to CopyOnWriteArrayList.<br>這個實現類似於CopyOnWriteArrayList.<br>Unlike most Set implementations, the add, remove, and contains methods require time proportional to the size of the set.<br>和大多數set實現不同的是, add, remove, contains方法需要set大小的時間均衡.<br>This implementation is well suited to maintaining event-handler lists that must prevent duplicates.<br>這個實先非常適合維護事件處理那些必須防止副本的列表.</li>
+<li><strong>EnumSet</strong> - A high-performance Set implementation backed by a bit vector.<br><strong>EnumSet</strong> - 基於一個bit的vector實現的高性能的set實現.<br>All elements of each EnumSet instance must be elements of a single enum type.<br>每一個EnumSet的實體的所有元素必須是一個單實例的enum類型的元素.</li>
+<li><strong>EnumMap</strong> - A high-performance Map implementation backed by an array.<br><strong>EnumMap</strong> - 基於一個數組實現的的高性能的Map實現.<br>All keys in each EnumMap instance must be elements of a single enum type.<br>每一個EnumMap的實體中的所有keys都必須是一個單實例的enum類型的元素.</li>
+</ul>
+<h4 id="Concurrent-implementations-These-implementations-are-part-of-java-util-concurrent"><a href="#Concurrent-implementations-These-implementations-are-part-of-java-util-concurrent" class="headerlink" title="Concurrent implementations - These implementations are part of java.util.concurrent."></a><strong>Concurrent implementations</strong> - These implementations are part of java.util.concurrent.</h4><p>  <strong>並發的實現</strong> - 這些實現是java.util.concurrent包的一部分.</p>
+<ul>
+<li><strong>ConcurrentLinkedQueue</strong> - An unbounded first in, first out (FIFO) queue based on linked nodes.<br><strong>ConcurrentLinkedQueue</strong> - 一個基於linked節點的不受限制的先進先出隊列.</li>
+<li><strong>LinkedBlockingQueue</strong> - An optionally bounded FIFO blocking queue backed by linked nodes.<br><strong>LinkedBlockingQueue</strong> - 一個基於linked節點的隨意限制的先進先出阻塞隊列.</li>
+<li><strong>ArrayBlockingQueue</strong> - A bounded FIFO blocking queue backed by an array.<br><strong>ArrayBlockingQueue</strong> - 一個基於數組的受限制的先進先出的阻塞隊列.</li>
+<li><strong>PriorityBlockingQueue</strong> - An unbounded blocking priority queue backed by a priority heap.<br><strong>PriorityBlockingQueue</strong> - 一個基於優先級堆的不受限制的阻塞隊列.</li>
+<li><strong>DelayQueue</strong> - A time-based scheduling queue backed by a priority heap.<br><strong>DelayQueue</strong> - 一個基於優先級堆的基於時間安排的隊列.</li>
+<li><strong>SynchronousQueue</strong> - A simple rendezvous mechanism that uses the BlockingQueue interface.<br><strong>SynchronousQueue</strong> - 一個用於BlockingQueue接口的簡單機制</li>
+<li><strong>LinkedBlockingDeque</strong> - An optionally bounded FIFO blocking deque backed by linked nodes.<br><strong>LinkedBlockingDeque</strong> - 一個由linked節點支持的隨意有界的先進先出的阻塞deque.</li>
+<li><strong>LinkedTransferQueue</strong> - An unbounded TransferQueue backed by linked nodes.<br><strong>LinkedTransferQueue</strong> - 一個由linked節點支持的不受限制的TransferQueue.</li>
+<li><strong>ConcurrentHashMap</strong> - A highly concurrent, high-performance ConcurrentMap implementation based on a hash table.<br><strong>ConcurrentHashMap</strong> - 一個由哈希表支持的高並發，高性能的ConcurrentMap實現.<br>This implementation never blocks when performing retrievals and enables the client to select the concurrency level for updates.<br>這個是實現在執行檢索時永遠不會阻塞,並且能夠使客戶端在更新時選擇並發級別.<br>It is intended as a drop-in replacement for Hashtable.<br>這個類可以作為HashTable的替代類.<br>In addition to implementing ConcurrentMap,<br>除了添加實現ConcurrentMap,<br>it supports all of the legacy methods of Hashtable.<br>它支持所有的Hashtable中的遺留方法.</li>
+<li><strong>ConcurrentSkipListSet</strong> - Skips list implementation of the NavigableSet interface.<br><strong>ConcurrentSkipListSet</strong> - NavigableSet接口中的滑過list接口.</li>
+<li><strong>ConcurrentSkipListMap</strong> - Skips list implementation of the ConcurrentNavigableMap interface.<br><strong>ConcurrentSkipListMap</strong> - ConcurrentNavigableMap接口中的滑過list接口</li>
+</ul>
+<h4 id="Abstract-implementations-Skeletal-implementations-of-the-collection-interfaces-to-facilitate-custom-implementations"><a href="#Abstract-implementations-Skeletal-implementations-of-the-collection-interfaces-to-facilitate-custom-implementations" class="headerlink" title="Abstract implementations - Skeletal implementations of the collection interfaces to facilitate custom implementations."></a><strong>Abstract implementations</strong> - Skeletal implementations of the collection interfaces to facilitate custom implementations.</h4><p>  <strong>抽象的實現</strong> - 集合接口的實現骨架方便自定義的實現.</p>
+<ul>
+<li><strong>AbstractCollection</strong> - Skeletal Collection implementation that is neither a set nor a list (such as a “bag” or multiset).<br><strong>AbstractCollection</strong> - 集合實現的骨架既不是一個set也不是一個list(例如一個”bag”或者多重集合).</li>
+<li><strong>AbstractSet</strong> - Skeletal Set implementation.<br><strong>AbstractSet</strong> - Set實現的骨架.</li>
+<li><strong>AbstractList</strong> - Skeletal List implementation backed by a random access data store (such as an array).<br><strong>AbstractList</strong> - 支持隨機存儲訪問數據倉庫的List實現的骨架(例如一個array).</li>
+<li><strong>AbstractSequentialList</strong> - Skeletal List implementation backed by a sequential access data store (such as a linked list).<br><strong>AbstractSequentialList</strong> - 支持序列存儲訪問數據倉庫的List實現骨架(例如一個linked list).</li>
+<li><strong>AbstractQueue</strong> - Skeletal Queue implementation.<br><strong>AbstractQueue</strong> - Queue實現的骨架.</li>
+<li><strong>AbstractMap</strong> - Skeletal Map implementation.<br><strong>AbstractMap</strong> - Map實現的骨架.</li>
+</ul>
+<h4 id="Algorithms-The-Collections-class-contains-these-useful-static-methods"><a href="#Algorithms-The-Collections-class-contains-these-useful-static-methods" class="headerlink" title="Algorithms - The Collections class contains these useful static methods."></a><strong>Algorithms</strong> - The Collections class contains these useful static methods.</h4><p>  <strong>算法</strong> - Collections類包含一些有用的靜態方法.</p>
+<ul>
+<li><strong>sort(List)</strong> - Sorts a list using a merge sort algorithm,<br><strong>sort(List)</strong> - 使用合併排序算法排序一個list,<br>which provides average case performance comparable to a high quality quicksort,<br>提供一個平均水平下的堪比高性能快速排序的性能,<br>guaranteed O(n<em>log n) performance (unlike quicksort),<br>保證O(n</em>log n)性能(不像快速排序),<br>and stability (unlike quicksort).<br>和穩定性(不像快排).<br>A stable sort is one that does not reorder equal elements.<br>一個穩定的排序是不會重複排列相同元素的.</li>
+<li><strong>binarySearch(List, Object)</strong> - Searches for an element in an ordered list using the binary search algorithm.<br><strong>binarySearch(List, Object)</strong> - 使用二分法查找算法在一個已排序的list中查找一個元素.</li>
+<li><strong>reverse(List)</strong> - Reverses the order of the elements in a list.<br><strong>reverse(List)</strong> - 在一個list中反轉元素的順序.</li>
+<li><strong>shuffle(List)</strong> - Randomly changes the order of the elements in a list.<br><strong>shuffle(List)</strong> - 在一個list中隨意的改變元素的順序.</li>
+<li><strong>fill(List, Object)</strong> - Overwrites every element in a list with the specified value.<br><strong>fill(List, Object)</strong> - 使用特定的值重寫在list中的每一個元素.</li>
+<li><strong>copy(List dest, List src)</strong> - Copies the source list into the destination list.<br><strong>copy(List dest, List src)</strong> - 拷貝源list到目標list中.</li>
+<li><strong>min(Collection)</strong> - Returns the minimum element in a collection.<br><strong>min(Collection)</strong> - 返回一個集合中最小的元素.</li>
+<li><strong>max(Collection)</strong> - Returns the maximum element in a collection.<br><strong>max(collection)</strong> - 返回一個集合中最大的元素.</li>
+<li><strong>rotate(List list, int distance)</strong> - Rotates all of the elements in the list by the specified distance.<br><strong>rotate(List list, int distance)</strong> - 按照指定的距離來旋轉集合中所有的元素.</li>
+<li><strong>replaceAll(List list, Object oldVal, Object newVal)</strong> - Replaces all occurrences of one specified value with another.<br><strong>replaceAll(List list, Object oldVal, oldVal newVal)</strong> - 用另一個值替換所有發現的特定的值.</li>
+<li><strong>indexOfSubList(List source, List target)</strong> - Returns the index of the first sublist of source that is equal to target.<br><strong>indexOfSubList(List source, List target)</strong> - 返回等於目標列表的源list中的第一個list子列表索引.</li>
+<li><strong>lastIndexOfSubList(List source, List target)</strong> - Returns the index of the last sublist of source that is equal to target.<br><strong>lastIndexOfSubList(List source, List target)</strong> - 返回等於目標列表的源list中的最後一個子列表的索引.</li>
+<li><strong>swap(List, int, int)</strong> - Swaps the elements at the specified positions in the specified list.<br><strong>swap(List, int, int)</strong> - 在指定的list中交換指定位置的的元素.</li>
+<li><strong>frequency(Collection, Object)</strong> - Counts the number of times the specified element occurs in the specified collection.<br><strong>frequency(collection, Object)</strong> - 計數在指定集合中指定元素出現的次數.</li>
+<li><strong>disjoint(Collection, Collection)</strong> - Determines whether two collections are disjoint, in other words, whether they contain no elements in common.<br><strong>disjoint(Collection)</strong> - 判斷兩個結合是否是不相交的,換句話說,他們是否包含元素的不同之處.</li>
+<li><strong>addAll(Collection&lt;? super T&gt;, T…)</strong> - Adds all of the elements in the specified array to the specified collection.<br><strong>addAll(collection&lt;? super T&gt;, T…)</strong> - 將指定的數組中的所有元素添加至指定的集合.</li>
+</ul>
+<h4 id="Infrastructure"><a href="#Infrastructure" class="headerlink" title="Infrastructure"></a><strong>Infrastructure</strong></h4><p>  <strong>基礎結構</strong></p>
+<ul>
+<li><strong>Iterators</strong> - Similar to the familiar Enumeration interface, but more powerful, and with improved method names.<br><strong>迭代器</strong> - 與熟悉的Enumeration接口類型,但更加有力,改良方法名.<ul>
+<li><strong>Iterator</strong> - In addition to the functionality of the Enumeration interface,<br><strong>Iterator</strong> - 在Enumeration接口添加功能,<br>enables the user to remove elements from the backing collection with well-defined, useful semantics.<br>是的用戶可以支持在更好的定義,有用的語意上移除元素.</li>
+<li><strong>ListIterator</strong> - Iterator for use with lists. In addition to the functionality of the Iterator interface,<br><strong>ListIterator</strong> - 對於list有用的迭代器.在Iterator接口中添加功能,<br>supports bidirectional iteration, element replacement, element insertion, and index retrieval.<br>支持雙向的迭代,元素的替換,元素的添加以及索引的檢索.</li>
+</ul>
+</li>
+<li><strong>Ordering</strong><br><strong>排序</strong><ul>
+<li><strong>Comparable</strong> - Imparts a natural ordering to classes that implement it.<br><strong>Comparable</strong> - 實現這個接口,可以使得classes按照自然排序.<br>The natural ordering can be used to sort a list or maintain order in a sorted set or map.<br>自然排序可以用於排序一個list或者維護一個已排序的set或者map.<br>Many classes were retrofitted to implement this interface.<br>許多類都已經改造為實現這個接口.</li>
+<li><strong>Comparator</strong> - Represents an order relation,<br><strong>Comparator</strong> - 代表一個排序關係,<br>which can be used to sort a list or maintain order in a sorted set or map.<br>可以用於排序一個list或者維護一個已排序的set或者map.<br>Can override a type’s natural ordering or order objects of a type that does not implement the Comparable interface.<br>用於複寫一個類型的自然排序或者排序那些不能實現Comparable接口的類型的對象.</li>
+</ul>
+</li>
+<li><strong>Runtime exceptions</strong><br><strong>運行時遺產</strong><ul>
+<li><strong>UnsupportedOperationException</strong> - Thrown by collections if an unsupported optional operation is called.<br><strong>UnsupportedOperationException</strong> - 如果使用了一個不支持的可選操作會有集合拋出異常.</li>
+<li><strong>ConcurrentModificationException</strong> - Thrown by iterators and list iterators<br><strong>ConcurrentModificationException</strong> - 迭代器和list的迭代器會拋出異常,<br>if the backing collection is changed unexpectedly while the iteration is in progress.<br>當迭代過程中支持的集合發生了意外的改變.<br>Also thrown by sublist views of lists if the backing list is changed unexpectedly.<br>同樣支持的list發生了意外的改變,list的自列表視圖也會拋出異常. </li>
+</ul>
+</li>
+<li><strong>Performance</strong><br><strong>執行</strong><ul>
+<li><strong>RandomAccess</strong> - Marker interface that lets List implementations indicate that they support fast (generally constant time) random access.<br><strong>隨機存儲訪問</strong> - 標記接口,使得列表實現支持快速的隨機存儲訪問(一般恆定的時間).<br>This lets generic algorithms change their behavior to provide good performance when applied to either random or sequential access lists.<br>這使得通用的算法改變了他們的表現,無論應用使用隨機或是序列的存儲訪問list,都提供了很好的性能. </li>
+</ul>
+</li>
+</ul>
+<h4 id="Array-Utilities"><a href="#Array-Utilities" class="headerlink" title="Array Utilities"></a><strong>Array Utilities</strong></h4><p>  <strong>數組工具</strong></p>
+<ul>
+<li><strong>Arrays</strong> - Contains static methods to sort, search, compare, hash, copy, resize, convert to String, and fill arrays of primitives and objects.<br><strong>Arrays</strong> - 包含了靜態的方法:sort,search,compare,hash,copy,resize,轉換成字符串以及填充數組的基本類型與對象.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>各位看官，打個賞唄~⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾*~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Z_Z.W Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Post author:</strong>
+      Z_Z.W
+    </li>
+     <li class="post-copyright-author">
+        <strong>Post created:</strong>
+        12:23 Nov 30 2015
+      </li>
+     <li class="post-copyright-author">
+        <strong>Post modified:</strong>
+        10:08 Jul 04 2017
+      </li>
+    <li class="post-copyright-link">
+      <strong>Post link:</strong>
+      <a href="https://myhongkongzhen.github.io/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html" title="Outline of the Collection Framework -- (二)">https://myhongkongzhen.github.io/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright Notice: </strong>
+      All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/JDK1-7/" rel="tag"># JDK1.7</a>
+          
+            <a href="/tags/TRANSLATING/" rel="tag"># TRANSLATING</a>
+          
+        </div>
+      
+
+      
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/技術/2015/11/25/Collections-Framework-Overview.html" rel="next" title="Collections Framework Overview -- (一)">
+                <i class="fa fa-chevron-left"></i> Collections Framework Overview -- (一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/技術/2015/12/01/Collections-Framework-Interface-UML.html" rel="prev" title="Collections Framework Interface UML -- (三)">
+                Collections Framework Interface UML -- (三) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="fb-comments"
+           data-href="https://myhongkongzhen.github.io/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html"
+           data-numposts="10"
+           data-width="100%"
+           data-colorscheme="light">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon-20151123105940450.ico"
+               alt="Z_Z.W" />
+          <p class="site-author-name" itemprop="name">Z_Z.W</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/myhongkongzhen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/myhongkongzhen" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/#!/Z_ZW" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/myhongkongzhen" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#API-Specification"><span class="nav-number">1.</span> <span class="nav-text">API Specification</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-collections-framework-consists-of"><span class="nav-number">1.1.</span> <span class="nav-text">The collections framework consists of:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Collection-interfaces-The-primary-means-by-which-collections-are-manipulated"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">Collection interfaces - The primary means by which collections are manipulated.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#General-purpose-implementations-The-primary-implementations-of-the-collection-interfaces"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">General-purpose implementations - The primary implementations of the collection interfaces.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wrapper-implementations-Functionality-enhancing-implementations-for-use-with-other-implementations"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">Wrapper implementations - Functionality-enhancing implementations for use with other implementations.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adapter-implementations-Implementations-that-adapt-one-collections-interface-to-another"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">Adapter implementations - Implementations that adapt one collections interface to another:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Convenience-implementations-High-performance-“mini-implementations”-of-the-collection-interfaces"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">Convenience implementations - High-performance “mini-implementations” of the collection interfaces.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Legacy-implementations-Older-collection-classes-were-retrofitted-to-implement-the-collection-interfaces"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">Legacy implementations - Older collection classes were retrofitted to implement the collection interfaces.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Special-purpose-implementations"><span class="nav-number">1.1.0.7.</span> <span class="nav-text">Special-purpose implementations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Concurrent-implementations-These-implementations-are-part-of-java-util-concurrent"><span class="nav-number">1.1.0.8.</span> <span class="nav-text">Concurrent implementations - These implementations are part of java.util.concurrent.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Abstract-implementations-Skeletal-implementations-of-the-collection-interfaces-to-facilitate-custom-implementations"><span class="nav-number">1.1.0.9.</span> <span class="nav-text">Abstract implementations - Skeletal implementations of the collection interfaces to facilitate custom implementations.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Algorithms-The-Collections-class-contains-these-useful-static-methods"><span class="nav-number">1.1.0.10.</span> <span class="nav-text">Algorithms - The Collections class contains these useful static methods.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Infrastructure"><span class="nav-number">1.1.0.11.</span> <span class="nav-text">Infrastructure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Array-Utilities"><span class="nav-number">1.1.0.12.</span> <span class="nav-text">Array Utilities</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z_Z.W</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://myhongkongzhen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://myhongkongzhen.github.io/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html';
+          this.page.identifier = 'archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html';
+          this.page.title = 'Outline of the Collection Framework -- (二)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://myhongkongzhen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>

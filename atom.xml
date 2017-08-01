@@ -1,0 +1,2744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>あなたがいる 、それだけでも</title>
+  <subtitle>Z_Z.W</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://myhongkongzhen.github.io/"/>
+  <updated>2017-08-01T11:34:49.133Z</updated>
+  <id>https://myhongkongzhen.github.io/</id>
+  
+  <author>
+    <name>Z_Z.W</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>using hexo to create github blog</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/08/01/using-hexo-to-create-github-blog.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/08/01/using-hexo-to-create-github-blog.html</id>
+    <published>2017-08-01T11:05:51.000Z</published>
+    <updated>2017-08-01T11:34:49.133Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Using hexo to create  github blog</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Prepare-working"><a href="#Prepare-working" class="headerlink" title="Prepare working"></a>Prepare working</h1><hr>
+<ul>
+<li>Git</li>
+<li>Node.js &amp; npm &amp; hexo</li>
+</ul>
+<h1 id="Init-hexo-working-space"><a href="#Init-hexo-working-space" class="headerlink" title="Init hexo working space"></a>Init hexo working space</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">hexo init myhongkongzhen.github.io</div><div class="line"><span class="comment">#001_hexo_init</span></div><div class="line"></div><div class="line"><span class="comment">#----------------------------------------------------</span></div><div class="line"><span class="built_in">cd</span> myhongkongzhen.github.io</div><div class="line">git init</div><div class="line">git add .</div><div class="line">git ci -m<span class="string">"init hexo blog"</span></div><div class="line"><span class="comment">#002_git_init</span></div><div class="line"><span class="comment">#----------------------------------------------------</span></div><div class="line"></div><div class="line">git submodule add https://github.com/myhongkongzhen/hexo-theme-next.git themes/next</div><div class="line"><span class="comment">#003_add_hexo_theme_next</span></div><div class="line"></div><div class="line"><span class="built_in">cd</span> themes\next</div><div class="line">git remote -v</div><div class="line"><span class="comment">#004_remote_v_01</span></div><div class="line"></div><div class="line">git remote add upstream https://github.com/iissnan/hexo-theme-next.git</div><div class="line">git remote -v</div><div class="line"><span class="comment">#004_remote_v_02</span></div><div class="line"></div><div class="line">git fetch upstream</div><div class="line">git merge upstream/master</div><div class="line"><span class="comment">#004_remote_v_03.jpg</span></div><div class="line"></div><div class="line"><span class="comment">#----------------------------------------------------</span></div><div class="line">git tag</div><div class="line">git co -b mystyle v5.1.1</div><div class="line"><span class="comment">#005_change_release_version_next</span></div><div class="line"></div><div class="line"><span class="comment">#----------------------------------------------------</span></div><div class="line"><span class="built_in">cd</span> myhongkongzhen.github.io</div><div class="line">git remote add origin https://github.com/myhongkongzhen/hexo_blog_src.git</div><div class="line">git push -u origin master</div><div class="line"><span class="comment">#006_add_remote_github</span></div><div class="line"></div><div class="line">hexo s -g --debug -p8888</div><div class="line"><span class="comment">#start hexo blog local server</span></div><div class="line"><span class="comment">#007_start_hexo</span></div><div class="line"></div><div class="line"><span class="comment">#----------------------------------------------------</span></div><div class="line">npm install hexo-deployer-git --save <span class="comment"># deploy to github</span></div><div class="line">npm install hexo-filter-plantuml --save <span class="comment"># plantuml</span></div><div class="line">npm install hexo-generator-feed --save <span class="comment"># feed</span></div><div class="line">npm install hexo-generator-searchdb --save <span class="comment"># local search</span></div><div class="line">npm i --save hexo-wordcount <span class="comment"># wordcount</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Using hexo to create  github blog&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="hexo" scheme="https://myhongkongzhen.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="https://myhongkongzhen.github.io/tags/github/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UML class diagram</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/31/UML-class.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/31/UML-class.html</id>
+    <published>2017-07-31T10:23:52.000Z</published>
+    <updated>2017-08-01T07:07:06.700Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>Unified Modeling Language</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h1 id="UML-class-diagram"><a href="#UML-class-diagram" class="headerlink" title="UML class diagram"></a>UML class diagram</h1><hr>
+<p><img src="http://www.plantuml.com/plantuml/svg/ZLDHJnf147xdLsny1wEF3J4sQPhqXLz0GYvmDQHm6kvCchGc9wtA0UMi2WhILgobPooWjLMuKlWntkxUFV4NEdjp88zzkCtDxCmtCzytkwfgKaxRp6P26rBobRGc4_XF93EIgYRarvgifDH4EhkHaREoegaa6dsUaxBooigR4254VEIfaivA6H9z6mwdmc7oR7sDF251AbaaxFQKbcjaCYpmmP0PuydGyDEKTKqc2tZBJdfEN-TM5qwtyCCjx75ZmBh51trxvg4xzzxLaJCeURL3xxZfZFEyyPwPfZk-dWpBSGNlqK7_sFogH9iMPgCJmkaNcrzK0CFf5o79wRVfzGUwS-VfFzrMsR5tsU4lUbDzqFC409iMjqhKDfr-1nhqz8QtNS4PlDPdscjpSmIO41nNME-8jlEyT0o10h9KvSQbA3ZN51G4IE_JETt_237kJSkrEgvL46FKyrIl1yqMYu0JNENjHwZEFfJ5rjoMnIziLXkms-fasE2NDXs_S_g6-_s0_ZtdtOvtrX4fqEDzGzJrSrbv3qhpmXtyBn199R6bUG4ZaQaZjYGC4DAt_2EjQ7BkfPIKoGlm--AJBVyKDeWVIKK2wUUsPP4WJK9zLlb6pQzJzUTM04DcAm3DWTeO3JEWr303pYp6EEdXBJDqrZHWK-ZeDps0W3Bm5OnjZd0fvZH4Ub76cO28v8nsKQD8N27_IQvRFmt8zO5c_28Yyhlyo91W5ytOyfJThT0gF19uR_y0"><br>IMG download =&gt; <a href="/images/elasticsearch/021_uml_class_01.png">uml_class_extends_implements</a></p>
+<p><img src="http://www.plantuml.com/plantuml/svg/RL91I-D06BttLmnUgWYzU9CIN0zxb6NnA4XC1otMIKcYi8WGgsArBNNLkjf6sOAMBDfwwE9cOwm_PcSoarF_mdx9H1PXvp0axtlVU-_ZcpdJKWrhSwEKAQlQkhgA4NmlQoNLD9SBk8n90HFj2yhdFnhg1bQKxGo2arm92Nt2Uhc4aSJZCwqPkcb-BcvXOt9ULosq0jTKKjxvrvosvOpYwfgLKr32d4LqT2s6Fz4ug4QEBNgxh77EZd-CWwCbajVqacxC6hYWv5UKnJLiO5Gq4T5HDcxEeYA1MOW6A4cpPQLBDfTO4jt2Q2AyVAIUpTq1VNdbvovlxqVV7FfQ6GTrrXX2YTcrg7i3E7liyUOepT7ilIkbiUhXaKsVxsB2_cLqsAHUGyf6dIjsyXMOr3_b7K-E1VmbmXoNkpNc0xSFagBw8Bek-F2A3zeV08MkyE9tE6n9Qq3dPHewgj4N1uZiu8arzyAM5rOlX7qW1iVWdQWBknwhXCw3yE-f1w4RwG11AuxrNwsmUiBEkbBbZrq15KXqwyiGuw0jhZhyLviF-j7tFhWa1lL3c2-MWuO9f9feOURTNdDlmC9C_1DlI2v_9pC7ZmeUsLy0"><br>IMG download =&gt; <a href="/images/elasticsearch/021_uml_class_02.png">uml_class_dependency</a></p>
+<p><img src="http://www.plantuml.com/plantuml/svg/TLHTRn9157tlhzZuB8qnrOVQaAg9ZttHHv9cfHlQs2w6fIyQawMbNP3YWaArI4jhhAx5WbWY7mBzCTsPsNtgN_3C352gaMINsNlFlNFlFMTcteYhiVZwskhKSpNyJ8re2jQBuLNLC1RnHCChQdmbgY-gaKXCYuYrCZVtAAQkQS7Woob5KVYZY03bYQQ6bxMOC8jV81nTZncQCgiyn2AiNJcC-FgIfiSDk1xBfV2z4kzX7YKG28f0aS5_N_OITUMobwAfFAiS-ubtRl_mifSM8NeqhYatl2E7VUxwHmTUoiBRxMJytNUib4GWVNDyazGstVwvspQ9cO5R9Y7sbojBAKaQtwdvbRpTeRiTUbQyxEs4TD_SOquD1RZd6xHUS0VxtbcJVcoINkl2JBZjB3dzGCgEj4iOpvJunPA_a0mOQNGx5O3fXxfdENHl0ox0n0wem4jzXySljcYvClOWAtCof6kxxLFlKrNE08K-S7yVuqyMo_VgVo8zcrXTPWyGCyRTHvpSe5CXTjtRxFCznbxIAxA2utQtnnCW1ncsqRss5K-_vP26wTLU-vOTqXKvvj60IgJ-XRLAh7Rg7_BDU6AwOv5SdaVVK5H3MPYvnklqzCYoCCC_9CV2C5RK21lb8XXA12hm4YMIIt4LBAj6G5LeEGq9p8MZgz7OR4nR2iuz3HhnM5IFJCf210qx6j63ba4gItVSGGPLOowW4_P9s8Mv4T9bDFoqsFIh1KY3ZwfQ6AjBOZbRsJDHrQGjfCimA5A6WGQGHxR0Svhaafvr0ZWhL4Y-J_8Eo9UIstH8Qdk81SkxFVAvX0J36dvalSOHW99MO43Qlm2orN2xLT74bOf4DsXYiayqnnLeDOUgiq-W538uy4uEsE0RQvP8wjWTR9EiYQBkOIH_2U370FMY1FQjIyutFRi1FNBPN1D6Qbmi_VbsP4p_Hp1t_X6Cj2pSuH-JLuQaU581nieBRVRshI1KBBlbV43QSfYxDPPrv86zYHMhPkG7G3HfKtEVAw7iq4gEJzDAuu3mLegsVxH3AZZ0fxWEhguB4Gig4OjHOJJM2MarwDUCRnuIgq-BRKJWrEFYGIRPt5rH-4ZKl3bfcNerDQ_fIxY1_m00"><br>IMG download =&gt; <a href="/images/elasticsearch/021_uml_class_03.png">uml_class_association_aggregation</a></p>
+<p><img src="http://www.plantuml.com/plantuml/svg/hLNDRXf94BxxALgSajKwskIG7yT2neTL3giyWQLe5YFBYZr4W2-9LXhy4uO01h9079OO4yNE189jZBt61F33UAgxv-HNsEefm6F5KIuh8UYQgVhggwglcfbeJ8l4LfQN9bvemUVQGeZX-LbmIOj6dmN3oo_2qSNOObXdqzE_HxJbaD__Qe8n_33sP6LPqvdlhe_zCZdfPxvxFlP7Q85DCN6o3ZcJNVRCO5YFQOjwT59ZaDw0NEEobvpJfuFXfN1aAXAQzq__wO_68c5zWT7FZS1uU1BIvly7P3qS2p4VeTXdLRvruBohoBZwjizNHNdTxXZ2sXV9CtkGkZ1MoHFTw3al7ZkDWZGJpfe5vclqfy3BNXeoxIjAtXVye23ZPONopp7qJX5qJgTmn250T1U5AkJxaBTufOgvPE9OXTxqLfpa-8SgaeV35b_FGhujy-_6VBxtH1ogWXZPdOnSwyD6o-usN2x2Ia4tQtUQv0LlqzwMKEb81x5LbTcwYXvio_gs67mHnsKmT-t1QyWOcD_5Ox9cYKzTNZhZxU9bhmo70sGdLhjmi0VdQpBRWlv7H4DJP0TYl-diD76Ugg3iWVrjbn-z7JrCOaQdjXtWwGJaydYQzJ4jofu-yAZapfsH_VI1Cb217al9nZDuhpoYYoz3K_T-yykF3QfS3QssZVtXbJKexOkC1Sqjg5Ytv5u9YbcdbePgLHffs2_VlYKJTJXjySyfnzY1H9yNEzX1ktyk2jRjwp8SvK6a2-CDBsPvvjGffSJxteMHmY1dTLtMws0UOh41OZAhEfrC19oA8VVYehhhnF-U7GuNARd3HPSVvCcqiP4ufO0ysf57Np68cpbkbgInuIHIl32O_M4iUGKSe-p4DtarXv9tZ08CyjSu89nIYOj50tdezbWjlne7MUx6Nfa_dm9j2Ks1fE2Tmgzu4eqK6UY4qkV61vGdciWKZ1HF9B7xIbcZOQdk6k_n5IAgvsuihoGn5iKxfzyyn4w6vaYbtVSG9uPOEuq9nOro7sV33BGLTkSDlXfUCftcM62gBaz5AFGnbyTgRrnq2g2p2gXOmxMe9Bt1r06Cf9sZjNVlZckvuNp3sJ5HHAG5BvNnPO5HrzAhV7X9Z0B6L5HzyIE-jKdg8rgYq89F9RNWT8tWLP0yWMzTR1B_rxIxDLnjzCHsolOU63rSQcHChNr4YthVLSdGU3Wq_fgO2Udp-4_q7m00"><br>IMG download =&gt; <a href="/images/elasticsearch/021_uml_class_04.png">uml_class_composition</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Unified Modeling Language&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="UML" scheme="https://myhongkongzhen.github.io/tags/UML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK_Stage review_008</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/31/ELK-Stage-review-008.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/31/ELK-Stage-review-008.html</id>
+    <published>2017-07-31T09:26:42.000Z</published>
+    <updated>2017-08-01T06:42:24.622Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Stage review</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Elasticsearch-core-structure"><a href="#Elasticsearch-core-structure" class="headerlink" title="Elasticsearch core structure"></a>Elasticsearch core structure</h1><hr>
+<p><img src="http://www.plantuml.com/plantuml/svg/XP9DJyCm38Rl-HNMBfpMiHsdA9eqn943uZwvZGSL-QYSL51D_UzaXT8F2lWGER7zsFARGuZ8iRP6Y0gBLtmcS5xJQGjItZDQKkeY12JhmwNJzBvUgpkCc6EW8H4kNUBLlfs-gkBI8ZUdy8AiRyTm69dpaM3btLUNT1QcrXJW-kGPh6U23X5W1HZWOJkfdrpwrh6fACtxXBbP7lPNmfYYVL5RSZ6H7ltRlvn5rfXtBide13jwKrkNU4VZQprVI6-j-Fjbk7rwhMXdWkxcE--ZJ9Kf2noKcGnoyrEQHHrsexPJgRCiK_CcUv25DvxtJ5h9F2sXQW2T1bsUpyHfpTtGcTpaIcwwL2N4WPnEF_K3"><br>IMG download =&gt; <a href="/images/elasticsearch/020_stage_review.png">ES core structure</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Stage review&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK_batch search_007</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-batch-search-007.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-batch-search-007.html</id>
+    <published>2017-07-30T14:23:16.000Z</published>
+    <updated>2017-07-31T09:28:24.146Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>Batch query<ul>
+<li>mget</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h1 id="mget"><a href="#mget" class="headerlink" title="_mget"></a>_mget</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">GET /_mget  <span class="comment"># different index &amp; type</span></div><div class="line">&#123;</div><div class="line">    <span class="string">"docs"</span> : [</div><div class="line">        &#123;</div><div class="line">            <span class="string">"_index"</span> : <span class="string">"test_index"</span>,</div><div class="line">            <span class="string">"_type"</span> : <span class="string">"test_type"</span>,</div><div class="line">            <span class="string">"_id"</span> : <span class="string">"1"</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="string">"_index"</span> : <span class="string">"test_index"</span>,</div><div class="line">            <span class="string">"_type"</span> : <span class="string">"test_type"</span>,</div><div class="line">            <span class="string">"_id"</span> : <span class="string">"2"</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/019_mget_search.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">GET /test_index/_mget <span class="comment"># the same index and different type</span></div><div class="line">&#123;</div><div class="line">    <span class="string">"docs"</span> : [</div><div class="line">          &#123;</div><div class="line">             <span class="string">"_type"</span> :  <span class="string">"test_type"</span>,</div><div class="line">             <span class="string">"_id"</span> :    1</div><div class="line">          &#125;,</div><div class="line">          &#123;</div><div class="line">             <span class="string">"_type"</span> :  <span class="string">"test_type"</span>,</div><div class="line">             <span class="string">"_id"</span> :    2</div><div class="line">          &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GET /test_index/test_type/_mget <span class="comment"># the same index &amp; type</span></div><div class="line">&#123;</div><div class="line">   <span class="string">"ids"</span>: [1, 2]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Batch query&lt;ul&gt;
+&lt;li&gt;mget&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK_Concurrent conflict_006</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-Concurrent-conflict-006.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-Concurrent-conflict-006.html</id>
+    <published>2017-07-30T06:44:47.000Z</published>
+    <updated>2017-07-31T09:03:56.664Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>Pessimistic lock<ul>
+<li>Relational Database<ul>
+<li>ex : MySQL</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Optimistic lock<ul>
+<li>ex : Elasticsearch </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h1 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h1><hr>
+<ul>
+<li>Pessimistic lock <ul>
+<li>Any time it lock, only one thread can operate data.</li>
+</ul>
+</li>
+<li>Optimistic lock <ul>
+<li>Any time it unlock, every thread can operate data, but it has a version info.</li>
+</ul>
+</li>
+</ul>
+<h1 id="version"><a href="#version" class="headerlink" title="_version"></a>_version</h1><hr>
+<h2 id="internal-version"><a href="#internal-version" class="headerlink" title="internal _version"></a>internal _version</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"_index"</span>: <span class="string">"test_index"</span>,</div><div class="line">  <span class="string">"_type"</span>: <span class="string">"test_type"</span>,</div><div class="line">  <span class="string">"_id"</span>: <span class="string">"4"</span>,</div><div class="line">  <span class="string">"_version"</span>: 1, <span class="comment"># any operating , plus 1 (include DELETE, Not physically deleted)</span></div><div class="line">  <span class="string">"result"</span>: <span class="string">"created"</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 2,</div><div class="line">    <span class="string">"successful"</span>: 1,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"created"</span>: <span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /test_index/test_type/7?version=2</div><div class="line">&#123; </div><div class="line">  <span class="string">"test_field"</span>:<span class="string">"test field 7.1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/017_version_update.png"><br><img src="/images/elasticsearch/017_version_update_02.png"></p>
+<h2 id="external-version"><a href="#external-version" class="headerlink" title="external version"></a>external version</h2><blockquote>
+<ul>
+<li>?version=1<strong>&amp;version_type=external</strong><ul>
+<li>es, _version=1, ?version=1 ==&gt; update success</li>
+<li>es, _version=1, ?version <strong>&gt;1</strong> &amp;version_type=external ==&gt; update success</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="Partial-update-amp-amp-Optimistic-lock"><a href="#Partial-update-amp-amp-Optimistic-lock" class="headerlink" title="Partial update &amp;&amp; Optimistic lock"></a>Partial update &amp;&amp; Optimistic lock</h2><blockquote>
+<ul>
+<li>retry strategy  <ul>
+<li>retry_on_conflict : retry times</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">POST /test_index/test_type/id/_update?retry_on_conflict=5&amp;version=6</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Pessimistic lock&lt;ul&gt;
+&lt;li&gt;Relational Database&lt;ul&gt;
+&lt;li&gt;ex : MySQL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Optimistic lock&lt;ul&gt;
+&lt;li&gt;ex : Elasticsearch &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK_Document core idea_005</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-Document-core-idea-005.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-Document-core-idea-005.html</id>
+    <published>2017-07-30T05:21:14.000Z</published>
+    <updated>2017-07-31T07:51:29.220Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p><strong>document core metadata</strong>  </p>
+<ul>
+<li><code>_index</code> </li>
+<li><code>_type</code> </li>
+<li><code>_id</code> </li>
+<li><code>_source</code></li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"_index"</span>: <span class="string">"test_index"</span>,</div><div class="line">  <span class="string">"_type"</span>: <span class="string">"test_type"</span>,</div><div class="line">  <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">  <span class="string">"_version"</span>: 1,</div><div class="line">  <span class="string">"found"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"_source"</span>: &#123;</div><div class="line">    <span class="string">"test_content"</span>: <span class="string">"test test"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="index"><a href="#index" class="headerlink" title="_index"></a>_index</h1><hr>
+<ul>
+<li>One document is in which index.<ul>
+<li>The different data(field) need be in different index.</li>
+</ul>
+</li>
+</ul>
+<h1 id="type"><a href="#type" class="headerlink" title="_type"></a>_type</h1><hr>
+<ul>
+<li>One document belongs to which type in index.</li>
+</ul>
+<h1 id="id"><a href="#id" class="headerlink" title="_id"></a>_id</h1><hr>
+<ul>
+<li><p>The unique identity of the document.  </p>
+<ul>
+<li><p>Manual create document id.  </p>
+<ul>
+<li>Import other system data to ES.  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /test_index/test_type/2</div><div class="line">&#123;</div><div class="line">  <span class="string">"test_content"</span> : <span class="string">"my test"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Auto create document id.  </p>
+<ul>
+<li>length : 20</li>
+<li>url security : base64</li>
+<li>GUID<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">POST /test_index/test_type</div><div class="line">&#123;</div><div class="line">  <span class="string">"test_content"</span> : <span class="string">"my test"</span> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="/images/elasticsearch/012_auto_create_doc_id.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="source"><a href="#source" class="headerlink" title="_source"></a>_source</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /test_index/test_type/1</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/013_source_get_return.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /test_index/test_type/1?_source=test_field1,test_field2</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/014_source_get_spec_return.png"></p>
+<h1 id="Document-replacement"><a href="#Document-replacement" class="headerlink" title="Document replacement"></a>Document replacement</h1><hr>
+<ul>
+<li>The same as creating the document<ul>
+<li>if _id exists, then it will be full replacement.</li>
+<li>if not, create new document.<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /test_index/test_type/4</div><div class="line"> &#123; </div><div class="line">   <span class="string">"test_field6"</span>:<span class="string">"test field 6"</span></div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/elasticsearch/015_doc_full_replacement.png"></p>
+<ul>
+<li>Forced replacement<ul>
+<li><strong><code>PUT /index/type/id?op_type=create</code></strong></li>
+<li><strong><code>PUT /index/type/id/_create</code></strong></li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/elasticsearch/016_doc_forced_replacement.png"></p>
+<ul>
+<li>Delete document</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DELETE /test_index/test_type/4</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;document core metadata&lt;/strong&gt;  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;_index&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_type&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_id&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_source&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK_Elasticsearch core structure_004</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/ELK-Elasticsearch-core-structure-004.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/29/ELK-Elasticsearch-core-structure-004.html</id>
+    <published>2017-07-29T14:59:21.000Z</published>
+    <updated>2017-07-30T06:01:47.294Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>擴容對應用程序的透明性<ul>
+<li>垂直擴容與水平擴容</li>
+<li>保持負載均衡</li>
+</ul>
+</li>
+<li>Master node<ul>
+<li>節點對等，每個節點都能接收所有請求</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h1 id="Shard-amp-Replica"><a href="#Shard-amp-Replica" class="headerlink" title="Shard &amp; Replica"></a>Shard &amp; Replica</h1><hr>
+<ul>
+<li>One index includes one shard or more shard.<ul>
+<li>When we create index, we set 3(ex) primary shard, then ES cluster can be balance for every shard.</li>
+</ul>
+</li>
+<li>Every shard is a minimum working unit, which is a lucene instance.</li>
+<li>Every document is in the one primary shard and its replica shard.</li>
+<li>We cannot edit the number of primary shard , but can edit the number of replica shard.</li>
+<li>The same primary shard and replica shard cannot be in the same node.</li>
+</ul>
+<h1 id="Create-index"><a href="#Create-index" class="headerlink" title="Create index"></a>Create index</h1><hr>
+<h2 id="Under-the-single-node"><a href="#Under-the-single-node" class="headerlink" title="Under the single node"></a>Under the single node</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">PUT /test_index</div><div class="line">&#123;</div><div class="line">    <span class="string">"settings"</span> : &#123;</div><div class="line">        <span class="string">"number_of_shards"</span> : 3,</div><div class="line">        <span class="string">"number_of_replicas"</span> : 1 // Every primary shard has one replica shard.</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Under-the-two-nodes"><a href="#Under-the-two-nodes" class="headerlink" title="Under the two nodes"></a>Under the two nodes</h2><ul>
+<li>Primary shard(node 1) data copy to replica shard(node 2).</li>
+</ul>
+<h1 id="横向擴容"><a href="#横向擴容" class="headerlink" title="横向擴容"></a>横向擴容</h1><hr>
+<p>（1）primary&amp;replica自动负载均衡，6个shard，3 primary，3 replica<br>（2）每个node有更少的shard，IO/CPU/Memory资源给每个shard分配更多，每个shard性能更好<br>（3）扩容的极限，6个shard（3 primary，3 replica），最多扩容到6台机器，每个shard可以占用单台服务器的所有资源，性能最好<br>（4）超出扩容极限，动态修改replica数量，9个shard（3primary，6 replica），扩容到9台机器，比3台机器时，拥有3倍的读吞吐量<br>（5）3台机器下，9个shard（3 primary，6 replica），资源更少，但是容错性更好，最多容纳2台机器宕机，6个shard只能容纳1台机器宕机<br><img src="/images/elasticsearch/011_橫向擴容.png"></p>
+<h1 id="容錯"><a href="#容錯" class="headerlink" title="容錯"></a>容錯</h1><hr>
+<ul>
+<li>自動選舉一個node為新的master，承擔master的責任</li>
+<li>新的master將丟失的primary shard的某個replica shard提升為primary shard<ul>
+<li>Cluster status is yellow now. (P1,P2,P3 primary shard is active, but P1 miss one replica shard copy.)</li>
+</ul>
+</li>
+<li>Restart downtime node.<ul>
+<li>新的master會將丟失的副本copy一份到此節點上，該node會使用之前已有的shard數據，只同步一下宕機之後發生的修改.</li>
+<li>Cluster status becomes green now.</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;擴容對應用程序的透明性&lt;ul&gt;
+&lt;li&gt;垂直擴容與水平擴容&lt;/li&gt;
+&lt;li&gt;保持負載均衡&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Master node&lt;ul&gt;
+&lt;li&gt;節點對等，每個節點都能接收所有請求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK_Kinds of search type_003</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html</id>
+    <published>2017-07-29T13:25:15.000Z</published>
+    <updated>2017-07-31T08:10:46.746Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>Basic Search<ul>
+<li>Query string search</li>
+<li>Query DSL</li>
+<li>Query filter</li>
+<li>Full-test search</li>
+<li>Phrase search</li>
+<li>Highlight search</li>
+</ul>
+</li>
+<li>Advance Search<ul>
+<li>Group by</li>
+<li>Avg</li>
+<li>Sort</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h1 id="Query-string-search"><a href="#Query-string-search" class="headerlink" title="Query string search"></a>Query string search</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /index/<span class="built_in">type</span>/_search <span class="comment"># all result</span></div></pre></td></tr></table></figure>
+<h2 id="Case-one"><a href="#Case-one" class="headerlink" title="Case one"></a>Case one</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search <span class="comment"># all result</span></div><div class="line">------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 7,   // used time(ms)</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>, // <span class="keyword">if</span> it is check out</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,  // 5 shard</div><div class="line">    <span class="string">"successful"</span>: 5, // all request hits all primary shard &amp; replica shard</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 3, // result</div><div class="line">    <span class="string">"max_score"</span>: 1, // The meaning of the score is the match of a search <span class="keyword">for</span> a search score, the more relevant, the more match, the score is also high</div><div class="line">    <span class="string">"hits"</span>: [ // the details of result documents</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="string">"_score"</span>: 1,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiajieshi yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"youxiao fangzhu"</span>,</div><div class="line">          <span class="string">"price"</span>: 25,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"jiajieshi producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="string">"_score"</span>: 1,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"gaoxiao meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 30,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"gaolujie producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span>,</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"3"</span>,</div><div class="line">        <span class="string">"_score"</span>: 1,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"zhonghua yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"caoben zhiwu"</span>,</div><div class="line">          <span class="string">"price"</span>: 40,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"zhonghua producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"qingxin"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Case-two"><a href="#Case-two" class="headerlink" title="Case two"></a>Case two</h2><ul>
+<li>paramter comes from http request.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search?q=name:yagao&amp;sort=price:asc</div><div class="line">----------------------------------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 20,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,</div><div class="line">    <span class="string">"successful"</span>: 5,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 3,</div><div class="line">    <span class="string">"max_score"</span>: null,</div><div class="line">    <span class="string">"hits"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="string">"_score"</span>: null,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiajieshi yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"youxiao fangzhu"</span>,</div><div class="line">          <span class="string">"price"</span>: 25,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"jiajieshi producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"sort"</span>: [</div><div class="line">          25</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="string">"_score"</span>: null,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"gaoxiao meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 30,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"gaolujie producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span>,</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"sort"</span>: [</div><div class="line">          30</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"3"</span>,</div><div class="line">        <span class="string">"_score"</span>: null,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"zhonghua yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"caoben zhiwu"</span>,</div><div class="line">          <span class="string">"price"</span>: 40,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"zhonghua producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"qingxin"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"sort"</span>: [</div><div class="line">          40</div><div class="line">        ]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Query-DSL"><a href="#Query-DSL" class="headerlink" title="Query DSL"></a>Query DSL</h1><hr>
+<blockquote>
+<p>Query Domain Specified Language<br>Http request body: using JSON data structure</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">   <span class="string">"query"</span> : &#123; <span class="string">"match_all"</span> : &#123;&#125; &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match"</span> : &#123; <span class="string">"name"</span> : <span class="string">"yagao"</span> &#125; &#125;,</div><div class="line">    <span class="string">"sort"</span> : [ &#123; <span class="string">"price"</span>  : <span class="string">"desc"</span> &#125; ]</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match_all"</span> : &#123;&#125; &#125;,</div><div class="line">    <span class="string">"from"</span> : 1, // from 0 to total</div><div class="line">    <span class="string">"size"</span> : 2  // query result total</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">   <span class="string">"query"</span> : &#123; <span class="string">"match_all"</span> : &#123;&#125; &#125;,</div><div class="line">   <span class="string">"_source"</span> : [ <span class="string">"name"</span> , <span class="string">"price"</span> ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Query-filter"><a href="#Query-filter" class="headerlink" title="Query filter"></a>Query filter</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123;</div><div class="line">        <span class="string">"bool"</span> : &#123; // include multiple query conditions</div><div class="line">            <span class="string">"must"</span> : &#123; <span class="string">"match"</span> : &#123; <span class="string">"name"</span> : <span class="string">"yagao"</span> &#125; &#125;,</div><div class="line">            <span class="string">"filter"</span> : &#123; <span class="string">"range"</span> : &#123; <span class="string">"price"</span> : &#123; <span class="string">"gt"</span> : 25 &#125; &#125; &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Full-text-search"><a href="#Full-text-search" class="headerlink" title="Full-text search"></a><em>Full-text search</em></h1><hr>
+<blockquote>
+<p>Producer this field, which will be demolished to build an inverted index</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>item</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>special</td>
+<td>4</td>
+</tr>
+<tr>
+<td>yagao</td>
+<td>4</td>
+</tr>
+<tr>
+<td>producer</td>
+<td>1,2,3,4</td>
+</tr>
+<tr>
+<td>gaolujie</td>
+<td>1</td>
+</tr>
+<tr>
+<td>zhognhua</td>
+<td>3</td>
+</tr>
+<tr>
+<td>jiajieshi</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match"</span> : &#123; <span class="string">"producer"</span> : <span class="string">"yagao producer"</span> &#125; &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 10,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,</div><div class="line">    <span class="string">"successful"</span>: 5,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 4,</div><div class="line">    <span class="string">"max_score"</span>: 0.70293105, // &lt;1&gt;</div><div class="line">    <span class="string">"hits"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"4"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.70293105, // &lt;2&gt;</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"special yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"special meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 50,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"special yagao producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.25811607, // &lt;3&gt;</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"gaoxiao meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 30,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"gaolujie producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span>,</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"3"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.25811607, // &lt;4&gt;</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"zhonghua yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"caoben zhiwu"</span>,</div><div class="line">          <span class="string">"price"</span>: 40,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"zhonghua producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"qingxin"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.1805489, // &lt;5&gt;</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiajieshi yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"youxiao fangzhu"</span>,</div><div class="line">          <span class="string">"price"</span>: 25,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"jiajieshi producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Partial-update"><a href="#Partial-update" class="headerlink" title="Partial update"></a>Partial update</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">POST /index/<span class="built_in">type</span>/id/_update</div><div class="line">&#123;</div><div class="line">    <span class="string">"doc"</span> : &#123;</div><div class="line">        <span class="string">"update_field"</span> : <span class="string">"update field content"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Partial-update-base-on-groovy-script"><a href="#Partial-update-base-on-groovy-script" class="headerlink" title="Partial update base on groovy script"></a>Partial update base on groovy script</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">POST test_index/test_type/11/_update</div><div class="line">&#123;</div><div class="line">  <span class="string">"script"</span>: <span class="string">"ctx._source.num += 1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>To add file test-add-tags.groovy is in the ES path/config/script/.</li>
+</ul>
+<p><img src="/images/elasticsearch/018_groovy_02.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">POST /test_index/test_type/11/_update</div><div class="line">&#123;</div><div class="line">  <span class="string">"script"</span>: &#123;</div><div class="line">    <span class="string">"lang"</span>: <span class="string">"groovy"</span>, </div><div class="line">    <span class="string">"file"</span>: <span class="string">"test-add-tags"</span>,</div><div class="line">    <span class="string">"params"</span>: &#123;</div><div class="line">      <span class="string">"new_tags"</span>: <span class="string">"tag1"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">-------------------------------------------</div><div class="line"></div><div class="line">1.ctx._source.tags += new_tags</div><div class="line">2.ctx.op = ctx._source.num == count ? <span class="string">'delete'</span> : <span class="string">'none'</span></div></pre></td></tr></table></figure></p>
+<p><img src="/images/elasticsearch/018_groovy_01.png"></p>
+<ul>
+<li>If document is not exist, then execute to upsert initial operating</li>
+<li>If document is exist, then execute to groovy script operating.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">POST /test_index/test_type/11/_update</div><div class="line">&#123;</div><div class="line">   <span class="string">"script"</span> : <span class="string">"ctx._source.num+=1"</span>,</div><div class="line">   <span class="string">"upsert"</span>: &#123;</div><div class="line">       <span class="string">"num"</span>: 0,</div><div class="line">       <span class="string">"tags"</span>: []</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Phrase-search-短语搜索"><a href="#Phrase-search-短语搜索" class="headerlink" title="Phrase search (短语搜索)"></a>Phrase search (<em>短语搜索</em>)</h1><hr>
+<blockquote>
+<p>To input the query key, which will be demolished to build an inverted index</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match_phrase"</span> : &#123; <span class="string">"producer"</span> : <span class="string">"yagao producer"</span> &#125; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Highlight-search"><a href="#Highlight-search" class="headerlink" title="Highlight search"></a>Highlight search</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match"</span> : &#123; <span class="string">"producer"</span> : <span class="string">"producer"</span> &#125; &#125;,</div><div class="line">    <span class="string">"highlight"</span>: &#123; <span class="string">"fields"</span> : &#123; <span class="string">"producer"</span> : &#123;&#125; &#125; &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 41,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,</div><div class="line">    <span class="string">"successful"</span>: 5,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 4,</div><div class="line">    <span class="string">"max_score"</span>: 0.25811607,</div><div class="line">    <span class="string">"hits"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.25811607,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"gaoxiao meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 30,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"gaolujie producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span>,</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"highlight"</span>: &#123;</div><div class="line">          <span class="string">"producer"</span>: [</div><div class="line">            <span class="string">"gaolujie &lt;em&gt;producer&lt;/em&gt;"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"3"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.25811607,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"zhonghua yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"caoben zhiwu"</span>,</div><div class="line">          <span class="string">"price"</span>: 40,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"zhonghua producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"qingxin"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"highlight"</span>: &#123;</div><div class="line">          <span class="string">"producer"</span>: [</div><div class="line">            <span class="string">"zhonghua &lt;em&gt;producer&lt;/em&gt;"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.1805489,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiajieshi yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"youxiao fangzhu"</span>,</div><div class="line">          <span class="string">"price"</span>: 25,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"jiajieshi producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"highlight"</span>: &#123;</div><div class="line">          <span class="string">"producer"</span>: [</div><div class="line">            <span class="string">"jiajieshi &lt;em&gt;producer&lt;/em&gt;"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"4"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.14638957,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"special yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"special meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 50,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"special yagao producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"highlight"</span>: &#123;</div><div class="line">          <span class="string">"producer"</span>: [</div><div class="line">            <span class="string">"special yagao &lt;em&gt;producer&lt;/em&gt;"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Aggs"><a href="#Aggs" class="headerlink" title="Aggs"></a>Aggs</h1><hr>
+<h2 id="Case-1"><a href="#Case-1" class="headerlink" title="Case 1."></a>Case 1.</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"size"</span> : 0,</div><div class="line">    <span class="string">"aggs"</span> : &#123;</div><div class="line">        <span class="string">"group_by_tags"</span> : &#123; <span class="string">"terms"</span> : &#123; <span class="string">"field"</span> : <span class="string">"tags"</span> &#125; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">...</div><div class="line"><span class="string">"buckets"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"fangzhu"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 2</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"meibai"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 2</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"qingxin"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 1</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Case-2"><a href="#Case-2" class="headerlink" title="Case 2."></a>Case 2.</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"size"</span> : 0,</div><div class="line">    <span class="string">"aggs"</span> : &#123;</div><div class="line">        <span class="string">"group_by_tags"</span> : &#123;</div><div class="line">            <span class="string">"terms"</span> : &#123; <span class="string">"field"</span> : <span class="string">"tags"</span> , <span class="string">"order"</span> : &#123; <span class="string">"avg_price"</span> : <span class="string">"desc"</span> &#125; &#125;,</div><div class="line">            <span class="string">"aggs"</span> : &#123; <span class="string">"avg_price"</span> : &#123; <span class="string">"avg"</span> : &#123; <span class="string">"field"</span> : <span class="string">"price"</span> &#125; &#125; &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">...</div><div class="line"><span class="string">"buckets"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"fangzhu"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 2,</div><div class="line">          <span class="string">"avg_price"</span>: &#123;</div><div class="line">            <span class="string">"value"</span>: 27.5</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"meibai"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 2,</div><div class="line">          <span class="string">"avg_price"</span>: &#123;</div><div class="line">            <span class="string">"value"</span>: 40</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"qingxin"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 1,</div><div class="line">          <span class="string">"avg_price"</span>: &#123;</div><div class="line">            <span class="string">"value"</span>: 40</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Case-3"><a href="#Case-3" class="headerlink" title="Case 3."></a>Case 3.</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"size"</span> : 0,</div><div class="line">    <span class="string">"aggs"</span> : &#123;</div><div class="line">        <span class="string">"group_by_price"</span> : &#123;</div><div class="line">            <span class="string">"range"</span> : &#123;</div><div class="line">                <span class="string">"field"</span> : <span class="string">"price"</span>,</div><div class="line">                <span class="string">"ranges"</span> : [</div><div class="line">                    &#123; <span class="string">"from"</span> : 0, <span class="string">"to"</span> : 20 &#125;,</div><div class="line">                    &#123; <span class="string">"from"</span> : 20, <span class="string">"to"</span> : 40 &#125;,</div><div class="line">                    &#123; <span class="string">"from"</span> : 40, <span class="string">"to"</span> : 60 &#125;</div><div class="line">                ]</div><div class="line">            &#125;,</div><div class="line">            <span class="string">"aggs"</span> : &#123;</div><div class="line">                <span class="string">"group_by_tags"</span> : &#123;</div><div class="line">                    <span class="string">"terms"</span> : &#123; <span class="string">"field"</span> : <span class="string">"tags"</span> &#125;,</div><div class="line">                    <span class="string">"aggs"</span> : &#123;</div><div class="line">                        <span class="string">"avg_price"</span> : &#123; <span class="string">"avg"</span> : &#123; <span class="string">"field"</span> : <span class="string">"price"</span> &#125; &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 8,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,</div><div class="line">    <span class="string">"successful"</span>: 5,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 4,</div><div class="line">    <span class="string">"max_score"</span>: 0,</div><div class="line">    <span class="string">"hits"</span>: []</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"aggregations"</span>: &#123;</div><div class="line">    <span class="string">"group_by_price"</span>: &#123;</div><div class="line">      <span class="string">"buckets"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"0.0-20.0"</span>,</div><div class="line">          <span class="string">"from"</span>: 0,</div><div class="line">          <span class="string">"to"</span>: 20,</div><div class="line">          <span class="string">"doc_count"</span>: 0,</div><div class="line">          <span class="string">"group_by_tags"</span>: &#123;</div><div class="line">            <span class="string">"doc_count_error_upper_bound"</span>: 0,</div><div class="line">            <span class="string">"sum_other_doc_count"</span>: 0,</div><div class="line">            <span class="string">"buckets"</span>: []</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"20.0-40.0"</span>,</div><div class="line">          <span class="string">"from"</span>: 20,</div><div class="line">          <span class="string">"to"</span>: 40,</div><div class="line">          <span class="string">"doc_count"</span>: 2,</div><div class="line">          <span class="string">"group_by_tags"</span>: &#123;</div><div class="line">            <span class="string">"doc_count_error_upper_bound"</span>: 0,</div><div class="line">            <span class="string">"sum_other_doc_count"</span>: 0,</div><div class="line">            <span class="string">"buckets"</span>: [</div><div class="line">              &#123;</div><div class="line">                <span class="string">"key"</span>: <span class="string">"fangzhu"</span>,</div><div class="line">                <span class="string">"doc_count"</span>: 2,</div><div class="line">                <span class="string">"avg_price"</span>: &#123;</div><div class="line">                  <span class="string">"value"</span>: 27.5</div><div class="line">                &#125;</div><div class="line">              &#125;,</div><div class="line">              &#123;</div><div class="line">                <span class="string">"key"</span>: <span class="string">"meibai"</span>,</div><div class="line">                <span class="string">"doc_count"</span>: 1,</div><div class="line">                <span class="string">"avg_price"</span>: &#123;</div><div class="line">                  <span class="string">"value"</span>: 30</div><div class="line">                &#125;</div><div class="line">              &#125;</div><div class="line">            ]</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"40.0-60.0"</span>,</div><div class="line">          <span class="string">"from"</span>: 40,</div><div class="line">          <span class="string">"to"</span>: 60,</div><div class="line">          <span class="string">"doc_count"</span>: 2,</div><div class="line">          <span class="string">"group_by_tags"</span>: &#123;</div><div class="line">            <span class="string">"doc_count_error_upper_bound"</span>: 0,</div><div class="line">            <span class="string">"sum_other_doc_count"</span>: 0,</div><div class="line">            <span class="string">"buckets"</span>: [</div><div class="line">              &#123;</div><div class="line">                <span class="string">"key"</span>: <span class="string">"meibai"</span>,</div><div class="line">                <span class="string">"doc_count"</span>: 1,</div><div class="line">                <span class="string">"avg_price"</span>: &#123;</div><div class="line">                  <span class="string">"value"</span>: 50</div><div class="line">                &#125;</div><div class="line">              &#125;,</div><div class="line">              &#123;</div><div class="line">                <span class="string">"key"</span>: <span class="string">"qingxin"</span>,</div><div class="line">                <span class="string">"doc_count"</span>: 1,</div><div class="line">                <span class="string">"avg_price"</span>: &#123;</div><div class="line">                  <span class="string">"value"</span>: 40</div><div class="line">                &#125;</div><div class="line">              &#125;</div><div class="line">            ]</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Basic Search&lt;ul&gt;
+&lt;li&gt;Query string search&lt;/li&gt;
+&lt;li&gt;Query DSL&lt;/li&gt;
+&lt;li&gt;Query filter&lt;/li&gt;
+&lt;li&gt;Full-test search&lt;/li&gt;
+&lt;li&gt;Phrase search&lt;/li&gt;
+&lt;li&gt;Highlight search&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Advance Search&lt;ul&gt;
+&lt;li&gt;Group by&lt;/li&gt;
+&lt;li&gt;Avg&lt;/li&gt;
+&lt;li&gt;Sort&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK_install &amp; startup Elasticsearch &amp; &#39;CRUD&#39;_002</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html</id>
+    <published>2017-07-29T08:21:16.000Z</published>
+    <updated>2017-07-31T07:51:29.072Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>To introduce to install &amp; startup Elasticsearch<br>To introduce Document data structure<br>To introduce easy cluster management<br>To study Elasticsearch ‘CRUD’ operation</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Install-Elasticsearch"><a href="#Install-Elasticsearch" class="headerlink" title="Install Elasticsearch"></a>Install Elasticsearch</h1><hr>
+<h2 id="Download-amp-Install-amp-Startup-elasticsearch-Elasticsearch"><a href="#Download-amp-Install-amp-Startup-elasticsearch-Elasticsearch" class="headerlink" title="Download &amp; Install &amp; Startup elasticsearch : Elasticsearch"></a>Download &amp; Install &amp; Startup elasticsearch : <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="external">Elasticsearch</a></h2><p><img src="/images/elasticsearch/003_install_startup_ES.png"></p>
+<h2 id="To-check-if-the-Elasticsearch-startup-success-127-0-0-1-9200"><a href="#To-check-if-the-Elasticsearch-startup-success-127-0-0-1-9200" class="headerlink" title="To check if the Elasticsearch startup success. 127.0.0.1:9200"></a>To check if the Elasticsearch startup success. <a href="http://127.0.0.1:9200/?pretty" target="_blank" rel="external">127.0.0.1:9200</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span> : <span class="string">"PFS_monitor_node-1"</span>, // Node name</div><div class="line">  <span class="string">"cluster_name"</span> : <span class="string">"PFS_monitor_cluster"</span>, // Cluster name</div><div class="line">  <span class="string">"cluster_uuid"</span> : <span class="string">"tBEEZhRUS0O3SmduwgYZVw"</span>, // Cluster uuid</div><div class="line">  <span class="string">"version"</span> : &#123;</div><div class="line">    <span class="string">"number"</span> : <span class="string">"5.2.0"</span>, // Elasticsearch version</div><div class="line">    <span class="string">"build_hash"</span> : <span class="string">"24e05b9"</span>,</div><div class="line">    <span class="string">"build_date"</span> : <span class="string">"2017-01-24T19:52:35.800Z"</span>,</div><div class="line">    <span class="string">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="string">"lucene_version"</span> : <span class="string">"6.4.0"</span> // Lucene versoin</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Download-amp-Install-Kibana-Kibana"><a href="#Download-amp-Install-Kibana-Kibana" class="headerlink" title="Download &amp; Install Kibana : Kibana"></a>Download &amp; Install Kibana : <a href="https://www.elastic.co/downloads/kibana" target="_blank" rel="external">Kibana</a></h2><p><img src="/images/elasticsearch/004_kibana.png"></p>
+<h2 id="To-use-kibana-to-study-Elasticsearch-Kibana-dev-tools"><a href="#To-use-kibana-to-study-Elasticsearch-Kibana-dev-tools" class="headerlink" title="To use kibana to study Elasticsearch. Kibana dev tools"></a>To use kibana to study Elasticsearch. <a href="http://localhost:5601/app/kibana#/dev_tools/console?_g=(" target="_blank" rel="external">Kibana dev tools</a></h2><p><img src="/images/elasticsearch/005_healthcheck.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"cluster_name"</span>: <span class="string">"PFS_monitor_cluster"</span>,</div><div class="line">  <span class="string">"status"</span>: <span class="string">"yellow"</span>,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"number_of_nodes"</span>: 1,</div><div class="line">  <span class="string">"number_of_data_nodes"</span>: 1,</div><div class="line">  <span class="string">"active_primary_shards"</span>: 1,</div><div class="line">  <span class="string">"active_shards"</span>: 1,</div><div class="line">  <span class="string">"relocating_shards"</span>: 0,</div><div class="line">  <span class="string">"initializing_shards"</span>: 0,</div><div class="line">  <span class="string">"unassigned_shards"</span>: 1,</div><div class="line">  <span class="string">"delayed_unassigned_shards"</span>: 0,</div><div class="line">  <span class="string">"number_of_pending_tasks"</span>: 0,</div><div class="line">  <span class="string">"number_of_in_flight_fetch"</span>: 0,</div><div class="line">  <span class="string">"task_max_waiting_in_queue_millis"</span>: 0,</div><div class="line">  <span class="string">"active_shards_percent_as_number"</span>: 50</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Document-Data-Structure"><a href="#Document-Data-Structure" class="headerlink" title="Document Data Structure"></a>Document Data Structure</h1><hr>
+<h2 id="Java-Data-Structure"><a href="#Java-Data-Structure" class="headerlink" title="Java Data Structure"></a>Java Data Structure</h2><p><img src="/images/elasticsearch/006_java_data_structure.png"></p>
+<h2 id="Database-structure"><a href="#Database-structure" class="headerlink" title="Database structure"></a>Database structure</h2><table>
+<thead>
+<tr>
+<th>table column</th>
+<th>t_employee</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ee_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>email</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>info_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>join_date</td>
+<td>datetime</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>table column</th>
+<th>t_employee_info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>info_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>bio</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>age</td>
+<td>int</td>
+</tr>
+<tr>
+<td>interests</td>
+<td>varchar(100)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Document-data-structure"><a href="#Document-data-structure" class="headerlink" title="Document data structure"></a>Document data structure</h2><p>The document data structure of elasticsearch is JSON <strong>基於文檔的數據結構</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    email : myhongkongzhen@gmail.com,</div><div class="line">    first_name : Jane,</div><div class="line">    last_name : Wu,</div><div class="line">    info : &#123;</div><div class="line">        bio : curious and modest,</div><div class="line">        age : 31,</div><div class="line">        interest : [</div><div class="line">            film,</div><div class="line">            takarazuka,</div><div class="line">            eatting</div><div class="line">        ]</div><div class="line">        join_date : Jul 29th 2017</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="Elasticsearch-cluster-management"><a href="#Elasticsearch-cluster-management" class="headerlink" title="Elasticsearch cluster management"></a>Elasticsearch cluster management</h1><hr>
+<h2 id="ES-health-check"><a href="#ES-health-check" class="headerlink" title="ES health check"></a>ES health check</h2><p>(<a href="http://127.0.0.1:9200/_cat/health?v" target="_blank" rel="external">GET _cat/health?v</a>) <strong>One of the ES apis : _cat</strong><br><img src="/images/elasticsearch/007_es_healthcheck.png"></p>
+<h2 id="ES-health-status"><a href="#ES-health-status" class="headerlink" title="ES health status"></a>ES health status</h2><ul>
+<li>green<ul>
+<li>Every primary shard &amp; replica shard of index is active.</li>
+</ul>
+</li>
+<li>yellow<ul>
+<li>Every primary shard of index is active.</li>
+<li>Part of replica shard of index is not available.</li>
+</ul>
+</li>
+<li>red<ul>
+<li>Part of primary shard of index is not available.</li>
+<li>Data of part of index is lost.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Check-index-of-cluster"><a href="#Check-index-of-cluster" class="headerlink" title="Check index of cluster"></a>Check index of cluster</h2><p><a href="http://127.0.0.1:9200/_cat/indices?v" target="_blank" rel="external">GET _cat/indices?v</a><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">health status index   uuid                   pri rep docs.count docs.deleted store.size pri.store.size</div><div class="line">yellow open   .kibana SCPH1iHxTwiV6naHOTRiig   1   1          1            0      3.1kb          3.1kb</div></pre></td></tr></table></figure></p>
+<h2 id="Create-index"><a href="#Create-index" class="headerlink" title="Create index"></a>Create index</h2><p><a href="http://127.0.0.1:9200/zzwu_index?pretty" target="_blank" rel="external">PUT /zzwu_index?pretty</a><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "acknowledged": true,</div><div class="line">  "shards_acknowledged": true</div><div class="line">&#125;</div><div class="line"></div><div class="line">health status index      uuid                   pri rep docs.count docs.deleted store.size pri.store.size</div><div class="line">yellow open   .kibana    SCPH1iHxTwiV6naHOTRiig   1   1          1            0      3.1kb          3.1kb</div><div class="line">yellow open   zzwu_index AdEOBWZbTvawswsr8jgA-A   5   1          0            0       650b           650b</div></pre></td></tr></table></figure></p>
+<h2 id="Delete-index"><a href="#Delete-index" class="headerlink" title="Delete index"></a>Delete index</h2><p><a href="http://127.0.0.1:9200/_cat/indices?v" target="_blank" rel="external">DELETE /zzwu_index?pretty</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"acknowledged"</span>: <span class="literal">true</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"error"</span> : &#123;</div><div class="line">    <span class="string">"root_cause"</span> : [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"type"</span> : <span class="string">"index_not_found_exception"</span>,</div><div class="line">        <span class="string">"reason"</span> : <span class="string">"no such index"</span>,</div><div class="line">        <span class="string">"resource.type"</span> : <span class="string">"index_or_alias"</span>,</div><div class="line">        <span class="string">"resource.id"</span> : <span class="string">"zzwu_index"</span>,</div><div class="line">        <span class="string">"index_uuid"</span> : <span class="string">"_na_"</span>,</div><div class="line">        <span class="string">"index"</span> : <span class="string">"zzwu_index"</span></div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">    <span class="string">"type"</span> : <span class="string">"index_not_found_exception"</span>,</div><div class="line">    <span class="string">"reason"</span> : <span class="string">"no such index"</span>,</div><div class="line">    <span class="string">"resource.type"</span> : <span class="string">"index_or_alias"</span>,</div><div class="line">    <span class="string">"resource.id"</span> : <span class="string">"zzwu_index"</span>,</div><div class="line">    <span class="string">"index_uuid"</span> : <span class="string">"_na_"</span>,</div><div class="line">    <span class="string">"index"</span> : <span class="string">"zzwu_index"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"status"</span> : 404</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="Show-Case"><a href="#Show-Case" class="headerlink" title="Show Case"></a>Show Case</h1><hr>
+<h2 id="Create-index-amp-type"><a href="#Create-index-amp-type" class="headerlink" title="Create index &amp; type"></a>Create index &amp; type</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /index/<span class="built_in">type</span>/id</div><div class="line">&#123;</div><div class="line">  <span class="string">"json data"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">PUT /ecommerce/product/1</div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span> : <span class="string">"gaolujie yagao"</span>,</div><div class="line">    <span class="string">"desc"</span> :  <span class="string">"gaoxiao meibai"</span>,</div><div class="line">    <span class="string">"price"</span> :  30,</div><div class="line">    <span class="string">"producer"</span> :      <span class="string">"gaolujie producer"</span>,</div><div class="line">    <span class="string">"tags"</span>: [ <span class="string">"meibai"</span>, <span class="string">"fangzhu"</span> ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/008_create_index_type.png"></p>
+<h2 id="Search-document"><a href="#Search-document" class="headerlink" title="Search document"></a>Search document</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /index/<span class="built_in">type</span>/id</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/2</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/009_search_index.png"></p>
+<h2 id="Edit-document"><a href="#Edit-document" class="headerlink" title="Edit document"></a>Edit document</h2><ul>
+<li>replace</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">PUT /ecommerce/product/1</div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span> : <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">    <span class="string">"desc"</span> :  <span class="string">"gaoxiao meibai"</span>,</div><div class="line">    <span class="string">"price"</span> :  30,</div><div class="line">    <span class="string">"producer"</span> :      <span class="string">"gaolujie producer"</span>,</div><div class="line">    <span class="string">"tags"</span>: [ <span class="string">"meibai"</span>, <span class="string">"fangzhu"</span> ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/010_edit_replace_01.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /ecommerce/product/1</div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span> : <span class="string">"jiaqiangban gaolujie yagao"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/010_edit_replace_02.png"></p>
+<ul>
+<li>update</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">POST /ecommerce/product/1/_update</div><div class="line">&#123;</div><div class="line">  <span class="string">"doc"</span>: &#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/010_edit_update_02.png"></p>
+<h2 id="Delete-document"><a href="#Delete-document" class="headerlink" title="Delete document"></a>Delete document</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">DELETE /ecommerce/product/1</div><div class="line">----------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"found"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">  <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">  <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">  <span class="string">"_version"</span>: 10,</div><div class="line">  <span class="string">"result"</span>: <span class="string">"deleted"</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 2,</div><div class="line">    <span class="string">"successful"</span>: 1,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;To introduce to install &amp;amp; startup Elasticsearch&lt;br&gt;To introduce Document data structure&lt;br&gt;To introduce easy cluster management&lt;br&gt;To study Elasticsearch ‘CRUD’ operation&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK_白話Elasticsearch_001</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/23/ELK-%E7%99%BD%E8%A9%B1Elasticsearch-001.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/07/23/ELK-白話Elasticsearch-001.html</id>
+    <published>2017-07-23T15:04:57.000Z</published>
+    <updated>2017-07-31T08:26:39.560Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Elasticsearch分佈式、高性能、高可用、可伸縮的搜索和分析系統 </p>
+</blockquote>
+<a id="more"></a>
+<h1 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h1><hr>
+<h5 id="垂直搜索-站內搜索"><a href="#垂直搜索-站內搜索" class="headerlink" title="垂直搜索 (站內搜索)"></a>垂直搜索 (站內搜索)</h5><blockquote>
+<ul>
+<li><code>互聯網搜索</code><br>  電商網站、招聘網站、新聞網站、各種APP</li>
+<li><code>IT系統的搜索</code><br>  OA軟件、辦公自動化、會議管理、日程管理……</li>
+</ul>
+</blockquote>
+<p><em><strong>搜索就是任何場景下，找尋你想要的信息，輸入一段關鍵字，期望找到這個關鍵字相關的信息</strong></em>  </p>
+<h1 id="如果用數據庫進行搜索"><a href="#如果用數據庫進行搜索" class="headerlink" title="如果用數據庫進行搜索"></a>如果用數據庫進行搜索</h1><hr>
+<h5 id="電商系統"><a href="#電商系統" class="headerlink" title="電商系統"></a>電商系統</h5><pre><code class="sql"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> products <span class="keyword">WHERE</span> product_name <span class="keyword">like</span> <span class="string">'%牙膏%'</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>prod_id</th>
+<th>prod_name</th>
+<th>prod_desc</th>
+<th>prod_img</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>中華牙膏</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>中牙刷膏</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>雲南白藥牙膏</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>佳潔士牙膏</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>全表掃描,性能會很差   </li>
+<li>不能將關鍵字拆分開來，搜索更多符合期望的結果，搜索不到 <strong><em>中牙刷膏</em></strong>  </li>
+<li>查詢關鍵字可能很長很長……  </li>
+</ul>
+</blockquote>
+<h1 id="全文檢索和Lucene"><a href="#全文檢索和Lucene" class="headerlink" title="全文檢索和Lucene"></a>全文檢索和Lucene</h1><hr>
+<h4 id="1、檢索-倒排索引"><a href="#1、檢索-倒排索引" class="headerlink" title="1、檢索 (倒排索引)"></a>1、檢索 (倒排索引)</h4><blockquote>
+<p>全文檢索<br>結構化搜索<br>數據分析</p>
+</blockquote>
+<pre><code class="markdown">1 生化 危機 電影  
+2 生化 危機 海報  
+3 生化 危機 文章  
+4 生化 危機 新聞
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>ids</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>生化</td>
+<td>1,2,3,4</td>
+</tr>
+<tr>
+<td>危機</td>
+<td>1,2,3,4</td>
+</tr>
+<tr>
+<td>電影</td>
+<td>1</td>
+</tr>
+<tr>
+<td>海報</td>
+<td>2</td>
+</tr>
+<tr>
+<td>文章</td>
+<td>3</td>
+</tr>
+<tr>
+<td>新聞</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>什麼是全文檢索<br><img src="/images/elasticsearch/001_什麼是全文檢索.png"></li>
+<li>倒排索引Wiki<br><img src="/images/elasticsearch/002_倒排索引.png"></li>
+</ul>
+<h4 id="2、What’s-Lucene"><a href="#2、What’s-Lucene" class="headerlink" title="2、What’s Lucene ?"></a>2、What’s Lucene ?</h4><ul>
+<li>簡單來說，Lucene就是一個jar包，包含了封裝好的各種建立倒排索引，以及進行搜索的代碼，包括各種算法。用java開發的時候，引入該jar包，基於路測呢滴api進行開發。  </li>
+<li>利用Lucene給已有的數據建立索引，Lucene會在本地磁盤上，組織索引的數據結構，還可以利用Lucene提供的API來針對磁盤上的索引數據，進行搜索。  </li>
+</ul>
+<h4 id="3、What’s-Elasticsearch"><a href="#3、What’s-Elasticsearch" class="headerlink" title="3、What’s Elasticsearch ?"></a>3、What’s Elasticsearch ?</h4><p>High performance High availability Distributed</p>
+<ul>
+<li>Lucene is deployed on single server.</li>
+<li>When we save the big data, there is not enough space on single server.</li>
+<li>When we deploy lucene on more than one sever, we search the data, how do we communicate with multiple machines?</li>
+<li>When one lucene server is downtime, we need how to save the data on this server?   <blockquote>
+<p><strong>Elasticsearch package underlying lucene.</strong></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="Elasticsearch-core-idea"><a href="#Elasticsearch-core-idea" class="headerlink" title="Elasticsearch core idea"></a>Elasticsearch core idea</h1><hr>
+<ul>
+<li>Near Realtime (NRT) : delay about 1s</li>
+<li>Cluster : include several Nodes</li>
+<li>Node : to be join default Cluster</li>
+<li>Document : the minimum unit of ES, include several fields</li>
+<li>Index : include several Types / Documents</li>
+<li>Type : logical classification</li>
+<li>Shard : Lucene Index, primary shard (易於橫向擴展)</li>
+<li>Replica : Copy of Shard, replica shard<br>  There are 10 default shard in one Index, 5 primary shard and 5 replica shard.<br>  <em><strong>Note:</strong> Replica shard and Primary shard cannot be on the same server.</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ES</th>
+<th>DB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Field</td>
+<td>Column</td>
+</tr>
+<tr>
+<td>Document</td>
+<td>Row</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Table</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>Database</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Elasticsearch分佈式、高性能、高可用、可伸縮的搜索和分析系統 &lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>英文初級文法 Unit04 代名詞 — 001</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/2016/11/07/201611072216-English01-Unit04-%E4%BB%A3%E5%90%8D%E8%A9%9E-001.html"/>
+    <id>https://myhongkongzhen.github.io/archives/英文文法/2016/11/07/201611072216-English01-Unit04-代名詞-001.html</id>
+    <published>2016-11-07T14:20:25.000Z</published>
+    <updated>2017-07-09T12:30:44.432Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>代名詞：代替名詞 &lt;&lt;&lt;=== 不喜歡重複<br>格 ： 即為表現</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="人稱代名詞"><a href="#人稱代名詞" class="headerlink" title="人稱代名詞"></a>人稱代名詞</h1><hr>
+<ul>
+<li>人稱代名詞的’人稱’及’格’<br>人稱 \ 格 | 主格 | 所有格 | 受格 | 主格 | 所有格 | 受格 |<br>第一人稱  | I    | my     | me   | we   | our    | us   |<br>第二人稱  | you  | your   | you  | you  | your   | you  |<br>第三人稱  | he   | his    | him  | they | their  | them |<br>他 / 她   | she  | her    | her  |<br>它        | it   | its    | it   |</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;代名詞：代替名詞 &amp;lt;&amp;lt;&amp;lt;=== 不喜歡重複&lt;br&gt;格 ： 即為表現&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="英文文法" scheme="https://myhongkongzhen.github.io/categories/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/"/>
+    
+    
+      <category term="English" scheme="https://myhongkongzhen.github.io/tags/English/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux權限 — 001</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/10/26/201610262247-Linux-Linux%E6%AC%8A%E9%99%90-001.html"/>
+    <id>https://myhongkongzhen.github.io/archives/技術/2016/10/26/201610262247-Linux-Linux權限-001.html</id>
+    <published>2016-10-26T14:48:32.000Z</published>
+    <updated>2017-07-09T12:30:44.431Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>計算資源<ul>
+<li>權限 ==&gt; 定義了資源或服務的訪問能力<ul>
+<li>用戶 ==&gt; 定義某個用戶 ==&gt; 標示符</li>
+<li>用戶組 ==&gt; 定義一類用戶，方便指定權限 ==&gt; 標示符</li>
+<li>用戶、用戶組(權限的容器,邏輯概念)，關聯權限</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>進程是用戶操作計算機的代理</strong></li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>計算機資源三類用戶使用能力<ul>
+<li>文件的屬主(u) ==&gt; 文件的所有者</li>
+<li>文件的屬組(g) ==&gt; 元生組</li>
+<li>其他用戶(o) ==&gt; 既不是屬主也不屬於屬組</li>
+</ul>
+</li>
+<li>用戶 ==&gt; 獲取資源或服務的憑證</li>
+<li>進程 ==&gt; 也擁有屬主和屬組<ul>
+<li>誰發起的進程，就以誰的身份操作(代理誰)<ul>
+<li>進程的發起者與文件的屬主相同，則可以訪問該文件</li>
+</ul>
+</li>
+<li><em><strong>進程的安全上下文</strong></em></li>
+</ul>
+</li>
+<li>權限<ul>
+<li>文件權限<ul>
+<li>r : readable ==&gt; 可以使用文件察看命令(比如: cat)察看文件</li>
+<li>w : writeable ==&gt; 可以編輯或刪除文件</li>
+<li>x : exacutable ==&gt; 可以在命令提示符下提交給内核運行<ul>
+<li>默認情況下，不應該讓文件有可執行權限</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>目錄權限<ul>
+<li>r : readable ==&gt; 可以對此目錄可以執行ls命令列出内部的所有文件</li>
+<li>w : writeable ==&gt; 可以在此目錄中創建文件</li>
+<li>x : exacutable ==&gt; 可以使用cd切換至目錄，也可以使用ls命令查看内部文件<ul>
+<li>默認情況下，應該讓目錄擁有可執行權限</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>權限變化組合<ul>
+<li>三位一體 二進制 十進制</li>
+<li><strong>-–      000     0</strong></li>
+<li><strong>--x      001     1</strong></li>
+<li><strong>-w-      010     2</strong></li>
+<li><strong>-wx      011     3</strong></li>
+<li><strong>\r–      100     4</strong></li>
+<li><strong>\r-x      101     5</strong></li>
+<li><strong>\rw-      110     6</strong></li>
+<li><strong>\rwx      111     7</strong></li>
+</ul>
+</li>
+<li>安全上下文<ul>
+<li>進程訪問文件，依賴於進程發起者的權限<ul>
+<li>發起者是否擁有該文件的訪問權限</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>/etc/passwd</strong> ==&gt; 定義系統中每個用戶信息<ul>
+<li>字段意義<ul>
+<li>account:passwd(一般為空或者星號，加密密碼在shadow中存儲):uid:gid:user-comments(一般為空,用戶的注釋信息):user-home:user-shell</li>
+</ul>
+</li>
+<li><strong>/etc/shadow</strong> ==&gt; 影子文件，用戶的密碼文件<ul>
+<li>字段意義<ul>
+<li>account:encrypted-passwd:date1:date2:date3:date4:date5:date6:reservedField<ul>
+<li>encrypted passwd ==&gt; 8bit\$<strong><strong>*</strong></strong><ul>
+<li>\$1\$\$<strong><em>**</em></strong>(8bit長度)\$<strong><strong><strong><strong>**</strong></strong></strong></strong><ul>
+<li>固定長度：標識，特殊意義(防止密碼相同，加密結果相同，被破解)</li>
+<li>1 : md5加密方式</li>
+</ul>
+</li>
+<li>!! or * 賬戶被鎖定，不能登錄</li>
+</ul>
+</li>
+<li>date1 : 從19700101開始到密碼最近一次修改密碼的時間所經歷的時間 <ul>
+<li>|(19700101)<strong><strong><strong><em>__</em></strong></strong></strong>|(last change pw)<em>__</em>|(current date)</li>
+</ul>
+</li>
+<li>date2 : 密碼最短使用期限</li>
+<li>date3 : 密碼最長使用期限</li>
+<li>date4 : 警告時間，密碼離過期還有多長時間，開始提示用戶更改密碼 </li>
+<li>date5 : 密碼過期之後與用戶禁用之前之間時間，此間用戶登錄，只能改密碼，其他不能操作</li>
+<li>date6 : 明確定義從19700101開始到哪一天為止，賬號禁用，賬號有效期<ul>
+<li>99999 永不過期</li>
+</ul>
+</li>
+<li>reserved field : 保留字段，暫無意義</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>/etc/group</strong> ==&gt; 定義系統中每個組信息<ul>
+<li>gname:psswd:gid:以此組為附加組的用戶列表,用逗號隔開，沒有為空</li>
+<li><strong>/etc/gshadow</strong> ==&gt; 組的密碼文件</li>
+</ul>
+</li>
+<li>加密方法<ul>
+<li>對稱加密：加密和解密使用同一個密碼<ul>
+<li>速度比公鑰加密快3倍以上</li>
+</ul>
+</li>
+<li>公鑰加密：每個密碼都稱對出現，一個私鑰(secret key),一個公鑰(public key)<ul>
+<li>加密字段長度比對稱加密長</li>
+</ul>
+</li>
+<li>單向加密：散列加密；用來提取數據特徵碼,每個數據的特徵碼都是唯一的<ul>
+<li>不可逆，單方向執行</li>
+<li>也稱爲指紋加密, 可用于數據校驗</li>
+<li>兩大特性<ul>
+<li><ol>
+<li>雪崩效應</li>
+</ol>
+</li>
+<li><ol>
+<li>定長輸出<ul>
+<li>MD5 : Message Digest, 128bit</li>
+<li>SHA1 : Secure Hash Algoritm, 160bit(更安全,更慢)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用戶類別<ul>
+<li>管理員<ul>
+<li>UID = 0</li>
+</ul>
+</li>
+<li>普通用戶<ul>
+<li>UID = 1 ~ 65535</li>
+<li>系統用戶 ==&gt; 專門用來執行後臺程序的用戶，又不需要管理員權限，並且不需要登陸系統的用戶<ul>
+<li>UID = 1 ~ 499</li>
+</ul>
+</li>
+<li>一般用戶<ul>
+<li>UID = 500 ~ 60000(大約)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用戶相關權限默認值設置</p>
+<ul>
+<li>cd /etc/default | file useradd  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> useradd defaults file</div><div class="line">GROUP=100 # </div><div class="line">HOME=/home</div><div class="line">INACTIVE=-1 # 密碼過期，用戶未禁用之間的期限 </div><div class="line">EXPIRE= # 非活動期限</div><div class="line">SHELL=/bin/bash</div><div class="line">SKEL=/etc/skel</div><div class="line">CREATE_MAIL_SPOOL=yes</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>用戶組類別</p>
+<ul>
+<li>第一种分類<ul>
+<li>管理員組</li>
+<li>普通用戶組<ul>
+<li>系統用戶組</li>
+<li>一般用戶組 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>第二种分類 (較常用)<ul>
+<li>私有組 ==&gt; 創建用戶時，如果沒有指定用戶組，會同時創建一個同名的僅包含該用戶的私有組</li>
+<li>基本組 ==&gt; 用戶的默認組 </li>
+<li>附加組、額外組 ==&gt; 默認組以外的其他組</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>權限管理命令<ul>
+<li><em><strong>useradd</strong></em> or <em><strong>adduser</strong></em><ul>
+<li>ls -l <code>which useradd</code></li>
+<li>ls -l \$(which adduser)</li>
+<li>useradd tom<ul>
+<li>/etc/passwd</li>
+<li>/etc/shadow</li>
+<li>/etc/group</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>passwd</strong></em><ul>
+<li>/etc/shadow</li>
+<li>passwd tom<ul>
+<li>密碼位 : !! ==&gt; 加密密碼</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>groupadd</strong></em><ul>
+<li>groupadd mygroup</li>
+</ul>
+</li>
+<li><em><strong>userdel</strong></em></li>
+<li><em><strong>usermod</strong></em></li>
+<li><em><strong>chsh</strong></em></li>
+<li><em><strong>chfn</strong></em></li>
+<li><em><strong>finger</strong></em></li>
+<li><em><strong>id</strong></em></li>
+<li><em><strong>change</strong></em></li>
+<li><em><strong>groupdel</strong></em></li>
+<li><em><strong>groupmod</strong></em></li>
+<li><em><strong>gpasswd</strong></em></li>
+<li><em><strong>chown</strong></em></li>
+<li><em><strong>chgrp</strong></em></li>
+<li><em><strong>chmod</strong></em></li>
+<li><em><strong>umask</strong></em></li>
+</ul>
+<hr>
+</li>
+</ul>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;計算資源&lt;ul&gt;
+&lt;li&gt;權限 ==&amp;gt; 定義了資源或服務的訪問能力&lt;ul&gt;
+&lt;li&gt;用戶 ==&amp;gt; 定義某個用戶 ==&amp;gt; 標示符&lt;/li&gt;
+&lt;li&gt;用戶組 ==&amp;gt; 定義一類用戶，方便指定權限 ==&amp;gt; 標示符&lt;/li&gt;
+&lt;li&gt;用戶、用戶組(權限的容器,邏輯概念)，關聯權限&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;進程是用戶操作計算機的代理&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
+    
+    
+      <category term="LINUX" scheme="https://myhongkongzhen.github.io/tags/LINUX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Shell知識 — 001</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/10/25/201610252005-Linux-Shell%E7%9F%A5%E8%AD%98-001.html"/>
+    <id>https://myhongkongzhen.github.io/archives/技術/2016/10/25/201610252005-Linux-Shell知識-001.html</id>
+    <published>2016-10-25T12:05:32.000Z</published>
+    <updated>2017-07-04T02:08:34.527Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>shell: 外殼, 自身也是一個可執行程序，儅用戶登錄之後，打開的命令輸入的環境就是shell</p>
+<ol>
+<li>GUI: Gnome, KDE, Xface</li>
+<li>CLI: sh, csh, ksh, bash, tcsh, zsh </li>
+</ol>
+</blockquote>
+<a id="more"></a>
+<h2 id="Shell知識"><a href="#Shell知識" class="headerlink" title="Shell知識"></a>Shell知識</h2><hr>
+<ul>
+<li><strong>進程是程序的副本</strong><ul>
+<li>進程是程序執行的實例，有生命周期，這個過程由内核管理</li>
+<li>在每個進程看來，當前主機上只存在内核和當前進程</li>
+</ul>
+</li>
+<li>用戶工作環境<ul>
+<li>bash 是支持用戶自我定義自由環境的</li>
+</ul>
+</li>
+<li>shell與子shell<ul>
+<li>父子shell之間的設定沒有一定的關聯關係</li>
+</ul>
+</li>
+</ul>
+<h4 id="bash特性"><a href="#bash特性" class="headerlink" title="bash特性"></a>bash特性</h4><ul>
+<li><ol>
+<li>命令歷史、補全<ul>
+<li>!(-)N 執行命令歷史中的(倒數)第N條命令</li>
+<li>!! 執行剛剛執行過的命令</li>
+<li>!XX 執行history中最近的一個指定字符串開頭的命令</li>
+<li>!\$ 直接引用上個命令的最後一個參數值<ul>
+<li>\$ cat /etc/passwd ==&gt; 察看passwd文件</li>
+<li>\$ vim <strong>!$</strong> ==&gt; 用vim編輯/etc/passwd</li>
+</ul>
+</li>
+<li>ESC , . ==&gt; 按下ESC，再按點. 執行上個命令</li>
+<li>ALT + . ==&gt; 同上，但要同時按住ALT和點</li>
+<li>TAB ==&gt; 補全命令，PATH環境變量設置中的命令:w<ul>
+<li><em>路徑補全: 在打頭路徑下搜索</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>管道、重定向</li>
+</ol>
+</li>
+<li><ol>
+<li>命令別名</li>
+</ol>
+<ul>
+<li><em><strong>alias</strong></em> 別名<ul>
+<li>在shell中定義的別名，其有效作用範圍僅在當前shell進程</li>
+<li>alias clear=’cls’ ==&gt; 給clear起個別名cls</li>
+<li>\clear ==&gt; 定義別名后，想要使用原本的命令，加反斜綫</li>
+</ul>
+</li>
+<li><em><strong>unalias</strong></em> 撤銷命令別名 <ul>
+<li>unalias clear</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol>
+<li>命令行編輯<ul>
+<li>ctrl + a ==&gt; 快速跳到行首</li>
+<li>ctrl + e ==&gt; 快速跳到行尾</li>
+<li>ctrl + u ==&gt; 快速刪除光標至行首</li>
+<li>ctrl + k ==&gt; 快速刪除光標至行尾</li>
+<li>ctrl + l ==&gt; 快速清屏-&gt;clear</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>命令替換 $(COMMAND) or <code>COMMAND</code>-&gt;(反引號)<ul>
+<li>把命令中某個子命令替換為其執行結果的過程</li>
+<li>echo “The current directory is <code>pwd</code>“</li>
+<li>touch ./file-$(date +%F-%H-%M-%S).txt ==&gt; file-2016-10-25-21-34-25.txt</li>
+<li><strong>bash中支持的引號</strong><ul>
+<li>`` : 反引號 ==&gt; 命令替換</li>
+<li>“” : 冒號 ==&gt; 弱引用：可以實現變量替換</li>
+<li>‘’ : 單引號 ==&gt; 強引用：不完全變量替換</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>命令行展開,文件名通配,通配符不能描述所有情況，証則表達式可以解決這個問題 </li>
+</ol>
+<ul>
+<li>* 匹配任意長度、任意字符</li>
+<li>\? 匹配任意單個字符</li>
+<li style="list-style: none"><input type="checkbox"> 匹配指定範圍内的任意單個字符<ul>
+<li>[0-9] 所有數字</li>
+<li>[abc] 從abc中選擇一個</li>
+<li>[a-z] 所有小寫字母</li>
+<li>[A-Z] 所有大寫字母</li>
+<li>[a-zA-Z] 所有英文字母</li>
+</ul>
+</li>
+<li>[^] 匹配指定範圍之外的任意字符<ul>
+<li>[^0-9] 非數字字符</li>
+<li>[:alpha:]][[:space:]][^[:digit:]]</li>
+</ul>
+</li>
+<li>[[ ]] ==&gt; 兩個中括號指定特殊字符<ul>
+<li>\$ man 7 glob ==&gt; 察看特殊字符表示<ul>
+<li>[[:space:]] 指定空白字符</li>
+<li>[[:punct:]] 指定標點符號</li>
+<li>[[:upper:]] 指定所有大寫字母</li>
+<li>[[:alpha:]] 指定字母表，大小寫字母</li>
+<li>[[:digit:]] 指定數字</li>
+<li>[[:alnum:]] 指定數字和大小寫字母</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol>
+<li>變量</li>
+</ol>
+</li>
+<li><ol>
+<li>編程</li>
+</ol>
+</li>
+<li><ol>
+<li>…</li>
+</ol>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;shell: 外殼, 自身也是一個可執行程序，儅用戶登錄之後，打開的命令輸入的環境就是shell&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;GUI: Gnome, KDE, Xface&lt;/li&gt;
+&lt;li&gt;CLI: sh, csh, ksh, bash, tcsh, zsh &lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
+    
+    
+      <category term="LINUX" scheme="https://myhongkongzhen.github.io/tags/LINUX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>英文初級文法 Unit03 be動詞、一般動詞的過去式 — 001</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/2016/10/24/201610242224-English01-Unit03-be%E5%8B%95%E8%A9%9E-%E4%B8%80%E8%88%AC%E5%8B%95%E8%A9%9E%E9%81%8E%E5%8E%BB%E6%99%82-001.html"/>
+    <id>https://myhongkongzhen.github.io/archives/英文文法/2016/10/24/201610242224-English01-Unit03-be動詞-一般動詞過去時-001.html</id>
+    <published>2016-10-24T14:24:32.000Z</published>
+    <updated>2017-07-09T12:30:44.934Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>時態：動詞會隨著時間而改變形態<br>過去式: 已經發生過的狀態或者動作 </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="be動詞的過去時-gt-was-were"><a href="#be動詞的過去時-gt-was-were" class="headerlink" title="be動詞的過去時 ==&gt; was / were"></a>be動詞的過去時 ==&gt; was / were</h2><hr>
+<h4 id="am-is-gt-was-are-gt-were"><a href="#am-is-gt-was-are-gt-were" class="headerlink" title="am / is ==&gt; was | are ==&gt; were"></a>am / is ==&gt; was | are ==&gt; were</h4><ul>
+<li>過去時be動詞表示 ==&gt; 過去時間中發生的<strong>狀態</strong> <ul>
+<li>He <strong>is</strong> busy <em>now</em>.(現在式)</li>
+<li>He <strong>was</strong> busy <em>then</em>.(過去時)<br><strong>時間副詞改變，動詞也要隨之改變</strong></li>
+<li>My parents <strong>are</strong> at home <em>now</em>.</li>
+<li>My parents <strong>were</strong> at home <em>yesterday</em>.<ul>
+<li>我的父母昨天在家，表示今天不在家.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>be動詞過去式的否定句 ==&gt; 主詞 + was / were not + …<ul>
+<li>Mr. Brown <strong>was</strong> a vet(獸醫). </li>
+<li>Mr. Brown was <strong>not</strong> a vet.<ul>
+<li>以前不是，現在是</li>
+</ul>
+</li>
+<li>Joe and Brian <strong>were</strong> in the living room <em>at that time</em>(==&gt;then).</li>
+<li>Joe and Brian <strong>were not</strong> in the living room <em>at that time</em>.</li>
+</ul>
+</li>
+<li>be動詞過去式的疑問句 <ul>
+<li>疑問句 ==&gt; Was / Were 主詞 + … ?</li>
+<li>Wendy was in the seventh grade last year.</li>
+<li><strong>Was</strong> Wendy in the seventh grade last year?<ul>
+<li>Wendy去年就讀7年級嗎?</li>
+</ul>
+</li>
+<li>答句<ul>
+<li>Yes, 主詞(代名詞) + was / were.</li>
+<li>No, 主詞(代名詞) + was / were.</li>
+</ul>
+</li>
+<li><strong>Were</strong> you a pian<em>ist</em>?(==&gt;什麽樣的人)<ul>
+<li>你曾經是個鋼琴傢嗎?</li>
+<li>Yes, I was. / No, I weren’t.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="一般動詞的過去時"><a href="#一般動詞的過去時" class="headerlink" title="一般動詞的過去時"></a>一般動詞的過去時</h2><hr>
+<ul>
+<li>一般動詞過去時的變化<ul>
+<li>規則變化 -ed [t] [d] [Id]<ul>
+<li>原形動詞 + ed<ul>
+<li>helped [t] <em>無聲髮無聲</em></li>
+<li>spelled [d] <em>有聲髮有聲</em></li>
+<li>wanted [Id]</li>
+<li>needed [Id] </li>
+</ul>
+</li>
+<li>原形動詞字尾有e + d<ul>
+<li>love -&gt; loved</li>
+<li>dance -&gt; danced</li>
+</ul>
+</li>
+<li>原形動詞為子音 + 短母音 ==&gt; 重復字尾 + ed<ul>
+<li>stopped</li>
+<li>planned</li>
+</ul>
+</li>
+<li>原形動詞字尾為子音 + y ==&gt; 去y + ied<ul>
+<li>study -&gt; studied</li>
+<li>cry -&gt; cried<ul>
+<li><strong>擴展</strong><ul>
+<li>現在式 : 去y + ies ==&gt; 第三人稱單數</li>
+<li>形容詞 : 去y + ier ==&gt; 比較級</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不規則動詞變化<ul>
+<li>eat -&gt; ate</li>
+<li>read -&gt; read</li>
+<li>ride -&gt; rode</li>
+</ul>
+</li>
+<li>實例 <ul>
+<li>I <strong>walk</strong> to school every day.</li>
+<li>I <strong>walked</strong> to school yesterday.</li>
+<li>Mother <strong>goes</strong> to a supermarket every morning. </li>
+<li>Mother <strong>went</strong> to a supermarket yesterday morning.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一般動詞過去時的否定句 ==&gt; did(助動詞) not + 原形動詞<ul>
+<li>He <strong>called</strong> you last night.</li>
+<li>He <strong>did not(==&gt; didn’t)</strong> <em>call</em> you last night.</li>
+<li>My sister and I <strong>watched</strong> TV all day yesterday.</li>
+<li>My sister and I <strong>didn’t</strong> <em>watch</em> TV <em>all</em> day yesterday.<ul>
+<li>昨天我和我姐姐並非看了一整天的電視。(只看了一點點電視)<br><strong>not + all ==&gt; 並非全部</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一般動詞過去時的疑問句 ==&gt; Did + 主詞 + 原形動詞 … ?<ul>
+<li>His friends <strong>went</strong> to that movie last week.<ul>
+<li>他的朋友上星期去看了那部電影。</li>
+</ul>
+</li>
+<li><strong>Did</strong> his friends <em>go</em> to that movie last week?</li>
+<li>Grace <strong>wrote</strong> a letter to David.</li>
+<li><strong>Did</strong> Grace <em>write</em> a letter to David?<ul>
+<li>答句<ul>
+<li>Yes, he did.</li>
+<li>No, he didn’t.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;時態：動詞會隨著時間而改變形態&lt;br&gt;過去式: 已經發生過的狀態或者動作 &lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="英文文法" scheme="https://myhongkongzhen.github.io/categories/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/"/>
+    
+    
+      <category term="English" scheme="https://myhongkongzhen.github.io/tags/English/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>英文初級文法 Unit02 be動詞、一般動詞的現在式 — 001</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/2016/10/17/201610200735-English01-Unit02-be%E5%8B%95%E8%A9%9E-%E4%B8%80%E8%88%AC%E5%8B%95%E8%A9%9E%E7%8F%BE%E5%9C%A8%E5%BC%8F-001.html"/>
+    <id>https://myhongkongzhen.github.io/archives/英文文法/2016/10/17/201610200735-English01-Unit02-be動詞-一般動詞現在式-001.html</id>
+    <published>2016-10-17T13:30:32.000Z</published>
+    <updated>2017-07-09T12:30:44.941Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p><strong>be動詞</strong> ==&gt; 表示狀態、存在<br><strong>一般動詞</strong> ==&gt; 表示動作</p>
+<ul>
+<li>具體動作、抽象動作<ul>
+<li>看得見的動作（走路、吃飯、唱歌）</li>
+<li>看不見的動作（了解、知道、愛）<br><strong>現在式</strong> ==&gt; 時態、動作的形態會隨著時間改變<br><em><strong>文法名稱代表用法</strong></em></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="be-動詞的現在式-gt-am-is-are"><a href="#be-動詞的現在式-gt-am-is-are" class="headerlink" title="be 動詞的現在式 ==&gt; am , is , are"></a>be 動詞的現在式 ==&gt; am , is , are</h2><hr>
+<ul>
+<li>be 動詞的含義<ul>
+<li>是(狀態) We(s.) are(v.) happy.</li>
+<li>在(存在) She is in America.</li>
+</ul>
+</li>
+<li>S. + be<ul>
+<li>第一人稱（I）+ am ==&gt;  I am a boy.</li>
+<li>第二人稱（You/They）/複數名詞 + are ==&gt;  You are my sons.</li>
+<li>第三人稱（He/She）/單數名詞 + is ==&gt;  He is my student.</li>
+</ul>
+</li>
+<li>be 動詞的否定 ==&gt; am / are / is + not<ul>
+<li>肯定: 主詞 + am / are / is</li>
+<li>否定: 主詞 + am / are / is + not<ul>
+<li>He is a good baseball player.</li>
+<li>He is not a good baseball player.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>be 動詞的疑問句 =&gt; 將 be 動詞 提前<ul>
+<li>肯定句：主詞 + am / are / is … .</li>
+<li>疑問句：Am / Are / Is + 主詞 … ? ( 嗎？)<ul>
+<li>That is his camera.  =&gt; Is that his camera ?</li>
+<li>The girl is a junior high(囯中生/senior高中生) school student.</li>
+<li>Is the girl a junior high school student ?</li>
+</ul>
+</li>
+<li>be 動詞開頭的疑問句，可用Yes / No 回答。<ul>
+<li>Yes, S.(代名詞) + am / are / is.</li>
+<li>No, S.(代名詞) + am / are / is not.<ul>
+<li>Is that man your math teacher ?</li>
+<li>Yes, he is. / No, he is not.(用代名詞回答)</li>
+<li>No, he’s my PE(體育老師) teacher.</li>
+<li>Are you eating your lunch ?</li>
+<li>Yes, I am. / No, I’m not.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="一般動詞的現在式"><a href="#一般動詞的現在式" class="headerlink" title="一般動詞的現在式"></a>一般動詞的現在式</h2><hr>
+<ul>
+<li>主詞 + 一般動詞==&gt;現在式、主詞為第三人稱單數，一般動詞加 <strong>s</strong>或 <strong>es</strong><ul>
+<li>第一人稱 : I like dogs. / We like dogs.</li>
+<li>第二人稱 : You like dogs. / You like dogs.</li>
+<li>第三人稱 : He <strong>likes</strong> dogs. / They like dogs.</li>
+</ul>
+</li>
+<li>一般動詞加 <strong>s</strong>或 <strong>es</strong>的方法<ul>
+<li>大部分動詞加s,其發音為[s]或[z]<ul>
+<li>works [s]</li>
+<li>plays [z]</li>
+</ul>
+</li>
+<li>字尾為o, s, sh, ch時加es<ul>
+<li>goes [z]</li>
+<li>washes [IZ]</li>
+<li>watches [IZ]</li>
+</ul>
+</li>
+<li>字尾為子音 + y時，去y + ies<ul>
+<li>cry –&gt; cries</li>
+<li>study –&gt; studyies</li>
+</ul>
+</li>
+<li>have ==&gt; (有、吃)單數動詞 —&gt; has<ul>
+<li>They have a lot of money(不可數n.).</li>
+<li>He <strong>has</strong> a lot of money.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一般動詞的否定句 ==&gt; 不可以在一般動詞後面直接加NOT,必須用助動詞do/does<ul>
+<li>do ==&gt; 用於主詞為I、you 或者複數</li>
+<li>does ==&gt; 用於主詞為第三人稱單數<ul>
+<li>肯定句 : 主詞 + 一般動詞…</li>
+<li>否定句 : 主詞 + do/does + not + 一般動詞原形…<ol>
+<li>The twin brothers go to school by bus.</li>
+<li>The twin brothers <strong>do not go</strong> to school by bus.</li>
+<li>Sam has dinner at the restaurant.</li>
+<li>Sam <strong>does not <em>have</em></strong> dinner at the restaurant.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>比較 : 否定句<ul>
+<li>be 動詞<ul>
+<li>He is my boyfriend.</li>
+<li>He isn’t my boyfriend.</li>
+</ul>
+</li>
+<li>一般動詞<ul>
+<li>He likes dogs.</li>
+<li>He doesn’t like dogs.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一般動詞的疑問句 ==&gt; 不能把一般動詞放主詞前，要用助動詞do / does <ul>
+<li>疑問句 : Do / Does + 主詞 + 一般動詞原形… ?<ol>
+<li>You visit(探訪) your grandmother on Sunday<strong>s</strong>(每逢星期天).</li>
+</ol>
+<ul>
+<li>Do you visit your grandmother on Sundays?</li>
+</ul>
+<ol>
+<li>He comes from England.</li>
+</ol>
+<ul>
+<li>Does he come from England?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>助動詞do / does開頭的問句、Yes / No回答之後用do / does 回答<ul>
+<li>Does the little boy go to school?<ul>
+<li>Yes, he does.</li>
+<li>No, he doesn’t.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>比較 : 疑問句<ul>
+<li>be動詞:<ul>
+<li>She is beautiful.</li>
+<li>Is she beautiful?</li>
+<li>Yes, she is.</li>
+</ul>
+</li>
+<li>一般動詞:<ul>
+<li>She loves tennis(網球).</li>
+<li>Does she love tennis?</li>
+<li>Yes, she does.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;be動詞&lt;/strong&gt; ==&amp;gt; 表示狀態、存在&lt;br&gt;&lt;strong&gt;一般動詞&lt;/strong&gt; ==&amp;gt; 表示動作&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;具體動作、抽象動作&lt;ul&gt;
+&lt;li&gt;看得見的動作（走路、吃飯、唱歌）&lt;/li&gt;
+&lt;li&gt;看不見的動作（了解、知道、愛）&lt;br&gt;&lt;strong&gt;現在式&lt;/strong&gt; ==&amp;gt; 時態、動作的形態會隨著時間改變&lt;br&gt;&lt;em&gt;&lt;strong&gt;文法名稱代表用法&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="英文文法" scheme="https://myhongkongzhen.github.io/categories/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/"/>
+    
+    
+      <category term="English" scheme="https://myhongkongzhen.github.io/tags/English/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux基礎知識 — 002</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/10/17/201610172027-Linux-Linux%E5%9F%BA%E7%A4%8E%E7%9F%A5%E8%AD%98-002.html"/>
+    <id>https://myhongkongzhen.github.io/archives/技術/2016/10/17/201610172027-Linux-Linux基礎知識-002.html</id>
+    <published>2016-10-17T12:50:32.000Z</published>
+    <updated>2017-07-04T02:08:34.522Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<h3 id="Linux的基本原則"><a href="#Linux的基本原則" class="headerlink" title="Linux的基本原則"></a>Linux的基本原則</h3><ol>
+<li>由目的單一的小程序組成；組合小程序完成複雜人物；</li>
+<li>一切皆文件；</li>
+<li>盡量避免捕獲用戶接口；</li>
+<li>配置文件保存為純文本格式。</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+<h2 id="基礎概念"><a href="#基礎概念" class="headerlink" title="基礎概念"></a>基礎概念</h2><hr>
+<ul>
+<li>文件系統 file system<ul>
+<li>層次化管理<ul>
+<li>FHS : Linux文件系統層級標準<ul>
+<li><strong>/boot</strong> : 系統啓動相關的文件<pre><code>- 内核、initrd、grub(bootloader)
+</code></pre><ul>
+<li>initrd* : 操作系統啓動所用的内核<ul>
+<li>應用程序在硬盤上叫做程序，啓動起來之後叫做進程<ul>
+<li>進程啓動起來的外部，啓動起來各個共享庫</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>vmlinuz*</li>
+</ul>
+</li>
+<li><strong>/dev</strong> : devise 設備文件<ul>
+<li>/dev/cdrom</li>
+<li>塊設備 : 隨機設備、可以實現隨機訪問<ul>
+<li>磁盤、硬盤</li>
+<li>數據塊訪問</li>
+</ul>
+</li>
+<li>字符設備 : 綫性設備、按字符為單位訪問<ul>
+<li>顯示器、鼠標</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>/etc</strong> : 配置文件</li>
+<li><strong>/home</strong> : 主目錄 /home/USERNAME<ul>
+<li>/root : root home</li>
+</ul>
+</li>
+<li><strong>/lib</strong> : 庫文件及内核模塊文件<ul>
+<li>被調用的一些封裝好的某些功能,不能單獨運行，沒有程序運行入口</li>
+<li>/lib/modules : 内核模塊<ul>
+<li>靜態庫 .a<ul>
+<li>直接連接到程序地址空間中，作爲程序的一部分而運行的</li>
+</ul>
+</li>
+<li>動態庫 .dll(windows), .so(shared object)<ul>
+<li>只需將共享庫載入内存一份即可,節約内存空間</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>/media</strong> : 挂載點目錄<ul>
+<li>挂載 : 把某個設備與文件系統樹上的某個節點(目錄)關聯起來的過程<ul>
+<li>必須挂載才能使用</li>
+</ul>
+</li>
+<li>通常挂在移動設備</li>
+</ul>
+</li>
+<li><strong>/mnt</strong> : 挂載點目錄<ul>
+<li>通常挂在額外的文件系統，如：第二塊硬盤</li>
+</ul>
+</li>
+<li><strong>/misc</strong> : 雜項</li>
+<li><strong>/opt</strong> : 可選目錄<ul>
+<li>早期用於安裝第三方程序</li>
+</ul>
+</li>
+<li><strong>/proc</strong> : 偽文件系統；内核影射文件<ul>
+<li>空目錄，但啓動后，顯示内核的映像文件</li>
+<li>系統調優、系統監控有關</li>
+</ul>
+</li>
+<li><strong>/sys</strong> : 偽文件系統；硬件設備相關屬性影像文件<ul>
+<li>系統調優、系統監控有關</li>
+</ul>
+</li>
+<li><strong>/tmp</strong> : 臨時文件<ul>
+<li>通常每一個月清理一次</li>
+<li>/var/tmp </li>
+</ul>
+</li>
+<li><strong>/var</strong> : 可變化的文件</li>
+<li><strong>/bin</strong> : 可執行文件, 用戶命令</li>
+<li><strong>/sbin</strong> : 管理命令</li>
+<li><strong>/usr</strong> : universal shared, read-only 全局共享只讀文件<ul>
+<li>/usr/bin</li>
+<li>/usr/sbin</li>
+<li>/usr/lib</li>
+<li>/usr/local : 第三方軟件<ul>
+<li>/usr/local/bin</li>
+<li>/usr/local/sbin</li>
+<li>/usr/local/lib</li>
+<li>/usr/local/etc</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tree : 樹狀結構<ul>
+<li>絕對路徑</li>
+<li>相對路徑</li>
+</ul>
+</li>
+<li>rootfs : 根文件系統</li>
+</ul>
+</li>
+<li>文件的節點 : index node , inode</li>
+<li>環境變量 : 命名的内存空間<ul>
+<li>變量賦值<ul>
+<li>PATH : 冒號(:)分隔 ==&gt; 命令搜索路徑</li>
+<li>HISTSIZE : 命令歷史緩衝區大小</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>命令格式<ul>
+<li>命令 選項 參數<ul>
+<li>短選項: -<ul>
+<li>多個選項可以組合： -a -b ==&gt; -ab</li>
+</ul>
+</li>
+<li>長選項: --<ul>
+<li>多個選項不可以組合</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>magic number : 標誌程序的執行格式<ul>
+<li>shebang : #!/bin/bash</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>計算機時間<ul>
+<li>晶體震蕩器 ==&gt; 主板、鈕扣電池 ==&gt; 硬件時間、實時時鐘<ul>
+<li>rtc: realtime clock</li>
+</ul>
+</li>
+<li>NTP : 網絡時間協議</li>
+<li>Linux時間 <ul>
+<li>硬件時鐘</li>
+<li>系統時鐘</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可執行文件的存儲格式<ul>
+<li>Linux : ELF</li>
+<li>Windows : PE</li>
+</ul>
+</li>
+<li>ASCII : 美國國家標準信息交換代碼<ul>
+<li>純文本字符<ul>
+<li>word : 字處理器</li>
+</ul>
+</li>
+<li>128個不同字符，用二進制表示<ul>
+<li>2 ^ 6 = 0,63  = 64</li>
+<li>2 ^ 7 = 0,127 = 128</li>
+<li>000 0000 - 111 1111</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GPL, BSD, Apache 自由軟件:開源協定，版權描述</li>
+<li>www.kenel.org<ul>
+<li>Linux僅僅是一個内核, 源代碼</li>
+<li>GNU: GNU/Linux</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><hr>
+<ul>
+<li>目錄管理<ul>
+<li>ls cd pwd mkdir rmdir tree</li>
+</ul>
+</li>
+<li>文件管理<ul>
+<li>touch stat file rm cp mv </li>
+</ul>
+</li>
+<li>時間管理<ul>
+<li>date clock hwclock cal</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li><em><strong>su</strong></em> : switch user<ul>
+<li>su [-l(完全切換)] username</li>
+</ul>
+</li>
+<li><em><strong>passwd</strong></em> : pass word<br>  <strong>密碼複雜性</strong><ol>
+<li>0 ~ 9 ==&gt; 10 ^ 6 (6位密碼)破解次數</li>
+<li>0 ~ 9 + 26 lower char ==&gt; ( 10 + 26 ) ^ 6</li>
+</ol>
+<ul>
+<li>login user : userId</li>
+<li>認證機制   : Authenticatoin</li>
+<li>授權       : Authorization</li>
+<li>審計       : Audition ( LOG )</li>
+</ul>
+</li>
+<li><p><em><strong>ls</strong></em> : list </p>
+<ul>
+<li>目錄 : 文件、路徑影射<ul>
+<li>路徑 : 從指定起始點到目的地所經過的位置</li>
+</ul>
+</li>
+<li>-h : human readable<ul>
+<li>單位轉換 : B–&gt;K–&gt;M–&gt;G–&gt;T-&gt;…</li>
+</ul>
+</li>
+<li>-a : all<ul>
+<li>顯示所有文件、包含以<strong>.(點)</strong>開頭的隱藏文件</li>
+</ul>
+</li>
+<li>-A : all<ul>
+<li>不包含<strong>.(點) &amp; ..(點點)</strong></li>
+</ul>
+</li>
+<li>-d : 顯示目錄自身屬性</li>
+<li>-i : inode<ul>
+<li>顯示每個文件的索引節點號</li>
+</ul>
+</li>
+<li>-r : 逆序顯示文件(自然順序逆序)</li>
+<li>-R : recursive<ul>
+<li>遞歸現實</li>
+</ul>
+</li>
+<li><p>-l : long 長格式、顯示更多屬性 </p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- \-rw-r--r-- 1 43984076 1049089   21929 Oct 19 20:29 _viminfo</div></pre></td></tr></table></figure>
+<ul>
+<li>-rwxr-rx-r : 10位 <ul>
+<li>第一位 : 文件類型<ul>
+<li>- : 普通文件(f)</li>
+<li>d  : 目錄文件</li>
+<li>b  : 塊設備文件(block)</li>
+<li>c  : 字符設備文件(character)</li>
+<li>l  : 符號鏈接文件(symbolic link file)</li>
+<li>p  : 命令管道文件(pipe)</li>
+<li>s  : 套接字文件(socket)</li>
+</ul>
+</li>
+<li>后九位 : 文件權限<ul>
+<li>每三位一組</li>
+<li>x : 執行</li>
+<li>r : 讀</li>
+<li>w : 寫</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1 : 文件被硬連接的次數</li>
+<li>43984076 : owner</li>
+<li>1049089 : group</li>
+<li>21929 : file size (byte)<ul>
+<li>特殊文件不顯示文件大小，而顯示設備號:主設備號(major)和次設備號(minor)</li>
+</ul>
+</li>
+<li>Oct 19 20:29 : timestamp ==&gt; 這裡顯示的是 –&gt; 最近一次被修改的時間<ul>
+<li>每個文件都有三個時間戳</li>
+<li>最近一次被訪問的時間 access</li>
+<li>最近一次被修改的時間 modify<ul>
+<li>文件的内容數據</li>
+</ul>
+</li>
+<li>最近一次被改變的時間 change<ul>
+<li>文件的屬性數據 : 元數據 metadata<ul>
+<li>Ex : 修改文件名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>_viminfo : 文件名</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>pwd</strong></em> : print working directory<ul>
+<li>/ : 斜綫</li>
+<li>\ : Windows ==&gt; 反斜綫</li>
+</ul>
+</li>
+<li><em><strong>cd</strong></em> : change directory <ul>
+<li>home directory : 主目錄、家目錄</li>
+<li># cd ~student : <strong>管理員</strong>去到student <strong>(指定用戶)</strong>用戶的家目錄</li>
+<li>\$ cd - : 當前目錄與上一個目錄之間來回切換</li>
+</ul>
+</li>
+<li><em><strong>type</strong></em> <ul>
+<li><strong>Linux命令類型</strong><ul>
+<li>内置命令 : shell ==&gt; XX is a shell builtin.</li>
+<li>外部命令 : 在文件系統的某個路徑下有與命令名稱相應的可執行文件</li>
+</ul>
+</li>
+<li>\$ type cd ==&gt; 顯示命令屬於哪种命令類型<ul>
+<li>cd is a shell builtin.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>hash</strong></em> : 緩存，將用過的命令緩存起來，避免每次到路徑中尋找執行命令<ul>
+<li>O(1) : 時間複雜度 </li>
+</ul>
+</li>
+<li><em><strong>date</strong></em> : 顯示系統時間 <ul>
+<li>\$ date 1021195416.27 (默認格式：MMDDhhmmCCYY.ss)</li>
+<li>\$ date +%D</li>
+<li>\$ date +”Today is %Y-%M-%d.”</li>
+<li>\$ date +%s (UTC:格林尼治時間)</li>
+</ul>
+</li>
+<li><em><strong>clock</strong></em> : 顯示硬件時間</li>
+<li><em><strong>hwclock</strong></em><ul>
+<li>hwclock -w 將系統時間同步到硬件時間</li>
+<li>hwclock -s 讀取硬件時間到系統時間</li>
+</ul>
+</li>
+<li><em><strong>man</strong></em> : 獲取命令使用幫助<ul>
+<li>\$ man ls</li>
+<li>\$ man cd ==&gt; 内部命令、顯示的是對應的shell幫助</li>
+<li>分章節 (常見章節8個)<ol>
+<li>用戶命令(/bin, /usr/bin, /usr/local/bin)</li>
+<li>系統調用</li>
+<li>庫調用 </li>
+<li>特殊文件(如：設備文件,設備的訪問入口存在，沒有存儲内容)</li>
+<li>文件格式(解釋：配置文件的語法)</li>
+<li>遊戲</li>
+<li>雜項, Miscellaneous</li>
+<li>管理命令(/sbin, /usr/sbin, /usr/local/sbin)</li>
+</ol>
+</li>
+<li>\$ man 2 read ==&gt; 顯示第二章節的内容</li>
+</ul>
+</li>
+<li><em><strong>help</strong></em> : 獲取内部命令的使用幫助 <ul>
+<li>\$ help cd</li>
+<li>或者使用 --help</li>
+<li><em><strong>info</strong></em> : 在綫命令手冊，命令歷史</li>
+<li>/usr/share/doc ==&gt;内核幫助文檔</li>
+</ul>
+</li>
+<li><em><strong>whatis</strong></em>  : 顯示命令摘要<ul>
+<li>\$ whatis read ==&gt; 顯示read命令在哪些章節中</li>
+</ul>
+</li>
+<li><em><strong>cal</strong></em> : calendar 日曆</li>
+<li><em><strong>echo</strong></em> : 默認有換行符<ul>
+<li>echo -e “This is a dog.\nI like it.”<ul>
+<li>-e 開啓轉義字符功能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>print</strong></em> : 默認沒有換行符<ul>
+<li>printf “This is a dog.\n”</li>
+</ul>
+</li>
+<li><em><strong>mkdir</strong></em> <ul>
+<li>mkdir -pv ./jwuzz/y ==&gt; 遞歸創建不存在的目錄,並顯示詳細信息</li>
+<li>-v 詳細信息</li>
+<li>mkdir -pv /home/jwuzz/{x,z} ==&gt; 同時創建x、y兩個目錄<ul>
+<li>‘{ }’花括號展開</li>
+</ul>
+</li>
+<li>mkdir -pv /home/jwuzz/{a,b}_{c,d}<ul>
+<li>/home/jwuzz/a_c</li>
+<li>/home/jwuzz/a_d</li>
+<li>/home/jwuzz/b_c</li>
+<li>/home/jwuzz/b_d</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>tree</strong></em>  : 察看目錄樹 </li>
+<li><em><strong>rmdir</strong></em>  : remove directory 只能用於刪除空目錄</li>
+<li><em><strong>touch</strong></em>  : 本不是用來創建文件的，但卻可以創建文件<ul>
+<li><em>change file timestamps</em></li>
+<li>touch newfile</li>
+<li>touch -c newfile ==&gt;如果文件不存在，不創建</li>
+<li>-a change only the access time</li>
+<li>-m change only the modification time</li>
+<li>-t CCYYMMddhhmm.ss ==&gt; 指定時間</li>
+</ul>
+</li>
+<li><em><strong>stat</strong></em> 顯示文件或文件系統的狀態信息<ul>
+<li>stat filename<blockquote>
+<p>File: ‘a’<br>Size: 0               Blocks: 0          IO Block: 65536  regular empty file<br>Device: 74e2337eh/1960981374d   Inode: 24769797950777130  Links: 1<br>Access: (0644/-rw-r–r–)  Uid: (2826018/43984076)   Gid: (1049089/ UNKNOWN)<br>Access: 2016-10-21 22:21:19.408805800 +0800<br>Modify: 2016-10-21 22:21:19.408805800 +0800<br>Change: 2016-10-21 22:21:19.408805800 +0800<br> Birth: 2016-10-21 22:21:02.279975700 +0800</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><em><strong>rm</strong></em> : remove <ul>
+<li>rm -rfv *</li>
+<li>-i ==&gt; 交互式</li>
+<li>-f ==&gt; 強制</li>
+<li>-r ==&gt;遞歸刪除(目錄下的所有文件)</li>
+</ul>
+</li>
+<li><em><strong>alias</strong></em> <ul>
+<li>\rm ==&gt; 使用rm自身命令，而不是使用別名后的命令</li>
+</ul>
+</li>
+<li><em><strong>cp</strong></em> : copy<ul>
+<li>複製一個文件到一個文件</li>
+<li>複製多個文件到一個目錄</li>
+<li>cp /etc/passwd /tmp ==&gt; /tmp/passwd</li>
+<li>cp /etc/passwd /tmp/test ==&gt; /tmp/test</li>
+<li>-R(or -r)  (遞默認不複製目)錄歸複製init.d下的所有文件及其子文件夾下的文件</li>
+<li>-f force 強制複製</li>
+<li>-i 目標存在，則提示是否覆蓋</li>
+<li>-p preserve(保留)mode,ownership,timestamps</li>
+<li>-a archive、歸檔存放，用於備份，保留複製文件的所有屬性</li>
+<li>-P(or -d) 複製文件如果為連接文件，則保存連接文件自有屬性</li>
+<li>-L 複製文件如果是連接文件，則複製的是文件本身，而不是連接文件</li>
+</ul>
+</li>
+<li><em><strong>mv</strong></em> : move<ul>
+<li>-t cp -t DEST SRC (先指定目標、再指定源)</li>
+</ul>
+</li>
+<li><em><strong>install</strong></em> copy files and set attributes<ul>
+<li>創建、複製文件</li>
+<li>-m 指定複製后的權限<ul>
+<li>不指定時，複製后的文件默認有x執行權限</li>
+</ul>
+</li>
+<li>-d 創建目錄，不能複製目錄<ul>
+<li>install -d /tmp/{a,b}/c ==&gt; 創建多個目錄/tmp/a/c,/tmp/b/c</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>cat</strong></em> 察看文本文件<ul>
+<li>-n 顯示行號 (類似于vim的set nu)</li>
+<li>-E show ends顯示每行的結束符<ul>
+<li>Linux 行結束符是\$</li>
+<li>Windows 行結束符為\$<cr></cr></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong>tac</strong></em> 與cat相同，但從尾部向頭部顯示，逆序顯示</li>
+<li><em><strong>less</strong></em> 分屏察看，可向前向後<ul>
+<li>space / b / CR / k / /？(the same as ‘man’)</li>
+</ul>
+</li>
+<li><em><strong>more</strong></em> 分屏察看，只能向後<ul>
+<li>space / b / CR</li>
+</ul>
+</li>
+<li><em><strong>head</strong></em> 察看文件前N行，默認n = 10<ul>
+<li>-n N 指定顯示N行</li>
+</ul>
+</li>
+<li><em><strong>tail</strong></em> 察看文件后N行，默認n = 10<ul>
+<li>-n N</li>
+<li>-f 監控日誌神器^_^</li>
+</ul>
+</li>
+<li><em><strong>cut</strong></em> <ul>
+<li>-d 指定分隔符</li>
+<li>-f 顯示第幾個字段<ul>
+<li>-f 1 <strong>,</strong>3 顯示第一個 <em><strong>和</strong></em>第三個字段</li>
+<li>-f 1 <strong>-</strong>3 顯示第一個 <em><strong>到</strong></em>第三個字段</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em><strong><del>join</del></strong></em> 文本拼接,不常用</li>
+<li><em><strong>sort</strong></em> 文本排序<ul>
+<li>默認字符自然順序升序排序</li>
+<li>-n 按數值排序</li>
+<li>-r 逆序排序</li>
+<li>-t 指定分隔符、按照指定字段排序</li>
+<li>-k 指定字段<ul>
+<li>\$ sort protocols -t’ ‘ -k2 -n</li>
+</ul>
+</li>
+<li>-u 只顯示唯一一個，去重復</li>
+<li>-f 忽略字符大小寫</li>
+</ul>
+</li>
+<li><em><strong>uniq</strong></em> 報告或略過重復的行<br>   <strong>如果重復的行不相鄰，則linux不認爲是重復的行</strong><ul>
+<li>-d 只顯示重復的行(1)</li>
+<li>-D 顯示重復的行(2)</li>
+<li>-c count重復的行</li>
+</ul>
+</li>
+<li><em><strong>wc</strong></em> word count<blockquote>
+<p>19  18 113 ddd   </p>
+<ul>
+<li>行 單詞 字節</li>
+<li>-l 行(19)</li>
+<li>-c or -m 字節(113)</li>
+<li>-w 單詞(18)</li>
+<li>-L 最長的一行包含的字符</li>
+</ul>
+</blockquote>
+</li>
+<li><em><strong>tr</strong></em> translate or delete char 轉換或刪除,逐個字符處理<ul>
+<li>tr ab AB ==&gt; 將小寫ab換成大寫AB, 字符一一對應，而不是AB當作整體替換</li>
+<li>tr ab AB &lt; /etc/passwd ==&gt; 利用輸入重定向將文件中的小寫ab換成大寫AB</li>
+<li>tr ‘a-z’ ‘A-Z’ ==&gt; 範圍替換</li>
+<li>-d 刪除字符集中出現的所有字符</li>
+</ul>
+</li>
+<li><em><strong>history</strong></em> 命令歷史 <ul>
+<li>-c clear history</li>
+<li>-d 刪除指定位置的history<ul>
+<li>history -d 500 10 ==&gt; 刪除從500開始的10個history</li>
+</ul>
+</li>
+<li>-w 將緩衝區的history保存到歷史文件中</li>
+</ul>
+</li>
+<li><em><strong>clear</strong></em> 清屏</li>
+</ul>
+<hr>
+<hr>
+<hr>
+<h1 id="TODO-…"><a href="#TODO-…" class="headerlink" title="TODO …"></a>TODO …</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;h3 id=&quot;Linux的基本原則&quot;&gt;&lt;a href=&quot;#Linux的基本原則&quot; class=&quot;headerlink&quot; title=&quot;Linux的基本原則&quot;&gt;&lt;/a&gt;Linux的基本原則&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;由目的單一的小程序組成；組合小程序完成複雜人物；&lt;/li&gt;
+&lt;li&gt;一切皆文件；&lt;/li&gt;
+&lt;li&gt;盡量避免捕獲用戶接口；&lt;/li&gt;
+&lt;li&gt;配置文件保存為純文本格式。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
+    
+    
+      <category term="LINUX" scheme="https://myhongkongzhen.github.io/tags/LINUX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>英文初級文法 Unit01 名詞、冠詞 — 001</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/2016/10/09/201610092003-English01-Unit01-%E5%90%8D%E8%A9%9E-%E5%86%A0%E8%A9%9E-001.html"/>
+    <id>https://myhongkongzhen.github.io/archives/英文文法/2016/10/09/201610092003-English01-Unit01-名詞-冠詞-001.html</id>
+    <published>2016-10-09T12:04:32.000Z</published>
+    <updated>2017-07-09T12:30:44.950Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>名詞的功用：當 <em>主詞</em>、 <em>補語</em>、 <em>受詞</em><br>什麽是名詞： <em>人</em>、 <em>事情</em>、 <em>地點</em>、 <em>物品</em> 的名稱<br>名詞有 <strong>單數</strong>、 <strong>複數</strong> 之分;有單複數的名詞在句子中要將單複數表現出來</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="一、名詞的種類"><a href="#一、名詞的種類" class="headerlink" title="一、名詞的種類"></a>一、名詞的種類</h2><hr>
+<ul>
+<li><strong>普通名詞</strong> book. pencil. dog. spaceship…</li>
+<li><strong>集合名詞</strong> class. family. audience(觀衆)…<ol>
+<li>My family is large. <strong>我的家庭是個大家庭，集合名詞，單數名詞</strong>。              </li>
+<li>My family are all early <em>risers</em>(複數). <strong>我的家人都起得很早</strong>。<br><strong>I like dogs</strong> 我喜歡狗。我喜歡的是狗狗這一類的動物，而不是這只狗狗或那只狗狗。是一種類型</li>
+</ol>
+</li>
+<li><strong>專有名詞</strong> Bob. Smith. April. London…<br>   <em>專有名詞沒有單複數的表現，但有些專有名詞需要加定冠詞The</em><ol>
+<li>the United States.</li>
+<li>the United Nations.             </li>
+</ol>
+</li>
+<li><strong>物質名詞</strong> glass. wood. paper. fruit. butter…<br>   <em>數字 + 容器（度量衡）+ of + 物質名詞</em> <strong>單複數表現形式:度量衡</strong><ol>
+<li>a loaf of bread </li>
+<li>a cup of coffee</li>
+<li>a sheet of paper    </li>
+<li>a spoonful of sugar   </li>
+<li>a <em><strong>handful</strong></em> of sugar 一把糖果       </li>
+<li>an <em><strong>armful</strong></em> of mood 一把木材       </li>
+</ol>
+</li>
+<li><strong>抽象名詞</strong> beauty. love. patience. honesty. happiness. music… <em>不可數名詞</em></li>
+</ul>
+<h2 id="二、名詞的數：單數、複數"><a href="#二、名詞的數：單數、複數" class="headerlink" title="二、名詞的數：單數、複數"></a>二、名詞的數：單數、複數</h2><hr>
+<ul>
+<li><strong>規則變化的複數…~S</strong>       <ul>
+<li>名詞字尾加 s -&gt; 大部分名詞       <ol>
+<li>dog -&gt; dogs _[gz] 有聲發音       </li>
+<li>book -&gt; books <em>[ks] 無聲發音</em>       </li>
+</ol>
+</li>
+<li>名詞字尾為 s、sh、ch、x、o -&gt; 加es       <ol>
+<li>class -&gt; classes <em>[IZ]</em>       </li>
+<li>bus -&gt; buses <em>[IZ]</em>       </li>
+<li>dish -&gt; dishes <em>[IZ]</em></li>
+<li>bench -&gt; benches <em>[IZ]</em></li>
+<li>box -&gt; boxes <em>[IZ]</em><br><strong>詞尾為子音+O，複數名詞加es：tomatoes. 例外：photos. pianos…</strong>       </li>
+</ol>
+</li>
+<li>名詞字尾為子音+ <strong>y</strong> -&gt; 去掉 <strong>y + ies</strong>       <ol>
+<li>baby -&gt; babies <em>[IZ]</em></li>
+<li>story -&gt; stories <em>[IZ]</em></li>
+<li>city -&gt; cities <em>[IZ]</em></li>
+<li>lady -&gt; ladies <em>[IZ]</em>       </li>
+</ol>
+</li>
+<li>名詞字尾為 <strong>f</strong> 或 <strong>fe</strong> -&gt; 去掉 <strong>f</strong> 或 <strong>fe + ves</strong>       <ol>
+<li>leaf -&gt; leaves</li>
+<li>wife -&gt; wives</li>
+<li>knife -&gt; knives<br><strong>例外：handkerchiefs. chiefs. roofs.</strong>       </li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>不規則變化的複數名詞</strong><ol>
+<li>ox -&gt; oxen / child -&gt; children / man -&gt; men / woman -&gt; women</li>
+<li>goose -&gt; geese / tooth -&gt; teeth / mouse -&gt; mice</li>
+</ol>
+</li>
+<li><strong>單複數同行</strong><ul>
+<li>fish / deer / sheep / Chinese / Japanese</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、名詞的所有格-格：一種表現"><a href="#三、名詞的所有格-格：一種表現" class="headerlink" title="三、名詞的所有格 (格：一種表現)"></a>三、名詞的所有格 (格：一種表現)</h2><hr>
+<ul>
+<li><strong>形成</strong>       <ul>
+<li>單數名詞 -&gt; 名詞’s <ol>
+<li>the boy’s schoolbag</li>
+<li>Joan’s dress       </li>
+</ol>
+</li>
+<li>複數名詞 -&gt; 名詞s’       <ol>
+<li>a girls’ school 一所女校</li>
+<li>these students’ teacher　這些學生的老師         </li>
+</ol>
+</li>
+<li>字尾非ｓ的複數名詞 -&gt; 名詞’s       <ol>
+<li>children’s playground 小盆友們的遊樂園</li>
+<li>women’s activities 女士們的活動       </li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>特別注意的所有格用法</strong>       <ul>
+<li>共同所有格及個別所有格       <ul>
+<li>共同所有格 -&gt; 名詞+名詞+名詞+…+名詞’s<br>  Harry and Bill’s father is a scientist.</li>
+<li>個別所有格 -&gt; 名詞’s+名詞’s+名詞’s+…+名詞’s<br>  Harry’s and Bill’s father are scientists.       </li>
+</ul>
+</li>
+<li>(無)生物所有格: A 的 B -&gt; B of A       <ol>
+<li>the legs of the table</li>
+<li>the doors of the car</li>
+<li>the girl’s name &lt;==&gt; the name of the girl       </li>
+</ol>
+</li>
+<li>可以省略所有格之後的名詞的情況       <ol>
+<li>She’s going to the dentist’s.</li>
+<li>I met him at the basket’s.</li>
+<li>We like to eat lunch at McDonald’s.       </li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="四、冠詞：修飾名詞"><a href="#四、冠詞：修飾名詞" class="headerlink" title="四、冠詞：修飾名詞"></a>四、冠詞：修飾名詞</h2><hr>
+<ul>
+<li>不定冠詞： <strong>a / an</strong> 數量唯一，沒有限定，可數名詞的單數       <ul>
+<li>a -&gt; 子音開頭的單數名詞<br>  <strong>a</strong> book<br>  <strong>a</strong> girl</li>
+<li>an -&gt; 母音開頭的單數名詞<br>  <strong>an</strong> apple<br>  <strong>an</strong> umbrella<br>  <strong>an</strong> old woman<br>  I read <strong>a</strong> novel.<br>  I read <strong>a</strong> novel, not two.       </li>
+</ul>
+</li>
+<li>定冠詞： <strong>the</strong> <ul>
+<li><strong>代表限定：這個、那個、這些、那些，特定的某一個(單數)或特定的某一些(複數)</strong>       </li>
+</ul>
+<ol>
+<li>Please shut <strong>the</strong> door.<br>請關門、講話人一定會指著是哪一扇門，限定了門。 <em><strong>講話者和聽話者都知道的情況下，一定要加上定冠詞the</strong></em>       </li>
+<li><strong>The</strong> rich <strong>aren’t</strong> always happy.<br>有錢人並非總是快樂的。 <em><strong>the + 形容詞泛指“…的人”，代表複數</strong></em>       </li>
+</ol>
+</li>
+<li><p>比較</p>
+<p>   | 不定冠詞( a Ban ) | 定冠詞( The ) |<br>   | —————  | ————– |<br>   | 表示不特定之事物   | 表示特定之事物 |<br>   | 只能接可數名詞     | 可接可數名詞及不可數名詞 |<br>   | 只能接單數         | 可用於單數和複數 |        </p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;名詞的功用：當 &lt;em&gt;主詞&lt;/em&gt;、 &lt;em&gt;補語&lt;/em&gt;、 &lt;em&gt;受詞&lt;/em&gt;&lt;br&gt;什麽是名詞： &lt;em&gt;人&lt;/em&gt;、 &lt;em&gt;事情&lt;/em&gt;、 &lt;em&gt;地點&lt;/em&gt;、 &lt;em&gt;物品&lt;/em&gt; 的名稱&lt;br&gt;名詞有 &lt;strong&gt;單數&lt;/strong&gt;、 &lt;strong&gt;複數&lt;/strong&gt; 之分;有單複數的名詞在句子中要將單複數表現出來&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="英文文法" scheme="https://myhongkongzhen.github.io/categories/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/"/>
+    
+    
+      <category term="English" scheme="https://myhongkongzhen.github.io/tags/English/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux基礎知識 — 001</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/10/04/201610041954-Linux-Linux%E5%9F%BA%E7%A4%8E%E7%9F%A5%E8%AD%98-001.html"/>
+    <id>https://myhongkongzhen.github.io/archives/技術/2016/10/04/201610041954-Linux-Linux基礎知識-001.html</id>
+    <published>2016-10-04T12:08:32.000Z</published>
+    <updated>2017-07-04T02:08:34.520Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Linux基礎知識，在虛擬機下學習，安裝RedHat5 Server<br>斷斷續續學習Linux，總也不得要領，好在對Linux的字符界面情有獨鐘，還是繼續學習下去吧^_^ :bowtie: </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Vmware-安裝linux"><a href="#Vmware-安裝linux" class="headerlink" title="Vmware 安裝linux:"></a>Vmware 安裝linux:</h2><ul>
+<li><p><strong>通過網絡引導槃安裝Linux及幾處要點</strong><br><img src="/images/Linux/201610042011-createLinuxByCustom.png"><br><img src="/images/Linux/201610042012-installByNet.png"><br><img src="/images/Linux/201610042018-installByBridge.png"><br><img src="/images/Linux/201610042019-installMaxDisk.png"></p>
+</li>
+<li><p><strong>虛擬機安裝linux后，想要利用宿主機器連接網絡，需要配置虛擬網絡，配置方法多種，這裡選擇使用 <em>僑接</em> 方式配置</strong><br><img src="/images/Linux/201610042006-virtualNetworkEditor.png"></p>
+</li>
+<li><p><strong>製作快照</strong><br><img src="/images/Linux/201610042023-createSnapshot.png"><br><img src="/images/Linux/201610042026-manageSnapshot.png"></p>
+</li>
+<li><p><strong>通過命令安裝Ｌｉｎｕｘ</strong><br><img src="/images/Linux/201610112248-installBycommand.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">linux ip=172.168.1.22 netmask=255.255.255.0 gateway=127.0.0.1 dns=172.16.0.1 ks=http://172.16.0.1/class.cfg</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="計算機基礎知識"><a href="#計算機基礎知識" class="headerlink" title="計算機基礎知識"></a>計算機基礎知識</h2><ul>
+<li><h4 id="計算機啓動過程：POST-power-on-and-self-testing-加電自檢"><a href="#計算機啓動過程：POST-power-on-and-self-testing-加電自檢" class="headerlink" title="計算機啓動過程：POST (power on and self testing) 加電自檢"></a>計算機啓動過程：POST (power on and self testing) 加電自檢</h4><ul>
+<li>計算機只是一堆硬件,CPU加載到指令才行執行<ul>
+<li>開機之前，指令在何處存儲？ 光盤、硬盤、移動設備等</li>
+<li>Boot調整加載順序 <ul>
+<li>計算機自擧能力 : BIOS</li>
+<li>ROM : 將此中的指令，映射到内存中，硬件芯片邏輯完成</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>程序：指令 + 數據 <ul>
+<li>載入内存才行執行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="計算機體系結構-馮諾依曼體系結構"><a href="#計算機體系結構-馮諾依曼體系結構" class="headerlink" title="計算機體系結構(馮諾依曼體系結構)"></a>計算機體系結構(馮諾依曼體系結構)</h4><ul>
+<li>運算器 -&gt; 加法運算器、邏輯運算器<ul>
+<li>負責運算</li>
+<li>寄存器：與CPU相同頻率工作</li>
+</ul>
+</li>
+<li>控制器 -&gt; (與運算器合稱 CPU)<ul>
+<li>負責控制運算器到哪取數據進行運算</li>
+<li>接受控制指令：控制總綫</li>
+</ul>
+</li>
+<li>存儲器 -&gt; RAM.内存，易失性設備，編址存儲設備(8bit), 平面編址<ul>
+<li>負責存儲數據、指令<br><strong>運算器從存儲器中拿到數據進行運算，並且把運算的結果還放到存儲器中</strong><ul>
+<li>從存儲器的什麽地方讀</li>
+<li>運算完成后，數據放到存儲器中的什麽位置上去</li>
+</ul>
+</li>
+<li>保存磁信號、轉換成電信號</li>
+</ul>
+</li>
+<li>輸入設備 </li>
+<li>輸出設備 </li>
+</ul>
+</li>
+<li><h4 id="硬件平臺架構"><a href="#硬件平臺架構" class="headerlink" title="硬件平臺架構"></a>硬件平臺架構</h4><ul>
+<li>CPU芯片的不同系列 <em><strong>程序是需要移植的</strong></em><ul>
+<li>ARM</li>
+<li>X86 (Intel or AMD)</li>
+<li>安籐</li>
+<li>alpha</li>
+<li>UltrSparc</li>
+<li>Power</li>
+<li>M68000/M68K</li>
+<li>PowerPC</li>
+</ul>
+</li>
+<li>OS<ul>
+<li>Windows</li>
+<li>Linux</li>
+<li>Unix<ul>
+<li>HP-UX</li>
+<li>Solaris</li>
+<li>AIX</li>
+<li>SCO UNIX</li>
+<li>Unixware</li>
+</ul>
+</li>
+<li>OS/2</li>
+</ul>
+</li>
+<li>MainFrame：大型機<ul>
+<li>Multics：多任務、多功能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li>中斷：interrupt -&gt; 硬件通知機制<ul>
+<li>外圍設備通過中斷同CPU交互 –&gt; <em>中斷越少越好，CPU性能越高</em></li>
+</ul>
+</li>
+<li>可編程中斷控制器：針腳與CPU相連<ul>
+<li>中斷向量 -&gt; 標示不同設備</li>
+</ul>
+</li>
+<li>前端總綫：FSB</li>
+<li>北喬設備：離CPU較近，連接南橋及其他總綫控制<ul>
+<li><strong>CPU與内存交互、之間有總綫相連，並且需要有控制器</strong></li>
+<li>高速總綫控制器</li>
+</ul>
+</li>
+<li>南橋設備：離CPU較遠，連接外圍設備<ul>
+<li>低速總綫控制器</li>
+</ul>
+</li>
+<li>主頻：赫茲／頻率 -&gt; 一次頻率，完成一次數據事件</li>
+<li>緩存：一級緩存(小，快，造價高，CPU近)、二級緩存…<ul>
+<li>決定CPU性能</li>
+<li>指令緩存</li>
+<li>數據緩存<br><strong>CPU -&gt; 寄存器 -&gt; 一級緩存 -&gt; 二級緩存 -&gt; 内存</strong></li>
+<li>要緩存的數據，遵循程序的局部性原理<ul>
+<li>時間上局部性：上次載入的數據，很快會被再次利用</li>
+<li>空間上局部性：載入一個數據，將附近的數據一同載入</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>程序的移植：底層芯片的不同<ul>
+<li>低級語言<ul>
+<li>機器語言：二進制編程</li>
+<li>微碼：彙編語言(人類容易識別) -&gt; 編譯器<ul>
+<li>仍然與底層芯片緊密關聯</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>高級語言<ul>
+<li>轉換成彙編語言、再翻譯成機器語言 -&gt; 編譯器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>批處理系統：現代操作系統前身</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">jobs1$</span>$$$$jobs2$$$$$</div></pre></td></tr></table></figure>
+</li>
+<li><p>Job：運行的一次完整的計算過程.批處理作業</p>
+</li>
+<li>多任務<ul>
+<li>CPU/Memory <em><strong>切割</strong></em><ul>
+<li>時間驅動：slice 時間片</li>
+<li>分段機制：相對地址</li>
+<li>虛擬地址空間</li>
+<li>操作系統(kernel,内核)：管理硬件資源　-&gt; 負責切割、切換、協調等工作<ul>
+<li>system call</li>
+<li>API</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>保存程序現場，從結束的地方繼續</li>
+<li>進程</li>
+</ul>
+</li>
+<li>庫：一堆的程序，高級的接口 API<ul>
+<li>沒有執行入口，只提供調用接口、被調用執行 call</li>
+</ul>
+</li>
+<li>Shell：人機交互接口<ul>
+<li>GUI : 圖形界面</li>
+<li>GLI : 命令行界面</li>
+</ul>
+</li>
+<li>IDE : Intergratent Devlopt Enverment</li>
+<li>DLL : Dynamic Link Library ==&gt; Windows<ul>
+<li>.so : shared object ==&gt; Linux </li>
+</ul>
+</li>
+<li>CPU四級別：四個同心圓環 、應用程序與内核隔離<ul>
+<li>最内層：0級別、特權級、内核運行</li>
+<li>最外層：其他應用程序</li>
+<li>中間兩層未用</li>
+</ul>
+</li>
+<li>内存碎片</li>
+<li>ABI: Application Binary Interface</li>
+</ul>
+</li>
+<li><h4 id="内核的功能-通用軟件"><a href="#内核的功能-通用軟件" class="headerlink" title="内核的功能 通用軟件"></a>内核的功能 <em>通用軟件</em></h4><ul>
+<li>進程管理</li>
+<li>内存管理</li>
+<li>文件系統</li>
+<li>網絡功能</li>
+<li>硬件驅動</li>
+<li>安全機制</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Unix 系列分支<ul>
+<li>FreeBSD</li>
+<li>OpenBSD</li>
+<li>NetBSD</li>
+<li>…</li>
+</ul>
+</li>
+<li>GNU: GNU IS NOT UNIX.<ul>
+<li>Stallman -&gt; Freedom</li>
+<li>GPL: General Public License<ul>
+<li>Emacs: 文本編輯器</li>
+<li>gcc: GNU C Complier</li>
+<li>bash: shell</li>
+<li>…</li>
+</ul>
+</li>
+<li>LGPL: Lesser</li>
+<li>GPLv2</li>
+<li>GPLv3</li>
+<li>維護軟件</li>
+<li>Linux : Linus維護内核    </li>
+</ul>
+</li>
+<li>Apache</li>
+<li>BSD</li>
+<li>Linux: 發行版 release、編譯成二進制后可運行的系統<ul>
+<li>Redhat (RPM、軟件包管理軟件)<ul>
+<li>CentOS</li>
+<li>Fedora</li>
+<li>Mandriva</li>
+</ul>
+</li>
+<li><strong>Debian</strong> (DPT、軟件包管理軟件)<ul>
+<li>Ubuntu<ul>
+<li>Mint (界面華麗)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SLS<ul>
+<li>SUSE -&gt; Novell(Netware)<ul>
+<li>Open SUSE</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Linux基礎知識，在虛擬機下學習，安裝RedHat5 Server&lt;br&gt;斷斷續續學習Linux，總也不得要領，好在對Linux的字符界面情有獨鐘，還是繼續學習下去吧^_^ :bowtie: &lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
+    
+    
+      <category term="LINUX" scheme="https://myhongkongzhen.github.io/tags/LINUX/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown流程圖簡明語法規則</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/09/16/201609161830-Markdown%E6%B5%81%E7%A8%8B%E5%9C%96%E7%B0%A1%E6%98%8E%E8%AA%9E%E6%B3%95%E8%A6%8F%E5%89%87.html"/>
+    <id>https://myhongkongzhen.github.io/archives/技術/2016/09/16/201609161830-Markdown流程圖簡明語法規則.html</id>
+    <published>2016-09-16T04:39:32.000Z</published>
+    <updated>2017-07-04T02:08:34.518Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>爲了方便再現編輯MARKDOWN文件，重新學習一下markdown語法知識，基礎的大部分都已掌握，但對於高級用法，比如甘特圖等，還未掌握到要點，這裡記錄一下可行的語法結構。<br>更悲催的是github.io上畫不出來流程圖，也許是沒有寫對github的markdown語法，再問問狗哥~~~</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Mardown流程圖語法實現"><a href="#Mardown流程圖語法實現" class="headerlink" title="Mardown流程圖語法實現"></a>Mardown流程圖語法實現</h2><h3 id="關鍵字、基本類型"><a href="#關鍵字、基本類型" class="headerlink" title="關鍵字、基本類型"></a>關鍵字、基本類型</h3><ul>
+<li>start </li>
+<li>end </li>
+<li>operation </li>
+<li>subroutine </li>
+<li>condition </li>
+<li>inputoutput</li>
+</ul>
+<h3 id="畫圖標識"><a href="#畫圖標識" class="headerlink" title="畫圖標識"></a>畫圖標識</h3><p>```flow<br><em>語法規則</em><br>```</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: 開始:&gt;http://google.com</div><div class="line">e=&gt;end: 結束:&gt;http://www.baidu.com</div><div class="line">op1=&gt;operation: 我的操作</div><div class="line">op2=&gt;operation: 暫停</div><div class="line">sub=&gt;subroutine: 我的子操作</div><div class="line">con1=&gt;condition: 是 or 否:&gt;http:www.google.com</div><div class="line">con2=&gt;condition: Good idea</div><div class="line">io=&gt;inputoutput: catch something...</div><div class="line"></div><div class="line">st-&gt;op1-&gt;con1</div><div class="line">con1(yes)-&gt;con2</div><div class="line">con1(no)-&gt;sub-&gt;op1</div><div class="line">con2(yes)-&gt;io-&gt;e</div><div class="line">con2(no)-&gt;op2-&gt;e</div></pre></td></tr></table></figure>
+<p><img src="/images/markdown/liuchengtu.png"></p>
+<h3 id="流程圖比較複雜，用markdown畫出比較酷玄的流程圖，還是比較麻煩的，而且跟各個平臺有關，github的markdown與什麽大象筆記的markdown語法就不相同，所以，簡單劃一畫，複雜的，還是截圖比較方便ww。"><a href="#流程圖比較複雜，用markdown畫出比較酷玄的流程圖，還是比較麻煩的，而且跟各個平臺有關，github的markdown與什麽大象筆記的markdown語法就不相同，所以，簡單劃一畫，複雜的，還是截圖比較方便ww。" class="headerlink" title="流程圖比較複雜，用markdown畫出比較酷玄的流程圖，還是比較麻煩的，而且跟各個平臺有關，github的markdown與什麽大象筆記的markdown語法就不相同，所以，簡單劃一畫，複雜的，還是截圖比較方便ww。"></a>流程圖比較複雜，用markdown畫出比較酷玄的流程圖，還是比較麻煩的，而且跟各個平臺有關，github的markdown與什麽大象筆記的markdown語法就不相同，所以，簡單劃一畫，複雜的，還是截圖比較方便ww。</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;爲了方便再現編輯MARKDOWN文件，重新學習一下markdown語法知識，基礎的大部分都已掌握，但對於高級用法，比如甘特圖等，還未掌握到要點，這裡記錄一下可行的語法結構。&lt;br&gt;更悲催的是github.io上畫不出來流程圖，也許是沒有寫對github的markdown語法，再問問狗哥~~~&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
+    
+    
+      <category term="markdown" scheme="https://myhongkongzhen.github.io/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>並發包J.U.C相關--原子類</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/04/12/201604121223-%E4%B8%A6%E7%99%BC%E5%8C%85J-U-C%E7%9B%B8%E9%97%9C-%E5%8E%9F%E5%AD%90%E9%A1%9E.html"/>
+    <id>https://myhongkongzhen.github.io/archives/技術/2016/04/12/201604121223-並發包J-U-C相關-原子類.html</id>
+    <published>2016-04-12T04:39:32.000Z</published>
+    <updated>2017-07-26T14:18:44.608Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>最近博客更新的少，不是沒有學習，只是最近都在用手寫筆記，其實自己比起使用電腦等電子產品記錄筆記，還是更加喜歡手寫筆記，一來本身就喜歡寫字，當然字也沒有太好看ww，二來，手寫筆記記憶會比較深刻，三嘛，就是懶了…一懶了，就不願意敲鍵盤了，當然，敲代碼和敲鍵盤打字，可不是同一個概念，所以這裡的懶，就只針對於打字www，不過還是要時常敲敲www<br>java.util.concurrent是基于Queue(AQS)的并发包，而Queue，很多情况下使用到了Atomic操作<br>同時整个J.U.C都是建立在CAS之上的<br>我們可以使用atomic相關類及CAS思想，建立自定義的安全的數據結構</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="ATOMIC相關類："><a href="#ATOMIC相關類：" class="headerlink" title="ATOMIC相關類："></a>ATOMIC相關類：</h3><p><img src="/images/JDK/JUC/juc-atomic.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">基于反射的原子更新字段的值</div><div class="line">AtomicIntegerFieldUpdater&lt;T&gt;</div><div class="line">AtomicLongFieldUpdater&lt;T&gt;</div><div class="line">AtomicReferenceFieldUpdater&lt;T,V&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>指令重排序<br>JVM能够根据处理器的特性（CPU的多级缓存系统、多核处理器等）适当的重新排序机器指令，使机器指令更符合CPU的执行特点，最大限度的发挥机器的性能.</p>
+<p>Happens-before法则<br>如果动作B要看到动作A的执行结果（无论A/B是否在同一个线程里面执行），那么A/B就需要满足happens-before关系.</p>
+<p>CAS 操作<br>乐观锁用到的机制就是CAS，Compare and Swap。</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;最近博客更新的少，不是沒有學習，只是最近都在用手寫筆記，其實自己比起使用電腦等電子產品記錄筆記，還是更加喜歡手寫筆記，一來本身就喜歡寫字，當然字也沒有太好看ww，二來，手寫筆記記憶會比較深刻，三嘛，就是懶了…一懶了，就不願意敲鍵盤了，當然，敲代碼和敲鍵盤打字，可不是同一個概念，所以這裡的懶，就只針對於打字www，不過還是要時常敲敲www&lt;br&gt;java.util.concurrent是基于Queue(AQS)的并发包，而Queue，很多情况下使用到了Atomic操作&lt;br&gt;同時整个J.U.C都是建立在CAS之上的&lt;br&gt;我們可以使用atomic相關類及CAS思想，建立自定義的安全的數據結構&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
+    
+    
+      <category term="JAVA" scheme="https://myhongkongzhen.github.io/tags/JAVA/"/>
+    
+      <category term="JDK1.7" scheme="https://myhongkongzhen.github.io/tags/JDK1-7/"/>
+    
+  </entry>
+  
+</feed>

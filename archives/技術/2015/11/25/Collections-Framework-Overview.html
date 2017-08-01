@@ -1,0 +1,1284 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JAVA,JDK1.7,TRANSLATING," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="あなたがいる 、それだけでも" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-20151123105940450.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="myhongkongzhen" />
+  <meta property="fb:app_id" content="" />
+
+
+
+<meta name="description" content="簡介：Collections Framework. JDK1.7 集合框架系統學習 (一) 概覽集合框架API DOC簡介英文翻譯練習。相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/※ 注：此翻譯僅僅為個人學習JDK文檔及補習英文所做，如果您希望看到更加準確的翻譯，請自行搜尋中文文檔">
+<meta name="keywords" content="JAVA,JDK1.7,TRANSLATING">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Collections Framework Overview -- (一)">
+<meta property="og:url" content="https://myhongkongzhen.github.io/archives/技術/2015/11/25/Collections-Framework-Overview.html">
+<meta property="og:site_name" content="あなたがいる 、それだけでも">
+<meta property="og:description" content="簡介：Collections Framework. JDK1.7 集合框架系統學習 (一) 概覽集合框架API DOC簡介英文翻譯練習。相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/※ 注：此翻譯僅僅為個人學習JDK文檔及補習英文所做，如果您希望看到更加準確的翻譯，請自行搜尋中文文檔">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/JDK/2015-11-26_173951.png">
+<meta property="og:updated_time" content="2017-07-26T14:16:49.163Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Collections Framework Overview -- (一)">
+<meta name="twitter:description" content="簡介：Collections Framework. JDK1.7 集合框架系統學習 (一) 概覽集合框架API DOC簡介英文翻譯練習。相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/※ 注：此翻譯僅僅為個人學習JDK文檔及補習英文所做，如果您希望看到更加準確的翻譯，請自行搜尋中文文檔">
+<meta name="twitter:image" content="https://myhongkongzhen.github.io/images/JDK/2015-11-26_173951.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://myhongkongzhen.github.io/archives/技術/2015/11/25/Collections-Framework-Overview.html"/>
+
+
+
+
+
+  <title> Collections Framework Overview -- (一) | あなたがいる 、それだけでも </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70751910-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a53f74323c99608e344f6cc77c434d62";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">あなたがいる 、それだけでも</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Z_Z.W</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://myhongkongzhen.github.io/archives/技術/2015/11/25/Collections-Framework-Overview.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z_Z.W">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-20151123105940450.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="あなたがいる 、それだけでも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Collections Framework Overview -- (一)
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-25T11:40:13+08:00">
+                2015-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技術/" itemprop="url" rel="index">
+                    <span itemprop="name">技術</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/archives/技術/2015/11/25/Collections-Framework-Overview.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://myhongkongzhen.github.io/archives/技術/2015/11/25/Collections-Framework-Overview.html" itemprop="commentCount">0</span> comments
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  3,558
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>簡介：Collections Framework. JDK1.7 集合框架系統學習 (一) 概覽<br>集合框架API DOC簡介英文翻譯練習。<br>相關源碼分析及詳細api文檔移路→<a href="https://github.com/myhongkongzhen/pro-study-jdk/tree/master/src/main/java/z/z/w/jdk/collections" target="_blank" rel="external">Collection接口https://github.com/myhongkongzhen/pro-study-jdk/</a><br>※ 注：此翻譯僅僅為個人學習JDK文檔及補習英文所做，如果您希望看到更加準確的翻譯，請自行搜尋中文文檔<br>      因英文水平不足為您帶來的不便請諒解.</p>
+</blockquote>
+<a id="more"></a>  
+<h1 id="JDK-1-7-API-Collections-Framework"><a href="#JDK-1-7-API-Collections-Framework" class="headerlink" title="JDK 1.7 API Collections Framework"></a>JDK 1.7 API Collections Framework</h1><ul>
+<li>The collections framework is a unified architecture for representing and manipulating<strong><em>[mə’nɪpjulet]</em></strong> collections<ul>
+<li>集合框架是一個統一的描述和操作集合的架構,</li>
+</ul>
+</li>
+<li>enabling them to be manipulated independently of the details of their representation.<ul>
+<li>使得他們能夠被獨立操作他們所描述的細節.</li>
+</ul>
+</li>
+<li>It reduces programming effort while increasing performance.<ul>
+<li>他降低編程精力當越來越多的執行性能.</li>
+</ul>
+</li>
+<li>It enables interoperability among unrelated APIs, <ul>
+<li>他使得無關的API相互操作成為可能,</li>
+</ul>
+</li>
+<li>reduces effort in designing and learning new APIs, <ul>
+<li>降低設計和學習新API的精力,</li>
+</ul>
+</li>
+<li>and fosters software reuse. <ul>
+<li>并促進軟體的複用.</li>
+</ul>
+</li>
+<li>The framework is based on more than a dozen collection interfaces.<ul>
+<li>這個框架以多餘十二個集合的接口為基礎. </li>
+</ul>
+</li>
+<li>It includes implementations of these interfaces and algorithms to manipulate them.<ul>
+<li>他包含了一些接口的實現和算法來操作他們. <h1 id="Collections-Framework-Overview"><a href="#Collections-Framework-Overview" class="headerlink" title="Collections Framework Overview"></a>Collections Framework Overview</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2></li>
+</ul>
+</li>
+<li>The Java platform includes a collections framework. <ul>
+<li>JAVA平台包含一個集合框架.</li>
+</ul>
+</li>
+<li>A collection is an object that represents a group of objects (such as the classic Vector class). <ul>
+<li>集合是一個描述一組實例（例如類型Vector類）的一個實體.</li>
+</ul>
+</li>
+<li>A collections framework is a unified architecture for representing and manipulating collections, <ul>
+<li>集合框架是一個描述和操作集合的統一架構,</li>
+</ul>
+</li>
+<li>enabling collections to be manipulated independently of implementation details. <ul>
+<li>使得集合被不依賴實現細節的操作成為可能.</li>
+</ul>
+</li>
+<li>The primary advantages of a collections framework are that it:<br>集合框架最主要的特點如下:<ul>
+<li><strong>Reduces programming effort</strong> by providing data structures and algorithms so you don’t have to write them yourself.<ul>
+<li><strong>降低程式開發精力</strong> 以數據結構和算法為條件以至於你無需自己編寫他們.  </li>
+</ul>
+</li>
+<li><strong>Increases performance</strong> by providing high-performance implementations of data structures and algorithms. <ul>
+<li><strong>提高性能</strong> 以高性能的數據結構和算法實現為條件.<br>Because the various implementations of each interface are interchangeable,<br>因為每一個接口多樣的實現是可交換的,<br>programs can be tuned by switching implementations.<br>程序能夠備調整由可轉換的實現.       </li>
+</ul>
+</li>
+<li><strong>Provides interoperability between unrelated APIs</strong> by establishing<strong><em>[ɪˈstæblɪʃ]</em></strong> a common language to pass collections back and forth.<ul>
+<li><strong>提供無關API之間的相互操作</strong> 建立一個通用的可環繞操作集合的語言  </li>
+</ul>
+</li>
+<li><strong>Reduces the effort required to learn APIs</strong> by requiring you to learn multiple ad hoc collection APIs.<ul>
+<li><strong>降低必要學習API的精力</strong> 必須使得你不得不學習多種特定的集合API  </li>
+</ul>
+</li>
+<li><strong>Reduces the effort required to design and implement APIs</strong> by not requiring you to produce ad hoc collections APIs.<ul>
+<li><strong>降低必須設計和實現API的精力</strong> 是你不必要產出特定集合API  </li>
+</ul>
+</li>
+<li><strong>Fosters software reuse</strong> by providing a standard interface for collections and algorithms with which to manipulate them.<ul>
+<li><strong>促進軟體的複用</strong> 為集合提供一個基本的接口和操作他們的算法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The collections framework consists of:<br>集合框架包含:</p>
+<ul>
+<li><strong>Collection interfaces.</strong> Represent different types of collections, such as sets, lists, and maps. <ul>
+<li><strong>集合接口.</strong> 描述不同的集合類型,如sets,lists,與maps<br>These interfaces form the basis of the framework.<br>這些接口表單基於框架.</li>
+</ul>
+</li>
+<li><strong>General-purpose implementations.</strong> Primary implementations of the collection interfaces.<ul>
+<li><strong>通用實現.</strong> 主要的集合接口實現</li>
+</ul>
+</li>
+<li><strong>Legacy implementations.</strong> The collection classes from earlier releases, Vector and Hashtable, were retrofitted to implement the collection interfaces.<ul>
+<li><strong>遺留實現.</strong> 早期的releases版本的集合類,Vector,Hashtable被重新實現了集合接口.</li>
+</ul>
+</li>
+<li><strong>Special-purpose implementations.</strong> Implementations designed for use in special situations. <ul>
+<li><strong>特定實現.</strong> 被設計的實現用於特定的狀況.<br>These implementations display nonstandard performance characteristics, usage restrictions, or behavior.<br>這些實現展示了非標準的執行字符,使用限制或行為.</li>
+</ul>
+</li>
+<li><strong>Concurrent implementations.</strong> Implementations designed for highly concurrent use.<ul>
+<li><strong>並發的實現.</strong> 實現被設計應用於高並發.</li>
+</ul>
+</li>
+<li><strong>Wrapper implementations.</strong> Add functionality, such as synchronization, to other implementations.<ul>
+<li><strong>包裝的實現.</strong> 為其他實現添加功能,例如synchronization.</li>
+</ul>
+</li>
+<li><strong>Convenience implementations.</strong> High-performance “mini-implementations” of the collection interfaces.<ul>
+<li><strong>便捷的實現.</strong> 高性能的集合接口的“小實現”.</li>
+</ul>
+</li>
+<li><strong>Abstract implementations.</strong> Partial implementations of the collection interfaces to facilitate custom implementations.<ul>
+<li><strong>抽象的實現.</strong> 局部的集合的實現促進定制的實現.</li>
+</ul>
+</li>
+<li><strong>Algorithms.</strong> Static methods that perform useful functions on collections, such as sorting a list.<ul>
+<li><strong>算法.</strong> 在集合中存在靜態的對平台有用的方法,例如排序的list.</li>
+</ul>
+</li>
+<li><strong>Infrastructure.</strong> Interfaces that provide essential support for the collection interfaces.<ul>
+<li><strong>底層</strong> 接口針對於集合接口的私有的必要支持.</li>
+</ul>
+</li>
+<li><strong>Array Utilities.</strong> Utility functions for arrays of primitive types and reference objects. <ul>
+<li><strong>數組工具</strong> 針對於原始類型的數組和引用實體的工具方法.<br>Not, strictly speaking, a part of the collections framework,<br>哦,不，嚴格的來說,是集合框架的一部分,<br>this feature was added to the Java platform at the same time as the collections framework and relies on some of the same infrastructure.<br>這些特色是在同一時間作為集合框架和可信賴的一些相同的底層被添加於JAVA平台的.<h2 id="Collection-Interfaces"><a href="#Collection-Interfaces" class="headerlink" title="Collection Interfaces"></a>Collection Interfaces</h2></li>
+</ul>
+</li>
+<li><p>The collection interfaces are divided into two groups.<br>集合接口被分為兩組.<br>The most basic interface, java.util.Collection, has the following descendants:<br>最基礎的接口,java.util.Collection,包含了以下子節點:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">java.util.Set</div><div class="line">java.util.SortedSet</div><div class="line">java.util.NavigableSet</div><div class="line">java.util.Queue</div><div class="line">java.util.concurrent.BlockingQueue</div><div class="line">java.util.concurrent.TransferQueue</div><div class="line">java.util.Deque</div><div class="line">java.util.concurrent.BlockingDeque</div></pre></td></tr></table></figure>
+</li>
+<li><p>The other collection interfaces are based on java.util.Map and are not true collections.<br>另外的集合接口以 java.util.Map 為基礎並不是一個真實的集合.<br>However, these interfaces contain collection-view operations,<br>儘管如此,這些接口包含了集合視圖操作,<br>which enable them to be manipulated as collections.<br>能夠使得他們像集合一樣備操作.<br>Map has the following offspring:<br>Map有以下子節點:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">java.util.SortedMap</div><div class="line">java.util.NavigableMap</div><div class="line">java.util.concurrent.ConcurrentMap</div><div class="line">java.util.concurrent.ConcurrentNavigableMap</div></pre></td></tr></table></figure>
+</li>
+<li><p>Many of the modification methods in the collection interfaces are labeled optional.<br>在集合接口中許多修改的方法被標記為可選的.<br>Implementations are permitted to not perform one or more of these operations,<br>實現是被准許不執行這些操作中的一個或更多,<br>throwing a runtime exception (UnsupportedOperationException) if they are attempted.<br>如果他們被企圖則會拋出一個運行時異常(不被支持的操作異常).<br>The documentation for each implementation must specify which optional operations are supported.<br>每一個實現文檔必須制定哪一個可選的操作是被支持的.<br>Several terms are introduced to aid in this specification:<br>在這個說明中幾個術語有助於被介紹:</p>
+<ul>
+<li>Collections that do not support modification operations (such as add, remove and clear) are referred to as unmodifiable.<br>不支持修改操作的集合(例如:add,remove,clear)作為不可修改的參考.<br>Collections that are not unmodifiable are modifiable.<br>可修改的集合是可修改的.</li>
+<li>Collections that additionally guarantee that no change in the Collection object will be visible are referred to as immutable.<br>集合實體中無變化的額外保證可視化的集合是不可變的參考.<br>Collections that are not immutable are mutable.<br>可變的集合是可改變的.</li>
+<li>Lists that guarantee that their size remains constant even though the elements can change are referred to as fixed-size.<br>保證儘管元素能改變但是他們的大小是恆定的列表是固定大小的參考.<br>Lists that are not fixed-size are referred to as variable-size.<br>不是固定大小的列表是可變大小的參考.</li>
+<li>Lists that support fast (generally constant time) indexed element access are known as random access lists.<br>支持快速(恆定時間)索引元素訪問的列表作為一個隨機訪問的列表被了解.<br>Lists that do not support fast indexed element access are known as sequential access lists.<br>不支持快速索引元素訪問的列表做為一個連續訪問的列表被了解.<br>The RandomAccess marker interface enables lists to advertise the fact that they support random access.<br>隨機訪問標籤接口能夠使得列表突出他們支持隨機訪問的事實.<br>This enables generic algorithms to change their behavior to provide good performance when applied to either random or sequential access lists.<br>這使得通常的算法改變他們的習慣當申請隨機或序列的訪問列表時提供好的性能.</li>
+</ul>
+</li>
+<li>Some implementations restrict what elements (or in the case of Maps, keys and values) can be stored.<br>一些實現限定元素(或者Maps的類型,鍵,值)別存儲.<br>Possible restrictions include requiring elements to:<br>也許限定包含必須的元素:<ul>
+<li>Be of a particular type.<br>一個特殊的類型.</li>
+<li>Be not null.<br>不能為空.</li>
+<li>Obey some arbitrary predicate.<br>遵從一些特定的術語.</li>
+</ul>
+</li>
+<li>Attempting to add an element that violates an implementation’s restrictions results in a runtime exception,<br>嘗試添加一個違反一個實現限制元素的結果元素在運行時異常中,<br>typically a ClassCastException, an IllegalArgumentException, or a NullPointerException.<br>代表 ClassCastException, IllegalArgumentException, NullPointerException.<br>Attempting to remove or test for the presence of an element that violates an implementation’s restrictions can result in an exception.<br>嘗試溢出或者測試一個對於一個存在的違反實現限制元素的結果元素在一個異常中,<br>Some restricted collections permit this usage.<br>一些受限的集合允許這樣的使用.<h2 id="Collection-Implementations"><a href="#Collection-Implementations" class="headerlink" title="Collection Implementations"></a>Collection Implementations</h2></li>
+<li>Classes that implement the collection interfaces typically have names in the form of <implementation-style><interface>.<br>實現了集合接口的類在表格中有特色名稱.<br>The general purpose implementations are summarized in the following table:<br>一般用途的實現總結如下表格:<table><br><tr> <td> Interface </td> <td> Hash Table </td> <td> Resizable Array </td> <td> Balanced Tree </td> <td> Linked List </td> <td> Hash Table + Linked List </td> </tr><br>  <tr> <td> Set </td> <td> HashSet </td> <td> </td> <td> TreeSet </td> <td> </td> <td> LinkedHashSet </td> </tr> <tr> <td> List </td> <td> </td> <td> ArrayList </td> <td> </td> <td> LinkedList </td> <td> </td> </tr><br>  <tr> <td> Deque </td> <td> </td> <td> ArrayDeque </td> <td> </td> <td> LinkedList </td> <td> </td> </tr> <tr> <td> Map </td> <td> HashMap </td> <td> </td> <td> TreeMap </td> <td> </td> <td> LinkedHashMap </td> </tr><br></table></interface></implementation-style></li>
+<li>The general-purpose implementations support all of the optional operations in the collection interfaces<br>一般用途的實現支持所有在集合接口中的任意操作<br>and have no restrictions on the elements they may contain.<br>並且在他們所包含的元素中沒有限制條件.<br>They are unsynchronized,<br>他們是非同步化的,<br>but the Collections class contains static factories called synchronization wrappers that can be used to add synchronization to many unsynchronized collections.<br>但是集合類包含靜態的因子被同步封裝的能夠備用於添加同步化為許多非同步的集合.<br><strong><em>All of the new implementations have fail-fast iterators</em></strong>,<br>所有新的實現都包含fail-fast迭代器,<br>which detect invalid concurrent modification, and fail quickly and cleanly (rather than behaving erratically).<br>監視無效的並發修改,快速失敗以及清除(而不是不規律的表現)    </li>
+<li>The AbstractCollection, AbstractSet, AbstractList, AbstractSequentialList and AbstractMap classes<br>抽象的 AbstractCollection, AbstractSet, AbstractList, AbstractSequentialList 以及 AbstractMap 類<br>provide basic implementations of the core collection interfaces,<br>准許基本的核心接口的實現,<br>to minimize the effort required to implement them.<br>最小化必須實現他們的精力.<br>The API documentation for these classes describes precisely how each method is implemented so the implementer knows which methods must be overridden,<br>API文檔對於這些類精準的描述了每一個方法是如何被實現的如實現者知道哪個方法必須被複寫,<br>given the performance of the basic operations of a specific implementation.<br>給性能一個基本的的操作基於特定的實現.<h2 id="Concurrent-Collections"><a href="#Concurrent-Collections" class="headerlink" title="Concurrent Collections"></a>Concurrent Collections</h2></li>
+<li>Applications that use collections from more than one thread must be carefully programmed.<br>應用多餘一條線程的應用程序必須被小心的編寫.<br>In general, this is known as concurrent programming.<br>通常,這是被了解的作為並發編程.<br>The Java platform includes extensive support for concurrent programming.<br>JAVA平台包含應用於支持並發編程的擴展.<br>See Java Concurrency Utilities for details.<br>細節請查看JAVA並發工具.</li>
+<li>Collections are so frequently used that various concurrent friendly interfaces and implementations of collections are included in the APIs.<br>集合被如此頻繁的用於友好的接口及集合的實現包含其中的多變的並發中.<br>These types go beyond the synchronization wrappers discussed previously to provide features that are frequently needed in concurrent programming.<br>這些類型超出先前討論的提供給將來的頻繁應用於並發編程的同步封裝.<br>These concurrent-aware interfaces are available:<br>這些並發知識是可以獲取的:<ul>
+<li>BlockingQueue</li>
+<li>TransferQueue</li>
+<li>BlockingDeque</li>
+<li>ConcurrentMap</li>
+<li>ConcurrentNavigableMap</li>
+</ul>
+</li>
+<li>The following concurrent-aware implementation classes are available.<br>包含並發知識的實現類是可獲取的.<br>See the API documentation for the correct usage of these implementations.<br>針對於正確使用這些實現請查看API文檔.<ul>
+<li>LinkedBlockingQueue</li>
+<li>ArrayBlockingQueue</li>
+<li>PriorityBlockingQueue</li>
+<li>DelayQueue</li>
+<li>SynchronousQueue</li>
+<li>LinkedBlockingDeque</li>
+<li>LinkedTransferQueue</li>
+<li>CopyOnWriteArrayList</li>
+<li>CopyOnWriteArraySet</li>
+<li>ConcurrentSkipListSet</li>
+<li>ConcurrentHashMap</li>
+<li>ConcurrentSkipListMap<h2 id="Design-Goals"><a href="#Design-Goals" class="headerlink" title="Design Goals"></a>Design Goals</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>The main design goal was to produce an API that was small in size and, more importantly, in “conceptual weight”.<br>主要的公共設計是創建一個在大小上更小的,在概念重要性上更重要的API.<br>It was critical that the new functionality not seem too different to current Java programmers;<br>他是重要的在新的功能上是的當前JAVA開發人員開起來不是太難;<br>it had to augment current facilities, rather than replace them.<br>他增加當前的條件,而不是替換他們.<br>At the same time, the new API had to be powerful enough to provide all the advantages described previously.<br>與此同時,新的API使得所有以前的有益的描述更加的給力.</p>
+</li>
+<li><p>To keep the number of core interfaces small,<br>保持大量的核心小接口,<br>the interfaces do not attempt to capture such subtle distinctions as mutability, modifiability, and resizability.<br>這些接口不能嘗試捕獲諸如異變的,可編輯的以及真實的細小的描述,<br>Instead, certain calls in the core interfaces are optional,<br>與之替換的,確保呼叫核心接口是可選的,<br>enabling implementations to throw an UnsupportedOperationException to indicate that they do not support a specified optional operation.<br>授權實現拋出UnsupportedOperationException異常來表明他們不能支持一個特定的可選的操作.<br>Collection implementers must clearly document which optional operations are supported by an implementation.<br>集合實現必須明確文檔表名可選的操作是被支持于一個實現的.</p>
+</li>
+<li><p>To keep the number of methods in each core interface small, an interface contains a method only if either:<br>保持大量的方法在每一個核心的小接口內,一個接口包含一個方法當且僅當:</p>
+<ul>
+<li>It is a truly fundamental operation: a basic operations in terms of which others could be reasonably defined,<br>他是一個真實的基本操作:一組其他的可被作為結果定義的一個基礎的操作</li>
+<li>There is a compelling performance reason why an important implementation would want to override it.<br>一個強制的平台原因一個重要的實現想要複寫他</li>
+</ul>
+</li>
+<li><p>It was critical that all reasonable representations of collections interoperate well.<br>他是起決定性作用的在所有合理的集合很好交互的代表中.<br>This included arrays, which cannot be made to implement the Collection interface directly without changing the language.<br>這個包含不能實現集合接口確保不能改變語言的數組.<br>Thus, the framework includes methods to enable collections to be moved into arrays,<br>因此,這個框架包含的放阿飛能夠使得集合被移入數組,<br>arrays to be viewed as collections, and maps to be viewed as collections.<br>數組能夠備看做為集合,以及Map可以被看作為集合.</p>
+</li>
+</ul>
+<h1 id="官方API頁面http-docs-oracle-com-javase-7-docs-technotes-guides-collections-overview-html截圖"><a href="#官方API頁面http-docs-oracle-com-javase-7-docs-technotes-guides-collections-overview-html截圖" class="headerlink" title="官方API頁面http://docs.oracle.com/javase/7/docs/technotes/guides/collections/overview.html截圖:"></a><a href="http://docs.oracle.com/javase/7/docs/technotes/guides/collections/overview.html" target="_blank" rel="external"><strong><em>官方API頁面</em></strong>http://docs.oracle.com/javase/7/docs/technotes/guides/collections/overview.html</a>截圖:</h1><p><img src="/images/JDK/2015-11-26_173951.png"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>各位看官，打個賞唄~⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾*~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Z_Z.W Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Post author:</strong>
+      Z_Z.W
+    </li>
+     <li class="post-copyright-author">
+        <strong>Post created:</strong>
+        11:40 Nov 25 2015
+      </li>
+     <li class="post-copyright-author">
+        <strong>Post modified:</strong>
+        22:16 Jul 26 2017
+      </li>
+    <li class="post-copyright-link">
+      <strong>Post link:</strong>
+      <a href="https://myhongkongzhen.github.io/archives/技術/2015/11/25/Collections-Framework-Overview.html" title="Collections Framework Overview -- (一)">https://myhongkongzhen.github.io/archives/技術/2015/11/25/Collections-Framework-Overview.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright Notice: </strong>
+      All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/JDK1-7/" rel="tag"># JDK1.7</a>
+          
+            <a href="/tags/TRANSLATING/" rel="tag"># TRANSLATING</a>
+          
+        </div>
+      
+
+      
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/技術/2015/11/24/Java-Platform-Standard-Edition-7-Documentation.html" rel="next" title="Java Platform Standard Edition 7 Documentation 總覽">
+                <i class="fa fa-chevron-left"></i> Java Platform Standard Edition 7 Documentation 總覽
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/技術/2015/11/30/Outline-of-the-Collections-Framework.html" rel="prev" title="Outline of the Collection Framework -- (二)">
+                Outline of the Collection Framework -- (二) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="fb-comments"
+           data-href="https://myhongkongzhen.github.io/archives/技術/2015/11/25/Collections-Framework-Overview.html"
+           data-numposts="10"
+           data-width="100%"
+           data-colorscheme="light">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon-20151123105940450.ico"
+               alt="Z_Z.W" />
+          <p class="site-author-name" itemprop="name">Z_Z.W</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/myhongkongzhen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/myhongkongzhen" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/#!/Z_ZW" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/myhongkongzhen" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK-1-7-API-Collections-Framework"><span class="nav-number">1.</span> <span class="nav-text">JDK 1.7 API Collections Framework</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Collections-Framework-Overview"><span class="nav-number">2.</span> <span class="nav-text">Collections Framework Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection-Interfaces"><span class="nav-number">2.2.</span> <span class="nav-text">Collection Interfaces</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection-Implementations"><span class="nav-number">2.3.</span> <span class="nav-text">Collection Implementations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Concurrent-Collections"><span class="nav-number">2.4.</span> <span class="nav-text">Concurrent Collections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Design-Goals"><span class="nav-number">2.5.</span> <span class="nav-text">Design Goals</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#官方API頁面http-docs-oracle-com-javase-7-docs-technotes-guides-collections-overview-html截圖"><span class="nav-number">3.</span> <span class="nav-text">官方API頁面http://docs.oracle.com/javase/7/docs/technotes/guides/collections/overview.html截圖:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z_Z.W</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://myhongkongzhen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://myhongkongzhen.github.io/archives/技術/2015/11/25/Collections-Framework-Overview.html';
+          this.page.identifier = 'archives/技術/2015/11/25/Collections-Framework-Overview.html';
+          this.page.title = 'Collections Framework Overview -- (一)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://myhongkongzhen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>

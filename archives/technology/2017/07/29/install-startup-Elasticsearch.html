@@ -1,0 +1,1212 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Elasticsearch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="あなたがいる 、それだけでも" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-20151123105940450.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="myhongkongzhen" />
+  <meta property="fb:app_id" content="" />
+
+
+
+<meta name="description" content="To introduce to install &amp;amp; startup ElasticsearchTo introduce Document data structureTo introduce easy cluster managementTo study Elasticsearch ‘CRUD’ operation">
+<meta name="keywords" content="Elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELK_install &amp; startup Elasticsearch &amp; &#39;CRUD&#39;_002">
+<meta property="og:url" content="https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html">
+<meta property="og:site_name" content="あなたがいる 、それだけでも">
+<meta property="og:description" content="To introduce to install &amp;amp; startup ElasticsearchTo introduce Document data structureTo introduce easy cluster managementTo study Elasticsearch ‘CRUD’ operation">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/003_install_startup_ES.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/004_kibana.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/005_healthcheck.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/006_java_data_structure.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/007_es_healthcheck.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/008_create_index_type.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/009_search_index.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/010_edit_replace_01.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/010_edit_replace_02.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/010_edit_update_02.png">
+<meta property="og:updated_time" content="2017-07-31T07:51:29.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ELK_install &amp; startup Elasticsearch &amp; &#39;CRUD&#39;_002">
+<meta name="twitter:description" content="To introduce to install &amp;amp; startup ElasticsearchTo introduce Document data structureTo introduce easy cluster managementTo study Elasticsearch ‘CRUD’ operation">
+<meta name="twitter:image" content="https://myhongkongzhen.github.io/images/elasticsearch/003_install_startup_ES.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html"/>
+
+
+
+
+
+  <title> ELK_install & startup Elasticsearch & 'CRUD'_002 | あなたがいる 、それだけでも </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70751910-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a53f74323c99608e344f6cc77c434d62";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">あなたがいる 、それだけでも</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Z_Z.W</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z_Z.W">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-20151123105940450.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="あなたがいる 、それだけでも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                ELK_install & startup Elasticsearch & 'CRUD'_002
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T16:21:16+08:00">
+                2017-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/archives/technology/2017/07/29/install-startup-Elasticsearch.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html" itemprop="commentCount">0</span> comments
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  484
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>To introduce to install &amp; startup Elasticsearch<br>To introduce Document data structure<br>To introduce easy cluster management<br>To study Elasticsearch ‘CRUD’ operation</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Install-Elasticsearch"><a href="#Install-Elasticsearch" class="headerlink" title="Install Elasticsearch"></a>Install Elasticsearch</h1><hr>
+<h2 id="Download-amp-Install-amp-Startup-elasticsearch-Elasticsearch"><a href="#Download-amp-Install-amp-Startup-elasticsearch-Elasticsearch" class="headerlink" title="Download &amp; Install &amp; Startup elasticsearch : Elasticsearch"></a>Download &amp; Install &amp; Startup elasticsearch : <a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="external">Elasticsearch</a></h2><p><img src="/images/elasticsearch/003_install_startup_ES.png"></p>
+<h2 id="To-check-if-the-Elasticsearch-startup-success-127-0-0-1-9200"><a href="#To-check-if-the-Elasticsearch-startup-success-127-0-0-1-9200" class="headerlink" title="To check if the Elasticsearch startup success. 127.0.0.1:9200"></a>To check if the Elasticsearch startup success. <a href="http://127.0.0.1:9200/?pretty" target="_blank" rel="external">127.0.0.1:9200</a></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span> : <span class="string">"PFS_monitor_node-1"</span>, // Node name</div><div class="line">  <span class="string">"cluster_name"</span> : <span class="string">"PFS_monitor_cluster"</span>, // Cluster name</div><div class="line">  <span class="string">"cluster_uuid"</span> : <span class="string">"tBEEZhRUS0O3SmduwgYZVw"</span>, // Cluster uuid</div><div class="line">  <span class="string">"version"</span> : &#123;</div><div class="line">    <span class="string">"number"</span> : <span class="string">"5.2.0"</span>, // Elasticsearch version</div><div class="line">    <span class="string">"build_hash"</span> : <span class="string">"24e05b9"</span>,</div><div class="line">    <span class="string">"build_date"</span> : <span class="string">"2017-01-24T19:52:35.800Z"</span>,</div><div class="line">    <span class="string">"build_snapshot"</span> : <span class="literal">false</span>,</div><div class="line">    <span class="string">"lucene_version"</span> : <span class="string">"6.4.0"</span> // Lucene versoin</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"tagline"</span> : <span class="string">"You Know, for Search"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="Download-amp-Install-Kibana-Kibana"><a href="#Download-amp-Install-Kibana-Kibana" class="headerlink" title="Download &amp; Install Kibana : Kibana"></a>Download &amp; Install Kibana : <a href="https://www.elastic.co/downloads/kibana" target="_blank" rel="external">Kibana</a></h2><p><img src="/images/elasticsearch/004_kibana.png"></p>
+<h2 id="To-use-kibana-to-study-Elasticsearch-Kibana-dev-tools"><a href="#To-use-kibana-to-study-Elasticsearch-Kibana-dev-tools" class="headerlink" title="To use kibana to study Elasticsearch. Kibana dev tools"></a>To use kibana to study Elasticsearch. <a href="http://localhost:5601/app/kibana#/dev_tools/console?_g=(" target="_blank" rel="external">Kibana dev tools</a></h2><p><img src="/images/elasticsearch/005_healthcheck.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"cluster_name"</span>: <span class="string">"PFS_monitor_cluster"</span>,</div><div class="line">  <span class="string">"status"</span>: <span class="string">"yellow"</span>,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"number_of_nodes"</span>: 1,</div><div class="line">  <span class="string">"number_of_data_nodes"</span>: 1,</div><div class="line">  <span class="string">"active_primary_shards"</span>: 1,</div><div class="line">  <span class="string">"active_shards"</span>: 1,</div><div class="line">  <span class="string">"relocating_shards"</span>: 0,</div><div class="line">  <span class="string">"initializing_shards"</span>: 0,</div><div class="line">  <span class="string">"unassigned_shards"</span>: 1,</div><div class="line">  <span class="string">"delayed_unassigned_shards"</span>: 0,</div><div class="line">  <span class="string">"number_of_pending_tasks"</span>: 0,</div><div class="line">  <span class="string">"number_of_in_flight_fetch"</span>: 0,</div><div class="line">  <span class="string">"task_max_waiting_in_queue_millis"</span>: 0,</div><div class="line">  <span class="string">"active_shards_percent_as_number"</span>: 50</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Document-Data-Structure"><a href="#Document-Data-Structure" class="headerlink" title="Document Data Structure"></a>Document Data Structure</h1><hr>
+<h2 id="Java-Data-Structure"><a href="#Java-Data-Structure" class="headerlink" title="Java Data Structure"></a>Java Data Structure</h2><p><img src="/images/elasticsearch/006_java_data_structure.png"></p>
+<h2 id="Database-structure"><a href="#Database-structure" class="headerlink" title="Database structure"></a>Database structure</h2><table>
+<thead>
+<tr>
+<th>table column</th>
+<th>t_employee</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ee_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>email</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>info_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>join_date</td>
+<td>datetime</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>table column</th>
+<th>t_employee_info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>info_id</td>
+<td>int</td>
+</tr>
+<tr>
+<td>bio</td>
+<td>varchar</td>
+</tr>
+<tr>
+<td>age</td>
+<td>int</td>
+</tr>
+<tr>
+<td>interests</td>
+<td>varchar(100)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Document-data-structure"><a href="#Document-data-structure" class="headerlink" title="Document data structure"></a>Document data structure</h2><p>The document data structure of elasticsearch is JSON <strong>基於文檔的數據結構</strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    email : myhongkongzhen@gmail.com,</div><div class="line">    first_name : Jane,</div><div class="line">    last_name : Wu,</div><div class="line">    info : &#123;</div><div class="line">        bio : curious and modest,</div><div class="line">        age : 31,</div><div class="line">        interest : [</div><div class="line">            film,</div><div class="line">            takarazuka,</div><div class="line">            eatting</div><div class="line">        ]</div><div class="line">        join_date : Jul 29th 2017</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="Elasticsearch-cluster-management"><a href="#Elasticsearch-cluster-management" class="headerlink" title="Elasticsearch cluster management"></a>Elasticsearch cluster management</h1><hr>
+<h2 id="ES-health-check"><a href="#ES-health-check" class="headerlink" title="ES health check"></a>ES health check</h2><p>(<a href="http://127.0.0.1:9200/_cat/health?v" target="_blank" rel="external">GET _cat/health?v</a>) <strong>One of the ES apis : _cat</strong><br><img src="/images/elasticsearch/007_es_healthcheck.png"></p>
+<h2 id="ES-health-status"><a href="#ES-health-status" class="headerlink" title="ES health status"></a>ES health status</h2><ul>
+<li>green<ul>
+<li>Every primary shard &amp; replica shard of index is active.</li>
+</ul>
+</li>
+<li>yellow<ul>
+<li>Every primary shard of index is active.</li>
+<li>Part of replica shard of index is not available.</li>
+</ul>
+</li>
+<li>red<ul>
+<li>Part of primary shard of index is not available.</li>
+<li>Data of part of index is lost.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Check-index-of-cluster"><a href="#Check-index-of-cluster" class="headerlink" title="Check index of cluster"></a>Check index of cluster</h2><p><a href="http://127.0.0.1:9200/_cat/indices?v" target="_blank" rel="external">GET _cat/indices?v</a><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">health status index   uuid                   pri rep docs.count docs.deleted store.size pri.store.size</div><div class="line">yellow open   .kibana SCPH1iHxTwiV6naHOTRiig   1   1          1            0      3.1kb          3.1kb</div></pre></td></tr></table></figure></p>
+<h2 id="Create-index"><a href="#Create-index" class="headerlink" title="Create index"></a>Create index</h2><p><a href="http://127.0.0.1:9200/zzwu_index?pretty" target="_blank" rel="external">PUT /zzwu_index?pretty</a><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "acknowledged": true,</div><div class="line">  "shards_acknowledged": true</div><div class="line">&#125;</div><div class="line"></div><div class="line">health status index      uuid                   pri rep docs.count docs.deleted store.size pri.store.size</div><div class="line">yellow open   .kibana    SCPH1iHxTwiV6naHOTRiig   1   1          1            0      3.1kb          3.1kb</div><div class="line">yellow open   zzwu_index AdEOBWZbTvawswsr8jgA-A   5   1          0            0       650b           650b</div></pre></td></tr></table></figure></p>
+<h2 id="Delete-index"><a href="#Delete-index" class="headerlink" title="Delete index"></a>Delete index</h2><p><a href="http://127.0.0.1:9200/_cat/indices?v" target="_blank" rel="external">DELETE /zzwu_index?pretty</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"acknowledged"</span>: <span class="literal">true</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"error"</span> : &#123;</div><div class="line">    <span class="string">"root_cause"</span> : [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"type"</span> : <span class="string">"index_not_found_exception"</span>,</div><div class="line">        <span class="string">"reason"</span> : <span class="string">"no such index"</span>,</div><div class="line">        <span class="string">"resource.type"</span> : <span class="string">"index_or_alias"</span>,</div><div class="line">        <span class="string">"resource.id"</span> : <span class="string">"zzwu_index"</span>,</div><div class="line">        <span class="string">"index_uuid"</span> : <span class="string">"_na_"</span>,</div><div class="line">        <span class="string">"index"</span> : <span class="string">"zzwu_index"</span></div><div class="line">      &#125;</div><div class="line">    ],</div><div class="line">    <span class="string">"type"</span> : <span class="string">"index_not_found_exception"</span>,</div><div class="line">    <span class="string">"reason"</span> : <span class="string">"no such index"</span>,</div><div class="line">    <span class="string">"resource.type"</span> : <span class="string">"index_or_alias"</span>,</div><div class="line">    <span class="string">"resource.id"</span> : <span class="string">"zzwu_index"</span>,</div><div class="line">    <span class="string">"index_uuid"</span> : <span class="string">"_na_"</span>,</div><div class="line">    <span class="string">"index"</span> : <span class="string">"zzwu_index"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"status"</span> : 404</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="Show-Case"><a href="#Show-Case" class="headerlink" title="Show Case"></a>Show Case</h1><hr>
+<h2 id="Create-index-amp-type"><a href="#Create-index-amp-type" class="headerlink" title="Create index &amp; type"></a>Create index &amp; type</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /index/<span class="built_in">type</span>/id</div><div class="line">&#123;</div><div class="line">  <span class="string">"json data"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">PUT /ecommerce/product/1</div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span> : <span class="string">"gaolujie yagao"</span>,</div><div class="line">    <span class="string">"desc"</span> :  <span class="string">"gaoxiao meibai"</span>,</div><div class="line">    <span class="string">"price"</span> :  30,</div><div class="line">    <span class="string">"producer"</span> :      <span class="string">"gaolujie producer"</span>,</div><div class="line">    <span class="string">"tags"</span>: [ <span class="string">"meibai"</span>, <span class="string">"fangzhu"</span> ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/008_create_index_type.png"></p>
+<h2 id="Search-document"><a href="#Search-document" class="headerlink" title="Search document"></a>Search document</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /index/<span class="built_in">type</span>/id</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/2</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/009_search_index.png"></p>
+<h2 id="Edit-document"><a href="#Edit-document" class="headerlink" title="Edit document"></a>Edit document</h2><ul>
+<li>replace</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">PUT /ecommerce/product/1</div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span> : <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">    <span class="string">"desc"</span> :  <span class="string">"gaoxiao meibai"</span>,</div><div class="line">    <span class="string">"price"</span> :  30,</div><div class="line">    <span class="string">"producer"</span> :      <span class="string">"gaolujie producer"</span>,</div><div class="line">    <span class="string">"tags"</span>: [ <span class="string">"meibai"</span>, <span class="string">"fangzhu"</span> ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/010_edit_replace_01.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /ecommerce/product/1</div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span> : <span class="string">"jiaqiangban gaolujie yagao"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/010_edit_replace_02.png"></p>
+<ul>
+<li>update</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">POST /ecommerce/product/1/_update</div><div class="line">&#123;</div><div class="line">  <span class="string">"doc"</span>: &#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/images/elasticsearch/010_edit_update_02.png"></p>
+<h2 id="Delete-document"><a href="#Delete-document" class="headerlink" title="Delete document"></a>Delete document</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">DELETE /ecommerce/product/1</div><div class="line">----------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"found"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">  <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">  <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">  <span class="string">"_version"</span>: 10,</div><div class="line">  <span class="string">"result"</span>: <span class="string">"deleted"</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 2,</div><div class="line">    <span class="string">"successful"</span>: 1,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>各位看官，打個賞唄~⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾*~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Z_Z.W Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Post author:</strong>
+      Z_Z.W
+    </li>
+     <li class="post-copyright-author">
+        <strong>Post created:</strong>
+        16:21 Jul 29 2017
+      </li>
+     <li class="post-copyright-author">
+        <strong>Post modified:</strong>
+        15:51 Jul 31 2017
+      </li>
+    <li class="post-copyright-link">
+      <strong>Post link:</strong>
+      <a href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html" title="ELK_install & startup Elasticsearch & 'CRUD'_002">https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright Notice: </strong>
+      All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Elasticsearch/" rel="tag"># Elasticsearch</a>
+          
+        </div>
+      
+
+      
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/technology/2017/07/23/ELK-白話Elasticsearch-001.html" rel="next" title="ELK_白話Elasticsearch_001">
+                <i class="fa fa-chevron-left"></i> ELK_白話Elasticsearch_001
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/technology/2017/07/29/Kinds-of-search-type.html" rel="prev" title="ELK_Kinds of search type_003">
+                ELK_Kinds of search type_003 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="fb-comments"
+           data-href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html"
+           data-numposts="10"
+           data-width="100%"
+           data-colorscheme="light">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon-20151123105940450.ico"
+               alt="Z_Z.W" />
+          <p class="site-author-name" itemprop="name">Z_Z.W</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/myhongkongzhen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/myhongkongzhen" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/#!/Z_ZW" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/myhongkongzhen" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-Elasticsearch"><span class="nav-number">1.</span> <span class="nav-text">Install Elasticsearch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-amp-Install-amp-Startup-elasticsearch-Elasticsearch"><span class="nav-number">1.1.</span> <span class="nav-text">Download & Install & Startup elasticsearch : Elasticsearch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-check-if-the-Elasticsearch-startup-success-127-0-0-1-9200"><span class="nav-number">1.2.</span> <span class="nav-text">To check if the Elasticsearch startup success. 127.0.0.1:9200</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Download-amp-Install-Kibana-Kibana"><span class="nav-number">1.3.</span> <span class="nav-text">Download & Install Kibana : Kibana</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-use-kibana-to-study-Elasticsearch-Kibana-dev-tools"><span class="nav-number">1.4.</span> <span class="nav-text">To use kibana to study Elasticsearch. Kibana dev tools</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Document-Data-Structure"><span class="nav-number">2.</span> <span class="nav-text">Document Data Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Data-Structure"><span class="nav-number">2.1.</span> <span class="nav-text">Java Data Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Database-structure"><span class="nav-number">2.2.</span> <span class="nav-text">Database structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Document-data-structure"><span class="nav-number">2.3.</span> <span class="nav-text">Document data structure</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Elasticsearch-cluster-management"><span class="nav-number">3.</span> <span class="nav-text">Elasticsearch cluster management</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES-health-check"><span class="nav-number">3.1.</span> <span class="nav-text">ES health check</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES-health-status"><span class="nav-number">3.2.</span> <span class="nav-text">ES health status</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Check-index-of-cluster"><span class="nav-number">3.3.</span> <span class="nav-text">Check index of cluster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-index"><span class="nav-number">3.4.</span> <span class="nav-text">Create index</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete-index"><span class="nav-number">3.5.</span> <span class="nav-text">Delete index</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Show-Case"><span class="nav-number">4.</span> <span class="nav-text">Show Case</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-index-amp-type"><span class="nav-number">4.1.</span> <span class="nav-text">Create index & type</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Search-document"><span class="nav-number">4.2.</span> <span class="nav-text">Search document</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edit-document"><span class="nav-number">4.3.</span> <span class="nav-text">Edit document</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete-document"><span class="nav-number">4.4.</span> <span class="nav-text">Delete document</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z_Z.W</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://myhongkongzhen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://myhongkongzhen.github.io/archives/technology/2017/07/29/install-startup-Elasticsearch.html';
+          this.page.identifier = 'archives/technology/2017/07/29/install-startup-Elasticsearch.html';
+          this.page.title = 'ELK_install & startup Elasticsearch & \'CRUD\'_002';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://myhongkongzhen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1104 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JAVA,JDK1.7," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="あなたがいる 、それだけでも" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-20151123105940450.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="myhongkongzhen" />
+  <meta property="fb:app_id" content="" />
+
+
+
+<meta name="description" content="簡介：JDK 1.7 Collections 之 ArrayList 類詳解 (五)這一節主要學習集合框架中的ArrayList類的成員屬性、方法等具體實現存在遺留問題相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/">
+<meta name="keywords" content="JAVA,JDK1.7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Collections -- ArrayList -- (八)">
+<meta property="og:url" content="https://myhongkongzhen.github.io/archives/技術/2015/12/09/Collections-ArrayList.html">
+<meta property="og:site_name" content="あなたがいる 、それだけでも">
+<meta property="og:description" content="簡介：JDK 1.7 Collections 之 ArrayList 類詳解 (五)這一節主要學習集合框架中的ArrayList類的成員屬性、方法等具體實現存在遺留問題相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/JDK/Collections/Collection-ArrayList.png">
+<meta property="og:updated_time" content="2017-07-26T14:18:11.271Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Collections -- ArrayList -- (八)">
+<meta name="twitter:description" content="簡介：JDK 1.7 Collections 之 ArrayList 類詳解 (五)這一節主要學習集合框架中的ArrayList類的成員屬性、方法等具體實現存在遺留問題相關源碼分析及詳細api文檔移路→Collection接口https://github.com/myhongkongzhen/pro-study-jdk/">
+<meta name="twitter:image" content="https://myhongkongzhen.github.io/images/JDK/Collections/Collection-ArrayList.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://myhongkongzhen.github.io/archives/技術/2015/12/09/Collections-ArrayList.html"/>
+
+
+
+
+
+  <title> Collections -- ArrayList -- (八) | あなたがいる 、それだけでも </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70751910-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a53f74323c99608e344f6cc77c434d62";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">あなたがいる 、それだけでも</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Z_Z.W</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://myhongkongzhen.github.io/archives/技術/2015/12/09/Collections-ArrayList.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z_Z.W">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-20151123105940450.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="あなたがいる 、それだけでも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                Collections -- ArrayList -- (八)
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-09T09:24:01+08:00">
+                2015-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技術/" itemprop="url" rel="index">
+                    <span itemprop="name">技術</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/archives/技術/2015/12/09/Collections-ArrayList.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://myhongkongzhen.github.io/archives/技術/2015/12/09/Collections-ArrayList.html" itemprop="commentCount">0</span> comments
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  4,253
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>簡介：JDK 1.7 Collections 之 ArrayList 類詳解 (五)<br>這一節主要學習集合框架中的ArrayList類的成員屬性、方法等具體實現<br><em><strong>存在遺留問題</strong></em><br>相關源碼分析及詳細api文檔移路→<a href="https://github.com/myhongkongzhen/pro-study-jdk/tree/master/src/main/java/z/z/w/jdk/collections" target="_blank" rel="external">Collection接口https://github.com/myhongkongzhen/pro-study-jdk/</a></p>
+</blockquote>
+<a id="more"></a>  
+<h4 id="ArrayList-List接口具體類"><a href="#ArrayList-List接口具體類" class="headerlink" title="ArrayList List接口具體類"></a>ArrayList List接口具體類</h4><blockquote>
+<p>底層實現:Object的數組<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * The array buffer into which the elements of the ArrayList are stored.</div><div class="line"> * 數組的緩存用於ArrayList存儲元素的空間</div><div class="line"> * The capacity of the ArrayList is the length of this array buffer. Any</div><div class="line"> * ArrayList的容量是數組緩存的長度.</div><div class="line"> * empty ArrayList with elementData == EMPTY_ELEMENTDATA will be expanded to</div><div class="line"> * 任何空的ArrayList的 elementData == EMPTY_ELEMENTDATA 在第一個元素添加時</div><div class="line"> * DEFAULT_CAPACITY when the first element is added.</div><div class="line"> * 擴大 10 容量</div><div class="line"> */</div><div class="line">private transient Object[] elementData; // 非序列化的</div></pre></td></tr></table></figure></p>
+<p>存在三個內部類:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">private class Itr implements Iterator&lt;E&gt; ; // 提供集合序列遍歷,移除最後一個元素操作</div><div class="line">private class ListItr extends Itr implements ListIterator&lt;E&gt; ; // 提供集合向前向後遍歷,set,add操作</div><div class="line">// 截取指定索引範圍的元素list，但是僅僅是多了一個引用副本，指向的還是元list的那段內存空間 </div><div class="line">// 子list中修改元素，元list相等索引位置的元素同樣被修改了</div><div class="line">private class SubList extends AbstractList&lt;E&gt; implements RandomAccess;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="遺留問題"><a href="#遺留問題" class="headerlink" title="遺留問題"></a>遺留問題</h4><blockquote>
+<p>1、JAVA數組的定義、初始化、賦值的相關操作<br>  【突然發現最基本的數組基本含義都有些搞不明白了，看完所有本類代碼后，查一下數組相關知識<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Shared empty array instance used for empty instances.</div><div class="line"> * 用於empty實例的共享的數組實例</div><div class="line"> */</div><div class="line">private static final Object[] EMPTY_ELEMENTDATA = &#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>2、數據串行化 IO操作，此操作相關在 JAVA IO中詳解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">private void writeObject(java.io.ObjectOutputStream s)&#123; ... &#125;</div><div class="line">private void readObject(java.io.ObjectInputStream s)&#123; ... &#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>ArrayList類UML:<br><img src="/images/JDK/Collections/Collection-ArrayList.png"></p>
+<p>實現類源碼解析:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div><div class="line">501</div><div class="line">502</div><div class="line">503</div><div class="line">504</div><div class="line">505</div><div class="line">506</div><div class="line">507</div><div class="line">508</div><div class="line">509</div><div class="line">510</div><div class="line">511</div><div class="line">512</div><div class="line">513</div><div class="line">514</div><div class="line">515</div><div class="line">516</div><div class="line">517</div><div class="line">518</div><div class="line">519</div><div class="line">520</div><div class="line">521</div><div class="line">522</div><div class="line">523</div><div class="line">524</div><div class="line">525</div><div class="line">526</div><div class="line">527</div><div class="line">528</div><div class="line">529</div><div class="line">530</div><div class="line">531</div><div class="line">532</div><div class="line">533</div><div class="line">534</div><div class="line">535</div><div class="line">536</div><div class="line">537</div><div class="line">538</div><div class="line">539</div><div class="line">540</div><div class="line">541</div><div class="line">542</div><div class="line">543</div><div class="line">544</div><div class="line">545</div><div class="line">546</div><div class="line">547</div><div class="line">548</div><div class="line">549</div><div class="line">550</div><div class="line">551</div><div class="line">552</div><div class="line">553</div><div class="line">554</div><div class="line">555</div><div class="line">556</div><div class="line">557</div><div class="line">558</div><div class="line">559</div><div class="line">560</div><div class="line">561</div><div class="line">562</div><div class="line">563</div><div class="line">564</div><div class="line">565</div><div class="line">566</div><div class="line">567</div><div class="line">568</div><div class="line">569</div><div class="line">570</div><div class="line">571</div><div class="line">572</div><div class="line">573</div><div class="line">574</div><div class="line">575</div><div class="line">576</div><div class="line">577</div><div class="line">578</div><div class="line">579</div><div class="line">580</div><div class="line">581</div><div class="line">582</div><div class="line">583</div><div class="line">584</div><div class="line">585</div><div class="line">586</div><div class="line">587</div><div class="line">588</div><div class="line">589</div><div class="line">590</div><div class="line">591</div><div class="line">592</div><div class="line">593</div><div class="line">594</div><div class="line">595</div><div class="line">596</div><div class="line">597</div><div class="line">598</div><div class="line">599</div><div class="line">600</div><div class="line">601</div><div class="line">602</div><div class="line">603</div><div class="line">604</div><div class="line">605</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Default initial capacity.</div><div class="line"> * 默認的初始容量</div><div class="line"> */</div><div class="line">private static final int DEFAULT_CAPACITY = 10;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Increases the capacity of this &lt;tt&gt;ArrayList&lt;/tt&gt; instance, if</div><div class="line"> * ArrayList實例的增加的容量,</div><div class="line"> * necessary, to ensure that it can hold at least the number of elements</div><div class="line"> * 如果必要,   確保容量可以容納指定的最小容量參數的元素個數</div><div class="line"> * specified by the minimum capacity argument.</div><div class="line"> *</div><div class="line"> * @param   minCapacity   the desired minimum capacity</div><div class="line"> *                            期望的  最小容量</div><div class="line"> */</div><div class="line">public void ensureCapacity(int minCapacity) &#123;</div><div class="line">     // 最小的擴容</div><div class="line">    int minExpand = (elementData != EMPTY_ELEMENTDATA)</div><div class="line">                    // any size if real element table</div><div class="line">                    ? 0</div><div class="line">                    // larger than default for empty table. It&apos;s already supposed to be</div><div class="line">                    // at default size.</div><div class="line">                    : DEFAULT_CAPACITY; // 10</div><div class="line"></div><div class="line">    if (minCapacity &gt; minExpand) &#123;</div><div class="line">        // 確定明確容量</div><div class="line">        ensureExplicitCapacity(minCapacity);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 明確內部容量</div><div class="line">private void ensureCapacityInternal(int minCapacity) &#123;</div><div class="line">    // 判斷共享數據是否是一個空數組</div><div class="line">    if (elementData == EMPTY_ELEMENTDATA) &#123;</div><div class="line">        // 如果是，設置最小容量，默認 10 ，指定的容量大於10時設為</div><div class="line">        // 指定的容量</div><div class="line">        minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    ensureExplicitCapacity(minCapacity);</div><div class="line">&#125;</div><div class="line"></div><div class="line">private void ensureExplicitCapacity(int minCapacity) &#123;</div><div class="line">    modCount++;</div><div class="line"></div><div class="line">    // overflow-conscious code</div><div class="line">    if (minCapacity - elementData.length &gt; 0)</div><div class="line">        grow(minCapacity);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * The maximum size of array to allocate.</div><div class="line"> * 分配的數組最大的值</div><div class="line"> * Some VMs reserve some header words in an array.</div><div class="line"> * 一些vm在數組中保留了一些頭信息</div><div class="line"> * Attempts to allocate larger arrays may result in</div><div class="line"> * 嘗試分配更大的數組結果會出現 OutOfMemoryError</div><div class="line"> * OutOfMemoryError: Requested array size exceeds VM limit</div><div class="line"> *                   請求數組的元素超過了vm的極限</div><div class="line"> */</div><div class="line">private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Increases the capacity to ensure that it can hold at least the</div><div class="line"> * 增加容量確保容量能夠提供由最小容量參數指定的元素個數.</div><div class="line"> * number of elements specified by the minimum capacity argument.</div><div class="line"> *</div><div class="line"> * @param minCapacity the desired minimum capacity</div><div class="line"> *                        期望的</div><div class="line"> */</div><div class="line">private void grow(int minCaGpacity) &#123;</div><div class="line">    // overflow-conscious code</div><div class="line">    //====================================== 如果共享數組為空數組</div><div class="line">    int oldCapacity = elementData.length; // 0</div><div class="line">    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); // 0</div><div class="line">    if (newCapacity - minCapacity &lt; 0) // 一定為負數</div><div class="line">        newCapacity = minCapacity; // 新容量為 指定最小容量</div><div class="line">    if (newCapacity - MAX_ARRAY_SIZE &gt; 0) // 新容量與最大容量比較</div><div class="line">        newCapacity = hugeCapacity(minCapacity); // 設為最大容量:Integer.MAX_VALUE - 8;</div><div class="line">    // minCapacity is usually close to size, so this is a win:</div><div class="line">    // 數組拷貝</div><div class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</div><div class="line">&#125;</div><div class="line"></div><div class="line">private static int hugeCapacity(int minCapacity) &#123;</div><div class="line">    if (minCapacity &lt; 0) // overflow</div><div class="line">        throw new OutOfMemoryError();</div><div class="line">    return (minCapacity &gt; MAX_ARRAY_SIZE) ?</div><div class="line">           Integer.MAX_VALUE :</div><div class="line">           MAX_ARRAY_SIZE;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns &lt;tt&gt;true&lt;/tt&gt; if this list contains the specified element.</div><div class="line"> * More formally, returns &lt;tt&gt;true&lt;/tt&gt; if and only if this list contains</div><div class="line"> * at least one element &lt;tt&gt;e&lt;/tt&gt; such that</div><div class="line"> * &lt;tt&gt;(o==null&amp;nbsp;?&amp;nbsp;e==null&amp;nbsp;:&amp;nbsp;o.equals(e))&lt;/tt&gt;.</div><div class="line"> *</div><div class="line"> * @param o element whose presence in this list is to be tested</div><div class="line"> *                        存在   </div><div class="line"> * @return &lt;tt&gt;true&lt;/tt&gt; if this list contains the specified element</div><div class="line"> */</div><div class="line">public boolean contains(Object o) &#123;</div><div class="line">    return indexOf(o) &gt;= 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns the index of the first occurrence of the specified element</div><div class="line"> * 返回list中指定元素的首次范閒的索引</div><div class="line"> * in this list, or -1 if this list does not contain the element.</div><div class="line"> *               或者不包含元素時返回-1</div><div class="line"> * More formally, returns the lowest index &lt;tt&gt;i&lt;/tt&gt; such that</div><div class="line"> * 更正式的講，    返回 ( o == null ? get(i) == null : o.equals( get(i) ) )</div><div class="line"> * &lt;tt&gt;(o==null&amp;nbsp;?&amp;nbsp;get(i)==null&amp;nbsp;:&amp;nbsp;o.equals(get(i)))&lt;/tt&gt;,</div><div class="line"> * 最低的索引</div><div class="line"> * or -1 if there is no such index.</div><div class="line"> * 如果沒有這樣的索引，返回-1</div><div class="line"> */</div><div class="line">public int indexOf(Object o) &#123;</div><div class="line">    if (o == null) &#123;</div><div class="line">        for (int i = 0; i &lt; size; i++)</div><div class="line">            if (elementData[i]==null)</div><div class="line">                return i;</div><div class="line">    &#125; else &#123;</div><div class="line">        for (int i = 0; i &lt; size; i++)</div><div class="line">            if (o.equals(elementData[i]))</div><div class="line">                return i;</div><div class="line">    &#125;</div><div class="line">    return -1;</div><div class="line">&#125;</div><div class="line">	</div><div class="line">/**</div><div class="line"> * Returns the index of the last occurrence of the specified element</div><div class="line"> * 返回list中指定元素的最後發現的索引</div><div class="line"> * in this list, or -1 if this list does not contain the element.</div><div class="line"> * More formally, returns the highest index &lt;tt&gt;i&lt;/tt&gt; such that</div><div class="line"> * &lt;tt&gt;(o==null&amp;nbsp;?&amp;nbsp;get(i)==null&amp;nbsp;:&amp;nbsp;o.equals(get(i)))&lt;/tt&gt;,</div><div class="line"> * or -1 if there is no such index.</div><div class="line"> * 不存在這樣的索引返回-1</div><div class="line"> */</div><div class="line">public int lastIndexOf(Object o) &#123;</div><div class="line">    if (o == null) &#123;</div><div class="line">        for (int i = size-1; i &gt;= 0; i--)</div><div class="line">            if (elementData[i]==null)</div><div class="line">                return i;</div><div class="line">    &#125; else &#123;</div><div class="line">        for (int i = size-1; i &gt;= 0; i--)</div><div class="line">            if (o.equals(elementData[i]))</div><div class="line">                return i;</div><div class="line">    &#125;</div><div class="line">    return -1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns an array containing all of the elements in this list</div><div class="line"> * 返回一個數組包含了所有list中的正確序列的元素</div><div class="line"> * in proper sequence (from first to last element).</div><div class="line"> *</div><div class="line"> * &lt;p&gt;The returned array will be &quot;safe&quot; in that no references to it are</div><div class="line"> * 返回的數組是安全的，因為沒有引用維護這個list</div><div class="line"> * maintained by this list.  (In other words, this method must allocate</div><div class="line"> *                           (換句話說,這個方法必須分配一個新的數組)</div><div class="line"> * a new array).  The caller is thus free to modify the returned array.</div><div class="line"> *                調用者因而自由的改變返回的數組</div><div class="line"> *</div><div class="line"> * &lt;p&gt;This method acts as bridge between array-based and collection-based</div><div class="line"> * 這個方法的行為作為數組和集合基礎的橋樑</div><div class="line"> * APIs.</div><div class="line"> *</div><div class="line"> * @return an array containing all of the elements in this list in</div><div class="line"> *         proper sequence</div><div class="line"> *         正確</div><div class="line"> */</div><div class="line">public Object[] toArray() &#123;</div><div class="line">    return Arrays.copyOf(elementData, size);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns an array containing all of the elements in this list in proper</div><div class="line"> * sequence (from first to last element); the runtime type of the returned</div><div class="line"> * array is that of the specified array.  If the list fits in the</div><div class="line"> * 返回數組的運行時類型是這個指定數組的類型.</div><div class="line"> * specified array, it is returned therein.  Otherwise, a new array is</div><div class="line"> *                                 在其中     否則，</div><div class="line"> * allocated with the runtime type of the specified array and the size of</div><div class="line"> * 一個新的數組又指定數組的運行時類型與list的大小分配</div><div class="line"> * this list.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;If the list fits in the specified array with room to spare</div><div class="line"> * (i.e., the array has more elements than the list), the element in</div><div class="line"> * the array immediately following the end of the collection is set to</div><div class="line"> *           立即</div><div class="line"> * &lt;tt&gt;null&lt;/tt&gt;.  (This is useful in determining the length of the</div><div class="line"> *                                    確定</div><div class="line"> * list &lt;i&gt;only&lt;/i&gt; if the caller knows that the list does not contain</div><div class="line"> * any null elements.)</div><div class="line"> *</div><div class="line"> * @param a the array into which the elements of the list are to</div><div class="line"> *          be stored, if it is big enough; otherwise, a new array of the</div><div class="line"> *          same runtime type is allocated for this purpose.</div><div class="line"> * @return an array containing the elements of the list</div><div class="line"> * @throws ArrayStoreException if the runtime type of the specified array</div><div class="line"> *         is not a supertype of the runtime type of every element in</div><div class="line"> *         this list</div><div class="line"> * @throws NullPointerException if the specified array is null</div><div class="line"> */</div><div class="line">@SuppressWarnings(&quot;unchecked&quot;)</div><div class="line">public &lt;T&gt; T[] toArray(T[] a) &#123;</div><div class="line">    if (a.length &lt; size)</div><div class="line">        // Make a new array of a&apos;s runtime type, but my contents:</div><div class="line">        return (T[]) Arrays.copyOf(elementData, size, a.getClass());</div><div class="line">    System.arraycopy(elementData, 0, a, 0, size);</div><div class="line">    if (a.length &gt; size)</div><div class="line">        a[size] = null;</div><div class="line">    return a;</div><div class="line">&#125;	</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns the element at the specified position in this list.</div><div class="line"> *</div><div class="line"> * @param  index index of the element to return</div><div class="line"> * @return the element at the specified position in this list</div><div class="line"> * @throws IndexOutOfBoundsException &#123;@inheritDoc&#125;</div><div class="line"> */</div><div class="line">public E get(int index) &#123;</div><div class="line">    // 範圍檢測，不會檢測 索引為負的情況,只會檢測索引是否超過size值</div><div class="line">    rangeCheck(index);</div><div class="line"></div><div class="line">    return elementData(index);</div><div class="line">&#125;	</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns the element at the specified position in this list.</div><div class="line"> *</div><div class="line"> * @param  index index of the element to return</div><div class="line"> * @return the element at the specified position in this list</div><div class="line"> * @throws IndexOutOfBoundsException &#123;@inheritDoc&#125;</div><div class="line"> */</div><div class="line">public E get(int index) &#123;</div><div class="line">    // 範圍檢測，不會檢測 索引為負的情況,只會檢測索引是否超過size值</div><div class="line">    rangeCheck(index);</div><div class="line"></div><div class="line">    return elementData(index);</div><div class="line">&#125;	</div><div class="line"></div><div class="line">/**</div><div class="line"> * Replaces the element at the specified position in this list with</div><div class="line"> * the specified element.</div><div class="line"> *</div><div class="line"> * @param index index of the element to replace</div><div class="line"> * @param element element to be stored at the specified position</div><div class="line"> * @return the element previously at the specified position</div><div class="line"> *         返回設定值之前的舊值</div><div class="line"> * @throws IndexOutOfBoundsException &#123;@inheritDoc&#125;</div><div class="line"> */</div><div class="line">public E set(int index, E element) &#123;</div><div class="line">    rangeCheck(index);</div><div class="line"></div><div class="line">    E oldValue = elementData(index);</div><div class="line">    elementData[index] = element;</div><div class="line">    return oldValue;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Inserts the specified element at the specified position in this</div><div class="line"> * 在指定位置添加元素</div><div class="line"> * list. Shifts the element currently at that position (if any) and</div><div class="line"> * any subsequent elements to the right (adds one to their indices).</div><div class="line"> *     隨後的元素向右移動(增加索引)</div><div class="line"> *</div><div class="line"> * @param index index at which the specified element is to be inserted</div><div class="line"> * @param element element to be inserted</div><div class="line"> * @throws IndexOutOfBoundsException &#123;@inheritDoc&#125;</div><div class="line"> */</div><div class="line">public void add(int index, E element) &#123;</div><div class="line">    rangeCheckForAdd(index);</div><div class="line"></div><div class="line">    ensureCapacityInternal(size + 1);  // Increments modCount!!</div><div class="line">    // 指定位置后的元素拷貝</div><div class="line">    System.arraycopy(elementData, index, elementData, index + 1,</div><div class="line">                     size - index);</div><div class="line">    elementData[index] = element;</div><div class="line">    size++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Removes the element at the specified position in this list.</div><div class="line"> * 移除list中指定位置的元素</div><div class="line"> * Shifts any subsequent elements to the left (subtracts one from their</div><div class="line"> * 隨後的元素左移(索引減一)</div><div class="line"> * indices).</div><div class="line"> *</div><div class="line"> * @param index the index of the element to be removed</div><div class="line"> *              返回移除索引位置時的舊數據   </div><div class="line"> * @return the element that was removed from the list</div><div class="line"> * @throws IndexOutOfBoundsException &#123;@inheritDoc&#125;</div><div class="line"> */</div><div class="line">public E remove(int index) &#123;</div><div class="line">    rangeCheck(index);</div><div class="line"></div><div class="line">    modCount++;</div><div class="line">    E oldValue = elementData(index);</div><div class="line"></div><div class="line">    int numMoved = size - index - 1;</div><div class="line">    if (numMoved &gt; 0) // 指定位置元素前移</div><div class="line">        System.arraycopy(elementData, index+1, elementData, index,</div><div class="line">                         numMoved);</div><div class="line">    elementData[--size] = null; // clear to let GC do its work</div><div class="line"></div><div class="line">    return oldValue;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Removes the first occurrence of the specified element from this list,</div><div class="line"> * 移除list中指定的首次發現的元素</div><div class="line"> * if it is present.  If the list does not contain the element, it is</div><div class="line"> * 如果它存在的話       如果不包含這樣的元素，不發生改變</div><div class="line"> * unchanged.  More formally, removes the element with the lowest index</div><div class="line"> *             更正式的說，移除符合( o == null ? get(i) == null : o.equalse(get(i)) )</div><div class="line"> * &lt;tt&gt;i&lt;/tt&gt; such that</div><div class="line"> * &lt;tt&gt;(o==null&amp;nbsp;?&amp;nbsp;get(i)==null&amp;nbsp;:&amp;nbsp;o.equals(get(i)))&lt;/tt&gt;</div><div class="line"> * 規則的最低索引的元素</div><div class="line"> * (if such an element exists).  Returns &lt;tt&gt;true&lt;/tt&gt; if this list</div><div class="line"> * (如果這樣的元素存在)</div><div class="line"> * contained the specified element (or equivalently, if this list</div><div class="line"> * 如果list中包含指定元素返回true</div><div class="line"> * changed as a result of the call).</div><div class="line"> * (或者等效的,這個list因為這個方法的調用改變了結果)</div><div class="line"> *</div><div class="line"> * @param o element to be removed from this list, if present</div><div class="line"> * @return &lt;tt&gt;true&lt;/tt&gt; if this list contained the specified element</div><div class="line"> */</div><div class="line">public boolean remove(Object o) &#123;</div><div class="line">    if (o == null) &#123;</div><div class="line">        for (int index = 0; index &lt; size; index++)</div><div class="line">            if (elementData[index] == null) &#123;</div><div class="line">                fastRemove(index);</div><div class="line">                return true;</div><div class="line">            &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">        for (int index = 0; index &lt; size; index++)</div><div class="line">            if (o.equals(elementData[index])) &#123;</div><div class="line">                fastRemove(index);</div><div class="line">                return true;</div><div class="line">            &#125;</div><div class="line">    &#125;</div><div class="line">    return false;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/*</div><div class="line"> * Private remove method that skips bounds checking and does not</div><div class="line"> * 不做校驗的是快速刪除方法，不返回刪除的元素</div><div class="line"> * return the value removed.</div><div class="line"> */</div><div class="line">private void fastRemove(int index) &#123;</div><div class="line">    modCount++;</div><div class="line">    int numMoved = size - index - 1;</div><div class="line">    if (numMoved &gt; 0)</div><div class="line">        System.arraycopy(elementData, index+1, elementData, index,</div><div class="line">                         numMoved);</div><div class="line">    elementData[--size] = null; // clear to let GC do its work</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Appends all of the elements in the specified collection to the end of</div><div class="line"> * 在list的末尾添加指定集合中的所有元素</div><div class="line"> * this list, in the order that they are returned by the</div><div class="line"> * 按照集合迭代順序返回的順序</div><div class="line"> * specified collection&apos;s Iterator.  The behavior of this operation is</div><div class="line"> * undefined if the specified collection is modified while the operation</div><div class="line"> * 這個操作的行為是未定義的,如果當操作過程中指定的集合改變了</div><div class="line"> * is in progress.  (This implies that the behavior of this call is</div><div class="line"> * undefined if the specified collection is this list, and this</div><div class="line"> * (這就暗示了調用的行為當這個指定的集合是這個list，並且這個list是不為空時，是未定義的)</div><div class="line"> * list is nonempty.)</div><div class="line"> *</div><div class="line"> * @param c collection containing elements to be added to this list</div><div class="line"> * @return &lt;tt&gt;true&lt;/tt&gt; if this list changed as a result of the call</div><div class="line"> * @throws NullPointerException if the specified collection is null</div><div class="line"> */</div><div class="line">public boolean addAll(Collection&lt;? extends E&gt; c) &#123;</div><div class="line">    Object[] a = c.toArray();</div><div class="line">    int numNew = a.length;</div><div class="line">    ensureCapacityInternal(size + numNew);  // Increments modCount</div><div class="line"></div><div class="line">    /**</div><div class="line">     *</div><div class="line">     * Integer[] des = new Integer[ 4 ];</div><div class="line">     * Integer[] src = &#123; 6 , 7 , 8 , 9 , 10 , 11 , 12 , 13 &#125;;</div><div class="line">     *</div><div class="line">     * // 把 src 數組的元素從 第 2 號位置開始拷貝,拷貝3個元素</div><div class="line">     * // 到 des 數組中，在des中的 1 號位置開始放置這些數據</div><div class="line">     * System.arraycopy( src, 2, des, 1, 3 );</div><div class="line">     *</div><div class="line">     */</div><div class="line">     </div><div class="line">    System.arraycopy(a, 0, elementData, size, numNew);</div><div class="line">    size += numNew;</div><div class="line">    return numNew != 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Removes from this list all of the elements whose index is between</div><div class="line"> * 從list中移除所有的索引在[fromIndex,toIndex)之間元素</div><div class="line"> * &#123;@code fromIndex&#125;, inclusive, and &#123;@code toIndex&#125;, exclusive.</div><div class="line"> * Shifts any succeeding elements to the left (reduces their index).</div><div class="line"> * This call shortens the list by &#123;@code (toIndex - fromIndex)&#125; elements.</div><div class="line"> * (If &#123;@code toIndex==fromIndex&#125;, this operation has no effect.)</div><div class="line"> * (如果fromIndex == toIndex，這個操作沒有任何影響)</div><div class="line"> *</div><div class="line"> * @throws IndexOutOfBoundsException if &#123;@code fromIndex&#125; or</div><div class="line"> *         &#123;@code toIndex&#125; is out of range</div><div class="line"> *         (&#123;@code fromIndex &lt; 0 ||</div><div class="line"> *          fromIndex &gt;= size() ||</div><div class="line"> *          toIndex &gt; size() ||</div><div class="line"> *          toIndex &lt; fromIndex&#125;)</div><div class="line"> */</div><div class="line">protected void removeRange(int fromIndex, int toIndex) &#123;</div><div class="line">    modCount++;</div><div class="line">    int numMoved = size - toIndex;</div><div class="line">    System.arraycopy(elementData, toIndex, elementData, fromIndex,</div><div class="line">                     numMoved);</div><div class="line"></div><div class="line">    // clear to let GC do its work</div><div class="line">    int newSize = size - (toIndex-fromIndex);</div><div class="line">    for (int i = newSize; i &lt; size; i++) &#123;</div><div class="line">        elementData[i] = null; // clear to let GC do its work</div><div class="line">    &#125;</div><div class="line">    size = newSize;</div><div class="line">&#125;	</div><div class="line"></div><div class="line">/**</div><div class="line"> * Removes from this list all of its elements that are contained in the</div><div class="line"> * 從list中移除所有的包含于指定集合中的元素</div><div class="line"> * specified collection.</div><div class="line"> *</div><div class="line"> * @param c collection containing elements to be removed from this list</div><div class="line"> * @return &#123;@code true&#125; if this list changed as a result of the call</div><div class="line"> * @throws ClassCastException if the class of an element of this list</div><div class="line"> *         is incompatible with the specified collection</div><div class="line"> * (&lt;a href=&quot;Collection.html#optional-restrictions&quot;&gt;optional&lt;/a&gt;)</div><div class="line"> * @throws NullPointerException if this list contains a null element and the</div><div class="line"> *         specified collection does not permit null elements</div><div class="line"> * (&lt;a href=&quot;Collection.html#optional-restrictions&quot;&gt;optional&lt;/a&gt;),</div><div class="line"> *         or if the specified collection is null</div><div class="line"> * @see Collection#contains(Object)</div><div class="line"> */</div><div class="line">public boolean removeAll(Collection&lt;?&gt; c) &#123;</div><div class="line">    return batchRemove(c, false);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Removes from this list all of its elements that are contained in the</div><div class="line"> * 從list中移除所有的包含于指定集合中的元素</div><div class="line"> * specified collection.</div><div class="line"> *</div><div class="line"> * @param c collection containing elements to be removed from this list</div><div class="line"> * @return &#123;@code true&#125; if this list changed as a result of the call</div><div class="line"> * @throws ClassCastException if the class of an element of this list</div><div class="line"> *         is incompatible with the specified collection</div><div class="line"> * (&lt;a href=&quot;Collection.html#optional-restrictions&quot;&gt;optional&lt;/a&gt;)</div><div class="line"> * @throws NullPointerException if this list contains a null element and the</div><div class="line"> *         specified collection does not permit null elements</div><div class="line"> * (&lt;a href=&quot;Collection.html#optional-restrictions&quot;&gt;optional&lt;/a&gt;),</div><div class="line"> *         or if the specified collection is null</div><div class="line"> * @see Collection#contains(Object)</div><div class="line"> */</div><div class="line">public boolean removeAll(Collection&lt;?&gt; c) &#123;</div><div class="line">    return batchRemove(c, false);</div><div class="line">&#125;</div><div class="line"></div><div class="line">private boolean batchRemove(Collection&lt;?&gt; c, boolean complement) &#123;</div><div class="line">    final Object[] elementData = this.elementData;</div><div class="line">    int r = 0, w = 0;</div><div class="line">    boolean modified = false;</div><div class="line">    try &#123;</div><div class="line">        for (; r &lt; size; r++)</div><div class="line">            // 判斷當前集合的元素是否包含在指定集合中</div><div class="line">            // 判斷當前集合的元素是否包含在指定集合中</div><div class="line">            // 如果不包含在其中 complement = false</div><div class="line">            // 將此元素重新索引到數組中==即保留非指定的元素集，去除了包含的元素</div><div class="line">            // 如果包含在其中 complement = true</div><div class="line">            // 將此元素重新索引到數組中==即保留指定的元素集，去除了非包含的元素</div><div class="line">            if (c.contains(elementData[r]) == complement)</div><div class="line">                elementData[w++] = elementData[r];</div><div class="line">    &#125; finally &#123;</div><div class="line">        // Preserve behavioral compatibility with AbstractCollection,</div><div class="line">        // 保留AbstractCollection的兼容性行為</div><div class="line">        // even if c.contains() throws.</div><div class="line">        if (r != size) &#123;</div><div class="line">            // 拷貝剩餘的未同指定集合比較的元素到新索引位置</div><div class="line">            System.arraycopy(elementData, r,</div><div class="line">                             elementData, w,</div><div class="line">                             size - r);</div><div class="line">            w += size - r;</div><div class="line">        &#125;</div><div class="line">        if (w != size) &#123;</div><div class="line">            // clear to let GC do its work</div><div class="line">            for (int i = w; i &lt; size; i++)</div><div class="line">                elementData[i] = null;</div><div class="line">            modCount += size - w;</div><div class="line">            size = w;</div><div class="line">            modified = true;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return modified;</div><div class="line">&#125;	</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns a list iterator over the elements in this list (in proper</div><div class="line"> * 返回一個list中的遍歷元素的list迭代器</div><div class="line"> * sequence), starting at the specified position in the list.</div><div class="line"> *            開始於指定的位置</div><div class="line"> * The specified index indicates the first element that would be</div><div class="line"> * 指定的索引說明第一個元素由初始ListIterator.next調用返回</div><div class="line"> * returned by an initial call to &#123;@link ListIterator#next next&#125;.</div><div class="line"> * An initial call to &#123;@link ListIterator#previous previous&#125; would</div><div class="line"> * 初始調用ListIterator.previous調用用指定的索引減一的元素</div><div class="line"> * return the element with the specified index minus one.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;The returned list iterator is &lt;a href=&quot;#fail-fast&quot;&gt;&lt;i&gt;fail-fast&lt;/i&gt;&lt;/a&gt;.</div><div class="line"> *</div><div class="line"> * @throws IndexOutOfBoundsException &#123;@inheritDoc&#125;</div><div class="line"> */</div><div class="line">public ListIterator&lt;E&gt; listIterator(int index) &#123;</div><div class="line">    if (index &lt; 0 || index &gt; size)</div><div class="line">        // 索引越界異常</div><div class="line">        throw new IndexOutOfBoundsException(&quot;Index: &quot;+index);</div><div class="line">    // 新建一個指定索引開始的迭代器</div><div class="line">    return new ListItr(index);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns a list iterator over the elements in this list (in proper</div><div class="line"> * sequence).</div><div class="line"> *</div><div class="line"> * &lt;p&gt;The returned list iterator is &lt;a href=&quot;#fail-fast&quot;&gt;&lt;i&gt;fail-fast&lt;/i&gt;&lt;/a&gt;.</div><div class="line"> *</div><div class="line"> * @see #listIterator(int)</div><div class="line"> */</div><div class="line">public ListIterator&lt;E&gt; listIterator() &#123;</div><div class="line">    return new ListItr(0);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns an iterator over the elements in this list in proper sequence.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;The returned iterator is &lt;a href=&quot;#fail-fast&quot;&gt;&lt;i&gt;fail-fast&lt;/i&gt;&lt;/a&gt;.</div><div class="line"> *</div><div class="line"> * @return an iterator over the elements in this list in proper sequence</div><div class="line"> */</div><div class="line">public Iterator&lt;E&gt; iterator() &#123;</div><div class="line">    return new Itr();</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Returns a view of the portion of this list between the specified</div><div class="line"> * 返回在[fromIndex,toIndex)之間的list的一部分視圖</div><div class="line"> * &#123;@code fromIndex&#125;, inclusive, and &#123;@code toIndex&#125;, exclusive.  (If</div><div class="line"> * &#123;@code fromIndex&#125; and &#123;@code toIndex&#125; are equal, the returned list is</div><div class="line"> * (如果 fromIndex == toIndex ，返回list是empty的)</div><div class="line"> * empty.)  The returned list is backed by this list, so non-structural</div><div class="line"> *          這個返回的list基於當前的list,</div><div class="line"> * changes in the returned list are reflected in this list, and vice-versa.</div><div class="line"> * 因此沒有結構改變在這個list中返回的list是課反射的,反之亦然</div><div class="line"> * The returned list supports all of the optional list operations.</div><div class="line"> * 這個返回的list支持所有的list的可選操作</div><div class="line"> *</div><div class="line"> * &lt;p&gt;This method eliminates the need for explicit range operations (of</div><div class="line"> * 這個方法消除了明確範圍操作的需要</div><div class="line"> * the sort that commonly exist for arrays).  Any operation that expects</div><div class="line"> * (排序一般存在的數組)</div><div class="line"> * a list can be used as a range operation by passing a subList view</div><div class="line"> * 任何期望一個list用於範圍操作的操作通過一個子list視圖帶起整個list</div><div class="line"> * instead of a whole list.  For example, the following idiom</div><div class="line"> *                           例如，從list中移除一個範圍的元素</div><div class="line"> * removes a range of elements from a list:</div><div class="line"> * 之後通常的做法:</div><div class="line"> * &lt;pre&gt;</div><div class="line"> *      list.subList(from, to).clear();</div><div class="line"> * &lt;/pre&gt;</div><div class="line"> * Similar idioms may be constructed for &#123;@link #indexOf(Object)&#125; and</div><div class="line"> * 類似的做法能構造indexOf,lastIndexOf方法，</div><div class="line"> * &#123;@link #lastIndexOf(Object)&#125;, and all of the algorithms in the</div><div class="line"> * 並且所有的算法在Collections類中的都可以應用於子list.</div><div class="line"> * &#123;@link Collections&#125; class can be applied to a subList.</div><div class="line"> *</div><div class="line"> * &lt;p&gt;The semantics of the list returned by this method become undefined if</div><div class="line"> * 有這個方法返回的list的語意成為未定義的，</div><div class="line"> * the backing list (i.e., this list) is &lt;i&gt;structurally modified&lt;/i&gt; in</div><div class="line"> * 如果基於list的結構化的改變通過任何方式</div><div class="line"> * any way other than via the returned list.  (Structural modifications are</div><div class="line"> *                    通過返回的list</div><div class="line"> * those that change the size of this list, or otherwise perturb it in such</div><div class="line"> * (結構化改變指的是那些改變list大小，或者除此之外的麻煩的，在迭代過程中正確結果產出的方法)</div><div class="line"> * a fashion that iterations in progress may yield incorrect results.)</div><div class="line"> *</div><div class="line"> * @throws IndexOutOfBoundsException &#123;@inheritDoc&#125;</div><div class="line"> * @throws IllegalArgumentException &#123;@inheritDoc&#125;</div><div class="line"> */</div><div class="line">public List&lt;E&gt; subList(int fromIndex, int toIndex) &#123;</div><div class="line">    subListRangeCheck(fromIndex, toIndex, size);</div><div class="line">    return new SubList(this, 0, fromIndex, toIndex);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>各位看官，打個賞唄~⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾*~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Z_Z.W Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Post author:</strong>
+      Z_Z.W
+    </li>
+     <li class="post-copyright-author">
+        <strong>Post created:</strong>
+        09:24 Dec 09 2015
+      </li>
+     <li class="post-copyright-author">
+        <strong>Post modified:</strong>
+        22:18 Jul 26 2017
+      </li>
+    <li class="post-copyright-link">
+      <strong>Post link:</strong>
+      <a href="https://myhongkongzhen.github.io/archives/技術/2015/12/09/Collections-ArrayList.html" title="Collections -- ArrayList -- (八)">https://myhongkongzhen.github.io/archives/技術/2015/12/09/Collections-ArrayList.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright Notice: </strong>
+      All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
+          
+            <a href="/tags/JDK1-7/" rel="tag"># JDK1.7</a>
+          
+        </div>
+      
+
+      
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/技術/2015/12/07/Collections-AbstractList.html" rel="next" title="Collections -- AbstractList -- (七)">
+                <i class="fa fa-chevron-left"></i> Collections -- AbstractList -- (七)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/技術/2015/12/10/Collections-AbstractSequentialList.html" rel="prev" title="Collections -- AbstractSequentialList -- (九)">
+                Collections -- AbstractSequentialList -- (九) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="fb-comments"
+           data-href="https://myhongkongzhen.github.io/archives/技術/2015/12/09/Collections-ArrayList.html"
+           data-numposts="10"
+           data-width="100%"
+           data-colorscheme="light">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon-20151123105940450.ico"
+               alt="Z_Z.W" />
+          <p class="site-author-name" itemprop="name">Z_Z.W</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/myhongkongzhen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/myhongkongzhen" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/#!/Z_ZW" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/myhongkongzhen" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList-List接口具體類"><span class="nav-number">1.</span> <span class="nav-text">ArrayList List接口具體類</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遺留問題"><span class="nav-number">2.</span> <span class="nav-text">遺留問題</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z_Z.W</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://myhongkongzhen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://myhongkongzhen.github.io/archives/技術/2015/12/09/Collections-ArrayList.html';
+          this.page.identifier = 'archives/技術/2015/12/09/Collections-ArrayList.html';
+          this.page.title = 'Collections -- ArrayList -- (八)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://myhongkongzhen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>

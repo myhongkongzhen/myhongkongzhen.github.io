@@ -1,0 +1,1187 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Elasticsearch," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="あなたがいる 、それだけでも" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon-20151123105940450.ico?v=5.1.1" />
+
+
+
+
+  <meta property="fb:admins" content="myhongkongzhen" />
+  <meta property="fb:app_id" content="" />
+
+
+
+<meta name="description" content="Basic Search Query string search Query DSL Query filter Full-test search Phrase search Highlight search   Advance Search Group by Avg Sort">
+<meta name="keywords" content="Elasticsearch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELK_Kinds of search type_003">
+<meta property="og:url" content="https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html">
+<meta property="og:site_name" content="あなたがいる 、それだけでも">
+<meta property="og:description" content="Basic Search Query string search Query DSL Query filter Full-test search Phrase search Highlight search   Advance Search Group by Avg Sort">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/018_groovy_02.png">
+<meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/018_groovy_01.png">
+<meta property="og:updated_time" content="2017-07-31T08:10:46.746Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ELK_Kinds of search type_003">
+<meta name="twitter:description" content="Basic Search Query string search Query DSL Query filter Full-test search Phrase search Highlight search   Advance Search Group by Avg Sort">
+<meta name="twitter:image" content="https://myhongkongzhen.github.io/images/elasticsearch/018_groovy_02.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":true,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html"/>
+
+
+
+
+
+  <title> ELK_Kinds of search type_003 | あなたがいる 、それだけでも </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-70751910-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a53f74323c99608e344f6cc77c434d62";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">あなたがいる 、それだけでも</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Z_Z.W</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Z_Z.W">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/favicon-20151123105940450.ico">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="あなたがいる 、それだけでも">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                ELK_Kinds of search type_003
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-29T21:25:15+08:00">
+                2017-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technology/" itemprop="url" rel="index">
+                    <span itemprop="name">technology</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/archives/technology/2017/07/29/Kinds-of-search-type.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count fb-comments-count" data-href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html" itemprop="commentCount">0</span> comments
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  1,011
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li>Basic Search<ul>
+<li>Query string search</li>
+<li>Query DSL</li>
+<li>Query filter</li>
+<li>Full-test search</li>
+<li>Phrase search</li>
+<li>Highlight search</li>
+</ul>
+</li>
+<li>Advance Search<ul>
+<li>Group by</li>
+<li>Avg</li>
+<li>Sort</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h1 id="Query-string-search"><a href="#Query-string-search" class="headerlink" title="Query string search"></a>Query string search</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /index/<span class="built_in">type</span>/_search <span class="comment"># all result</span></div></pre></td></tr></table></figure>
+<h2 id="Case-one"><a href="#Case-one" class="headerlink" title="Case one"></a>Case one</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search <span class="comment"># all result</span></div><div class="line">------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 7,   // used time(ms)</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>, // <span class="keyword">if</span> it is check out</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,  // 5 shard</div><div class="line">    <span class="string">"successful"</span>: 5, // all request hits all primary shard &amp; replica shard</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 3, // result</div><div class="line">    <span class="string">"max_score"</span>: 1, // The meaning of the score is the match of a search <span class="keyword">for</span> a search score, the more relevant, the more match, the score is also high</div><div class="line">    <span class="string">"hits"</span>: [ // the details of result documents</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="string">"_score"</span>: 1,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiajieshi yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"youxiao fangzhu"</span>,</div><div class="line">          <span class="string">"price"</span>: 25,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"jiajieshi producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="string">"_score"</span>: 1,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"gaoxiao meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 30,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"gaolujie producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span>,</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"3"</span>,</div><div class="line">        <span class="string">"_score"</span>: 1,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"zhonghua yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"caoben zhiwu"</span>,</div><div class="line">          <span class="string">"price"</span>: 40,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"zhonghua producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"qingxin"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Case-two"><a href="#Case-two" class="headerlink" title="Case two"></a>Case two</h2><ul>
+<li>paramter comes from http request.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search?q=name:yagao&amp;sort=price:asc</div><div class="line">----------------------------------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 20,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,</div><div class="line">    <span class="string">"successful"</span>: 5,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 3,</div><div class="line">    <span class="string">"max_score"</span>: null,</div><div class="line">    <span class="string">"hits"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="string">"_score"</span>: null,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiajieshi yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"youxiao fangzhu"</span>,</div><div class="line">          <span class="string">"price"</span>: 25,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"jiajieshi producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"sort"</span>: [</div><div class="line">          25</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="string">"_score"</span>: null,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"gaoxiao meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 30,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"gaolujie producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span>,</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"sort"</span>: [</div><div class="line">          30</div><div class="line">        ]</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"3"</span>,</div><div class="line">        <span class="string">"_score"</span>: null,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"zhonghua yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"caoben zhiwu"</span>,</div><div class="line">          <span class="string">"price"</span>: 40,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"zhonghua producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"qingxin"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"sort"</span>: [</div><div class="line">          40</div><div class="line">        ]</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Query-DSL"><a href="#Query-DSL" class="headerlink" title="Query DSL"></a>Query DSL</h1><hr>
+<blockquote>
+<p>Query Domain Specified Language<br>Http request body: using JSON data structure</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">   <span class="string">"query"</span> : &#123; <span class="string">"match_all"</span> : &#123;&#125; &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match"</span> : &#123; <span class="string">"name"</span> : <span class="string">"yagao"</span> &#125; &#125;,</div><div class="line">    <span class="string">"sort"</span> : [ &#123; <span class="string">"price"</span>  : <span class="string">"desc"</span> &#125; ]</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match_all"</span> : &#123;&#125; &#125;,</div><div class="line">    <span class="string">"from"</span> : 1, // from 0 to total</div><div class="line">    <span class="string">"size"</span> : 2  // query result total</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">   <span class="string">"query"</span> : &#123; <span class="string">"match_all"</span> : &#123;&#125; &#125;,</div><div class="line">   <span class="string">"_source"</span> : [ <span class="string">"name"</span> , <span class="string">"price"</span> ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Query-filter"><a href="#Query-filter" class="headerlink" title="Query filter"></a>Query filter</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123;</div><div class="line">        <span class="string">"bool"</span> : &#123; // include multiple query conditions</div><div class="line">            <span class="string">"must"</span> : &#123; <span class="string">"match"</span> : &#123; <span class="string">"name"</span> : <span class="string">"yagao"</span> &#125; &#125;,</div><div class="line">            <span class="string">"filter"</span> : &#123; <span class="string">"range"</span> : &#123; <span class="string">"price"</span> : &#123; <span class="string">"gt"</span> : 25 &#125; &#125; &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Full-text-search"><a href="#Full-text-search" class="headerlink" title="Full-text search"></a><em>Full-text search</em></h1><hr>
+<blockquote>
+<p>Producer this field, which will be demolished to build an inverted index</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>item</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>special</td>
+<td>4</td>
+</tr>
+<tr>
+<td>yagao</td>
+<td>4</td>
+</tr>
+<tr>
+<td>producer</td>
+<td>1,2,3,4</td>
+</tr>
+<tr>
+<td>gaolujie</td>
+<td>1</td>
+</tr>
+<tr>
+<td>zhognhua</td>
+<td>3</td>
+</tr>
+<tr>
+<td>jiajieshi</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match"</span> : &#123; <span class="string">"producer"</span> : <span class="string">"yagao producer"</span> &#125; &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 10,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,</div><div class="line">    <span class="string">"successful"</span>: 5,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 4,</div><div class="line">    <span class="string">"max_score"</span>: 0.70293105, // &lt;1&gt;</div><div class="line">    <span class="string">"hits"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"4"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.70293105, // &lt;2&gt;</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"special yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"special meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 50,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"special yagao producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.25811607, // &lt;3&gt;</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"gaoxiao meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 30,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"gaolujie producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span>,</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"3"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.25811607, // &lt;4&gt;</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"zhonghua yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"caoben zhiwu"</span>,</div><div class="line">          <span class="string">"price"</span>: 40,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"zhonghua producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"qingxin"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.1805489, // &lt;5&gt;</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiajieshi yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"youxiao fangzhu"</span>,</div><div class="line">          <span class="string">"price"</span>: 25,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"jiajieshi producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Partial-update"><a href="#Partial-update" class="headerlink" title="Partial update"></a>Partial update</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">POST /index/<span class="built_in">type</span>/id/_update</div><div class="line">&#123;</div><div class="line">    <span class="string">"doc"</span> : &#123;</div><div class="line">        <span class="string">"update_field"</span> : <span class="string">"update field content"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Partial-update-base-on-groovy-script"><a href="#Partial-update-base-on-groovy-script" class="headerlink" title="Partial update base on groovy script"></a>Partial update base on groovy script</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">POST test_index/test_type/11/_update</div><div class="line">&#123;</div><div class="line">  <span class="string">"script"</span>: <span class="string">"ctx._source.num += 1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>To add file test-add-tags.groovy is in the ES path/config/script/.</li>
+</ul>
+<p><img src="/images/elasticsearch/018_groovy_02.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">POST /test_index/test_type/11/_update</div><div class="line">&#123;</div><div class="line">  <span class="string">"script"</span>: &#123;</div><div class="line">    <span class="string">"lang"</span>: <span class="string">"groovy"</span>, </div><div class="line">    <span class="string">"file"</span>: <span class="string">"test-add-tags"</span>,</div><div class="line">    <span class="string">"params"</span>: &#123;</div><div class="line">      <span class="string">"new_tags"</span>: <span class="string">"tag1"</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">-------------------------------------------</div><div class="line"></div><div class="line">1.ctx._source.tags += new_tags</div><div class="line">2.ctx.op = ctx._source.num == count ? <span class="string">'delete'</span> : <span class="string">'none'</span></div></pre></td></tr></table></figure></p>
+<p><img src="/images/elasticsearch/018_groovy_01.png"></p>
+<ul>
+<li>If document is not exist, then execute to upsert initial operating</li>
+<li>If document is exist, then execute to groovy script operating.</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">POST /test_index/test_type/11/_update</div><div class="line">&#123;</div><div class="line">   <span class="string">"script"</span> : <span class="string">"ctx._source.num+=1"</span>,</div><div class="line">   <span class="string">"upsert"</span>: &#123;</div><div class="line">       <span class="string">"num"</span>: 0,</div><div class="line">       <span class="string">"tags"</span>: []</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Phrase-search-短语搜索"><a href="#Phrase-search-短语搜索" class="headerlink" title="Phrase search (短语搜索)"></a>Phrase search (<em>短语搜索</em>)</h1><hr>
+<blockquote>
+<p>To input the query key, which will be demolished to build an inverted index</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match_phrase"</span> : &#123; <span class="string">"producer"</span> : <span class="string">"yagao producer"</span> &#125; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Highlight-search"><a href="#Highlight-search" class="headerlink" title="Highlight search"></a>Highlight search</h1><hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"query"</span> : &#123; <span class="string">"match"</span> : &#123; <span class="string">"producer"</span> : <span class="string">"producer"</span> &#125; &#125;,</div><div class="line">    <span class="string">"highlight"</span>: &#123; <span class="string">"fields"</span> : &#123; <span class="string">"producer"</span> : &#123;&#125; &#125; &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 41,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,</div><div class="line">    <span class="string">"successful"</span>: 5,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 4,</div><div class="line">    <span class="string">"max_score"</span>: 0.25811607,</div><div class="line">    <span class="string">"hits"</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.25811607,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiaqiangban gaolujie yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"gaoxiao meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 30,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"gaolujie producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span>,</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"highlight"</span>: &#123;</div><div class="line">          <span class="string">"producer"</span>: [</div><div class="line">            <span class="string">"gaolujie &lt;em&gt;producer&lt;/em&gt;"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"3"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.25811607,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"zhonghua yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"caoben zhiwu"</span>,</div><div class="line">          <span class="string">"price"</span>: 40,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"zhonghua producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"qingxin"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"highlight"</span>: &#123;</div><div class="line">          <span class="string">"producer"</span>: [</div><div class="line">            <span class="string">"zhonghua &lt;em&gt;producer&lt;/em&gt;"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.1805489,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"jiajieshi yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"youxiao fangzhu"</span>,</div><div class="line">          <span class="string">"price"</span>: 25,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"jiajieshi producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"fangzhu"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"highlight"</span>: &#123;</div><div class="line">          <span class="string">"producer"</span>: [</div><div class="line">            <span class="string">"jiajieshi &lt;em&gt;producer&lt;/em&gt;"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"4"</span>,</div><div class="line">        <span class="string">"_score"</span>: 0.14638957,</div><div class="line">        <span class="string">"_source"</span>: &#123;</div><div class="line">          <span class="string">"name"</span>: <span class="string">"special yagao"</span>,</div><div class="line">          <span class="string">"desc"</span>: <span class="string">"special meibai"</span>,</div><div class="line">          <span class="string">"price"</span>: 50,</div><div class="line">          <span class="string">"producer"</span>: <span class="string">"special yagao producer"</span>,</div><div class="line">          <span class="string">"tags"</span>: [</div><div class="line">            <span class="string">"meibai"</span></div><div class="line">          ]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"highlight"</span>: &#123;</div><div class="line">          <span class="string">"producer"</span>: [</div><div class="line">            <span class="string">"special yagao &lt;em&gt;producer&lt;/em&gt;"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Aggs"><a href="#Aggs" class="headerlink" title="Aggs"></a>Aggs</h1><hr>
+<h2 id="Case-1"><a href="#Case-1" class="headerlink" title="Case 1."></a>Case 1.</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"size"</span> : 0,</div><div class="line">    <span class="string">"aggs"</span> : &#123;</div><div class="line">        <span class="string">"group_by_tags"</span> : &#123; <span class="string">"terms"</span> : &#123; <span class="string">"field"</span> : <span class="string">"tags"</span> &#125; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">...</div><div class="line"><span class="string">"buckets"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"fangzhu"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 2</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"meibai"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 2</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"qingxin"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 1</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Case-2"><a href="#Case-2" class="headerlink" title="Case 2."></a>Case 2.</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"size"</span> : 0,</div><div class="line">    <span class="string">"aggs"</span> : &#123;</div><div class="line">        <span class="string">"group_by_tags"</span> : &#123;</div><div class="line">            <span class="string">"terms"</span> : &#123; <span class="string">"field"</span> : <span class="string">"tags"</span> , <span class="string">"order"</span> : &#123; <span class="string">"avg_price"</span> : <span class="string">"desc"</span> &#125; &#125;,</div><div class="line">            <span class="string">"aggs"</span> : &#123; <span class="string">"avg_price"</span> : &#123; <span class="string">"avg"</span> : &#123; <span class="string">"field"</span> : <span class="string">"price"</span> &#125; &#125; &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">...</div><div class="line"><span class="string">"buckets"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"fangzhu"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 2,</div><div class="line">          <span class="string">"avg_price"</span>: &#123;</div><div class="line">            <span class="string">"value"</span>: 27.5</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"meibai"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 2,</div><div class="line">          <span class="string">"avg_price"</span>: &#123;</div><div class="line">            <span class="string">"value"</span>: 40</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"qingxin"</span>,</div><div class="line">          <span class="string">"doc_count"</span>: 1,</div><div class="line">          <span class="string">"avg_price"</span>: &#123;</div><div class="line">            <span class="string">"value"</span>: 40</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Case-3"><a href="#Case-3" class="headerlink" title="Case 3."></a>Case 3.</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div></pre></td><td class="code"><pre><div class="line">GET /ecommerce/product/_search</div><div class="line">&#123;</div><div class="line">    <span class="string">"size"</span> : 0,</div><div class="line">    <span class="string">"aggs"</span> : &#123;</div><div class="line">        <span class="string">"group_by_price"</span> : &#123;</div><div class="line">            <span class="string">"range"</span> : &#123;</div><div class="line">                <span class="string">"field"</span> : <span class="string">"price"</span>,</div><div class="line">                <span class="string">"ranges"</span> : [</div><div class="line">                    &#123; <span class="string">"from"</span> : 0, <span class="string">"to"</span> : 20 &#125;,</div><div class="line">                    &#123; <span class="string">"from"</span> : 20, <span class="string">"to"</span> : 40 &#125;,</div><div class="line">                    &#123; <span class="string">"from"</span> : 40, <span class="string">"to"</span> : 60 &#125;</div><div class="line">                ]</div><div class="line">            &#125;,</div><div class="line">            <span class="string">"aggs"</span> : &#123;</div><div class="line">                <span class="string">"group_by_tags"</span> : &#123;</div><div class="line">                    <span class="string">"terms"</span> : &#123; <span class="string">"field"</span> : <span class="string">"tags"</span> &#125;,</div><div class="line">                    <span class="string">"aggs"</span> : &#123;</div><div class="line">                        <span class="string">"avg_price"</span> : &#123; <span class="string">"avg"</span> : &#123; <span class="string">"field"</span> : <span class="string">"price"</span> &#125; &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">--------------------------------------------------------------</div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 8,</div><div class="line">  <span class="string">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">"_shards"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 5,</div><div class="line">    <span class="string">"successful"</span>: 5,</div><div class="line">    <span class="string">"failed"</span>: 0</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"hits"</span>: &#123;</div><div class="line">    <span class="string">"total"</span>: 4,</div><div class="line">    <span class="string">"max_score"</span>: 0,</div><div class="line">    <span class="string">"hits"</span>: []</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"aggregations"</span>: &#123;</div><div class="line">    <span class="string">"group_by_price"</span>: &#123;</div><div class="line">      <span class="string">"buckets"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"0.0-20.0"</span>,</div><div class="line">          <span class="string">"from"</span>: 0,</div><div class="line">          <span class="string">"to"</span>: 20,</div><div class="line">          <span class="string">"doc_count"</span>: 0,</div><div class="line">          <span class="string">"group_by_tags"</span>: &#123;</div><div class="line">            <span class="string">"doc_count_error_upper_bound"</span>: 0,</div><div class="line">            <span class="string">"sum_other_doc_count"</span>: 0,</div><div class="line">            <span class="string">"buckets"</span>: []</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"20.0-40.0"</span>,</div><div class="line">          <span class="string">"from"</span>: 20,</div><div class="line">          <span class="string">"to"</span>: 40,</div><div class="line">          <span class="string">"doc_count"</span>: 2,</div><div class="line">          <span class="string">"group_by_tags"</span>: &#123;</div><div class="line">            <span class="string">"doc_count_error_upper_bound"</span>: 0,</div><div class="line">            <span class="string">"sum_other_doc_count"</span>: 0,</div><div class="line">            <span class="string">"buckets"</span>: [</div><div class="line">              &#123;</div><div class="line">                <span class="string">"key"</span>: <span class="string">"fangzhu"</span>,</div><div class="line">                <span class="string">"doc_count"</span>: 2,</div><div class="line">                <span class="string">"avg_price"</span>: &#123;</div><div class="line">                  <span class="string">"value"</span>: 27.5</div><div class="line">                &#125;</div><div class="line">              &#125;,</div><div class="line">              &#123;</div><div class="line">                <span class="string">"key"</span>: <span class="string">"meibai"</span>,</div><div class="line">                <span class="string">"doc_count"</span>: 1,</div><div class="line">                <span class="string">"avg_price"</span>: &#123;</div><div class="line">                  <span class="string">"value"</span>: 30</div><div class="line">                &#125;</div><div class="line">              &#125;</div><div class="line">            ]</div><div class="line">          &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="string">"key"</span>: <span class="string">"40.0-60.0"</span>,</div><div class="line">          <span class="string">"from"</span>: 40,</div><div class="line">          <span class="string">"to"</span>: 60,</div><div class="line">          <span class="string">"doc_count"</span>: 2,</div><div class="line">          <span class="string">"group_by_tags"</span>: &#123;</div><div class="line">            <span class="string">"doc_count_error_upper_bound"</span>: 0,</div><div class="line">            <span class="string">"sum_other_doc_count"</span>: 0,</div><div class="line">            <span class="string">"buckets"</span>: [</div><div class="line">              &#123;</div><div class="line">                <span class="string">"key"</span>: <span class="string">"meibai"</span>,</div><div class="line">                <span class="string">"doc_count"</span>: 1,</div><div class="line">                <span class="string">"avg_price"</span>: &#123;</div><div class="line">                  <span class="string">"value"</span>: 50</div><div class="line">                &#125;</div><div class="line">              &#125;,</div><div class="line">              &#123;</div><div class="line">                <span class="string">"key"</span>: <span class="string">"qingxin"</span>,</div><div class="line">                <span class="string">"doc_count"</span>: 1,</div><div class="line">                <span class="string">"avg_price"</span>: &#123;</div><div class="line">                  <span class="string">"value"</span>: 40</div><div class="line">                &#125;</div><div class="line">              &#125;</div><div class="line">            ]</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>各位看官，打個賞唄~⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾*~</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="Z_Z.W Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>Post author:</strong>
+      Z_Z.W
+    </li>
+     <li class="post-copyright-author">
+        <strong>Post created:</strong>
+        21:25 Jul 29 2017
+      </li>
+     <li class="post-copyright-author">
+        <strong>Post modified:</strong>
+        16:10 Jul 31 2017
+      </li>
+    <li class="post-copyright-link">
+      <strong>Post link:</strong>
+      <a href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html" title="ELK_Kinds of search type_003">https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright Notice: </strong>
+      All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+    </li>
+  </ul>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Elasticsearch/" rel="tag"># Elasticsearch</a>
+          
+        </div>
+      
+
+      
+        
+          <div class="social-like">
+            
+
+            
+              <div class="fb_like">
+                <div class="fb-like" data-layout="button_count" data-share="true"></div>
+              </div>
+            
+          </div>
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/archives/technology/2017/07/29/install-startup-Elasticsearch.html" rel="next" title="ELK_install & startup Elasticsearch & 'CRUD'_002">
+                <i class="fa fa-chevron-left"></i> ELK_install & startup Elasticsearch & 'CRUD'_002
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/technology/2017/07/29/ELK-Elasticsearch-core-structure-004.html" rel="prev" title="ELK_Elasticsearch core structure_004">
+                ELK_Elasticsearch core structure_004 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="fb-comments"
+           data-href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html"
+           data-numposts="10"
+           data-width="100%"
+           data-colorscheme="light">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon-20151123105940450.ico"
+               alt="Z_Z.W" />
+          <p class="site-author-name" itemprop="name">Z_Z.W</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/myhongkongzhen" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/myhongkongzhen" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/#!/Z_ZW" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/myhongkongzhen" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Query-string-search"><span class="nav-number">1.</span> <span class="nav-text">Query string search</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-one"><span class="nav-number">1.1.</span> <span class="nav-text">Case one</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-two"><span class="nav-number">1.2.</span> <span class="nav-text">Case two</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Query-DSL"><span class="nav-number">2.</span> <span class="nav-text">Query DSL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Query-filter"><span class="nav-number">3.</span> <span class="nav-text">Query filter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Full-text-search"><span class="nav-number">4.</span> <span class="nav-text">Full-text search</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Partial-update"><span class="nav-number">5.</span> <span class="nav-text">Partial update</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Partial-update-base-on-groovy-script"><span class="nav-number">6.</span> <span class="nav-text">Partial update base on groovy script</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Phrase-search-短语搜索"><span class="nav-number">7.</span> <span class="nav-text">Phrase search (短语搜索)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Highlight-search"><span class="nav-number">8.</span> <span class="nav-text">Highlight search</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Aggs"><span class="nav-number">9.</span> <span class="nav-text">Aggs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-1"><span class="nav-number">9.1.</span> <span class="nav-text">Case 1.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-2"><span class="nav-number">9.2.</span> <span class="nav-text">Case 2.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-3"><span class="nav-number">9.3.</span> <span class="nav-text">Case 3.</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z_Z.W</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://myhongkongzhen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html';
+          this.page.identifier = 'archives/technology/2017/07/29/Kinds-of-search-type.html';
+          this.page.title = 'ELK_Kinds of search type_003';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://myhongkongzhen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+</body>
+</html>
