@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[using hexo to create github blog]]></title>
+    <title><![CDATA[Using hexo to create github blog]]></title>
     <url>%2Farchives%2Ftechnology%2F2017%2F08%2F01%2Fusing-hexo-to-create-github-blog.html</url>
     <content type="text"><![CDATA[Using hexo to create github blog Prepare working Git Node.js &amp; npm &amp; hexo Init hexo working space 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647hexo init myhongkongzhen.github.io#001_hexo_init#----------------------------------------------------cd myhongkongzhen.github.iogit initgit add .git ci -m"init hexo blog"#002_git_init#----------------------------------------------------git submodule add https://github.com/myhongkongzhen/hexo-theme-next.git themes/next#003_add_hexo_theme_nextcd themes\nextgit remote -v#004_remote_v_01git remote add upstream https://github.com/iissnan/hexo-theme-next.gitgit remote -v#004_remote_v_02git fetch upstreamgit merge upstream/master#004_remote_v_03.jpg#----------------------------------------------------git taggit co -b mystyle v5.1.1#005_change_release_version_next#----------------------------------------------------cd myhongkongzhen.github.iogit remote add origin https://github.com/myhongkongzhen/hexo_blog_src.gitgit push -u origin master#006_add_remote_githubhexo s -g --debug -p8888#start hexo blog local server#007_start_hexo#----------------------------------------------------npm install hexo-deployer-git --save # deploy to githubnpm install hexo-filter-plantuml --save # plantumlnpm install hexo-generator-feed --save # feednpm install hexo-generator-searchdb --save # local searchnpm i --save hexo-wordcount # wordcount]]></content>
       <categories>
