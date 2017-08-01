@@ -2543,7 +2543,7 @@
 </ul>
 </li>
 <li><p>批處理系統：現代操作系統前身</p>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">jobs1$</span><span class="bash">$$$<span class="variable">$jobs2</span>$$$$$</span></div></pre></td></tr></table></figure>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">jobs1$</span>$$$$jobs2$$$$$</div></pre></td></tr></table></figure>
 </li>
 <li><p>Job：運行的一次完整的計算過程.批處理作業</p>
 </li>
