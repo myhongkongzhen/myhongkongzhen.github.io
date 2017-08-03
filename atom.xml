@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://myhongkongzhen.github.io/"/>
-  <updated>2017-08-01T11:55:19.439Z</updated>
+  <updated>2017-08-03T01:07:19.526Z</updated>
   <id>https://myhongkongzhen.github.io/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ELK_documnet &amp; shard routing principle_009</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/08/02/ELK-documnet-shard-routing-principle-009.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/08/02/ELK-documnet-shard-routing-principle-009.html</id>
+    <published>2017-08-02T15:50:27.000Z</published>
+    <updated>2017-08-03T01:07:19.526Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Document Routing principle </p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Document-Routing"><a href="#Document-Routing" class="headerlink" title="Document Routing"></a>Document Routing</h1><hr>
+<ul>
+<li>When client creates document, ES determines which shard of index the document is in. </li>
+<li>Routing algorithm <ul>
+<li><strong><code>shard = hash ( routing ) % number_of_primary_shards</code></strong><ul>
+<li>routing = routing id , ex : document_id ( default num , <em>you can be manually specified</em>. )</li>
+<li>hash ( routing) = hash ( document_id ) : hash code</li>
+<li>mod ( num of primary shards ) -&gt; result is always from <strong>zero</strong> to [ <strong>number_of_primary_shards - 1</strong> ]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><em>Continue</em></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Document Routing principle &lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
   
   <entry>
     <title>Using hexo to create github blog</title>
@@ -94,10 +138,18 @@
     <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/31/ELK-Stage-review-008.html"/>
     <id>https://myhongkongzhen.github.io/archives/technology/2017/07/31/ELK-Stage-review-008.html</id>
     <published>2017-07-31T09:26:42.000Z</published>
-    <updated>2017-08-01T06:42:24.622Z</updated>
+    <updated>2017-08-02T15:39:27.998Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>Stage review</p>
+<p>Stage review  </p>
+<ul>
+<li><em>Distributed Document Store</em></li>
+<li><strong>文檔數據存儲系統</strong></li>
+<li>操作JSON文檔類型數據<ul>
+<li>NOSQL存儲系統</li>
+</ul>
+</li>
+</ul>
 </blockquote>
 <a id="more"></a>
 <h1 id="Elasticsearch-core-structure"><a href="#Elasticsearch-core-structure" class="headerlink" title="Elasticsearch core structure"></a>Elasticsearch core structure</h1><hr>
@@ -107,7 +159,15 @@
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;Stage review&lt;/p&gt;
+&lt;p&gt;Stage review  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Distributed Document Store&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;文檔數據存儲系統&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;操作JSON文檔類型數據&lt;ul&gt;
+&lt;li&gt;NOSQL存儲系統&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/blockquote&gt;
     
     </summary>
@@ -124,13 +184,13 @@
     <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-batch-search-007.html"/>
     <id>https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-batch-search-007.html</id>
     <published>2017-07-30T14:23:16.000Z</published>
-    <updated>2017-07-31T09:28:24.146Z</updated>
+    <updated>2017-08-02T15:26:26.278Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <ul>
 <li>Batch query<ul>
 <li>mget</li>
-<li></li>
+<li>bulk </li>
 </ul>
 </li>
 </ul>
@@ -140,6 +200,19 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">GET /_mget  <span class="comment"># different index &amp; type</span></div><div class="line">&#123;</div><div class="line">    <span class="string">"docs"</span> : [</div><div class="line">        &#123;</div><div class="line">            <span class="string">"_index"</span> : <span class="string">"test_index"</span>,</div><div class="line">            <span class="string">"_type"</span> : <span class="string">"test_type"</span>,</div><div class="line">            <span class="string">"_id"</span> : <span class="string">"1"</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="string">"_index"</span> : <span class="string">"test_index"</span>,</div><div class="line">            <span class="string">"_type"</span> : <span class="string">"test_type"</span>,</div><div class="line">            <span class="string">"_id"</span> : <span class="string">"2"</span></div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><img src="/images/elasticsearch/019_mget_search.png"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">GET /test_index/_mget <span class="comment"># the same index and different type</span></div><div class="line">&#123;</div><div class="line">    <span class="string">"docs"</span> : [</div><div class="line">          &#123;</div><div class="line">             <span class="string">"_type"</span> :  <span class="string">"test_type"</span>,</div><div class="line">             <span class="string">"_id"</span> :    1</div><div class="line">          &#125;,</div><div class="line">          &#123;</div><div class="line">             <span class="string">"_type"</span> :  <span class="string">"test_type"</span>,</div><div class="line">             <span class="string">"_id"</span> :    2</div><div class="line">          &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GET /test_index/test_type/_mget <span class="comment"># the same index &amp; type</span></div><div class="line">&#123;</div><div class="line">   <span class="string">"ids"</span>: [1, 2]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="bulk"><a href="#bulk" class="headerlink" title="_bulk"></a>_bulk</h1><hr>
+<h2 id="grammar"><a href="#grammar" class="headerlink" title="grammar"></a>grammar</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">POST /_bulk</div><div class="line">&#123;</div><div class="line">    &#123;<span class="string">"action"</span>: &#123;<span class="string">"metadata"</span>&#125;&#125;</div><div class="line">    &#123;<span class="string">"data"</span>&#125;</div><div class="line">&#125;</div><div class="line">POST /test_index/_bulk</div><div class="line">POST /test_index/test_type/_bulk</div></pre></td></tr></table></figure>
+<h2 id="operating-types"><a href="#operating-types" class="headerlink" title="operating types"></a>operating types</h2><ul>
+<li>delete : delete document</li>
+<li>create : PUT /index/type/id/_create</li>
+<li>index : PUT /index/type/id, create document or full replace document</li>
+<li>update : partial update</li>
+</ul>
+<h2 id="show-case"><a href="#show-case" class="headerlink" title="show case"></a>show case</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div></pre></td><td class="code"><pre><div class="line">POST /_bulk</div><div class="line">&#123; <span class="string">"delete"</span> : &#123; <span class="string">"_index"</span> : <span class="string">"test_index"</span>, <span class="string">"_type"</span> : <span class="string">"test_type"</span>, <span class="string">"_id"</span> : 11 &#125; &#125;</div><div class="line">&#123; <span class="string">"create"</span> : &#123; <span class="string">"_index"</span> : <span class="string">"test_index"</span>, <span class="string">"_type"</span> : <span class="string">"test_type"</span>, <span class="string">"_id"</span> : 10 &#125; &#125;</div><div class="line">&#123; <span class="string">"test_field"</span> : <span class="string">"test content 10"</span> &#125;</div><div class="line">&#123; <span class="string">"create"</span> : &#123; <span class="string">"_index"</span> : <span class="string">"test_index"</span>, <span class="string">"_type"</span> : <span class="string">"test_type"</span>, <span class="string">"_id"</span> : 10 &#125; &#125;</div><div class="line">&#123; <span class="string">"test_field"</span> : <span class="string">"test content 10"</span> &#125;</div><div class="line">&#123; <span class="string">"index"</span> : &#123; <span class="string">"_index"</span> : <span class="string">"test_index"</span>, <span class="string">"_type"</span> : <span class="string">"test_type"</span>, <span class="string">"_id"</span> : 9 &#125; &#125;</div><div class="line">&#123; <span class="string">"test_field"</span> : <span class="string">"test content 9"</span> &#125;</div><div class="line">&#123; <span class="string">"index"</span> : &#123; <span class="string">"_index"</span> : <span class="string">"test_index"</span>, <span class="string">"_type"</span> : <span class="string">"test_type"</span>, <span class="string">"_id"</span> : 9 &#125; &#125;</div><div class="line">&#123; <span class="string">"test_field"</span> : <span class="string">"replace test content 9"</span> &#125;</div><div class="line">&#123; <span class="string">"update"</span> : &#123; <span class="string">"_index"</span> : <span class="string">"test_index"</span>, <span class="string">"_type"</span> : <span class="string">"test_type"</span>, <span class="string">"_id"</span> : 10 &#125; &#125;</div><div class="line">&#123; <span class="string">"doc"</span> : &#123; <span class="string">"test_field"</span> : <span class="string">"update test content 10"</span> &#125;&#125; </div><div class="line"></div><div class="line"><span class="comment">#===============================================================================</span></div><div class="line"></div><div class="line">&#123;</div><div class="line">  <span class="string">"took"</span>: 33,</div><div class="line">  <span class="string">"errors"</span>: <span class="literal">true</span>,</div><div class="line">  <span class="string">"items"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="string">"delete"</span>: &#123;</div><div class="line">        <span class="string">"found"</span>: <span class="literal">false</span>,</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"test_index"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"test_type"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"11"</span>,</div><div class="line">        <span class="string">"_version"</span>: 12,</div><div class="line">        <span class="string">"result"</span>: <span class="string">"not_found"</span>,</div><div class="line">        <span class="string">"_shards"</span>: &#123;</div><div class="line">          <span class="string">"total"</span>: 2,</div><div class="line">          <span class="string">"successful"</span>: 1,</div><div class="line">          <span class="string">"failed"</span>: 0</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"status"</span>: 404</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      <span class="string">"create"</span>: &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"test_index"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"test_type"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"10"</span>,</div><div class="line">        <span class="string">"status"</span>: 409,</div><div class="line">        <span class="string">"error"</span>: &#123;</div><div class="line">          <span class="string">"type"</span>: <span class="string">"version_conflict_engine_exception"</span>,</div><div class="line">          <span class="string">"reason"</span>: <span class="string">"[test_type][10]: version conflict, document already exists (current version [2])"</span>,</div><div class="line">          <span class="string">"index_uuid"</span>: <span class="string">"220l9S2uSjWUK-G_iIGnBw"</span>,</div><div class="line">          <span class="string">"shard"</span>: <span class="string">"1"</span>,</div><div class="line">          <span class="string">"index"</span>: <span class="string">"test_index"</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      <span class="string">"create"</span>: &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"test_index"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"test_type"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"10"</span>,</div><div class="line">        <span class="string">"status"</span>: 409,</div><div class="line">        <span class="string">"error"</span>: &#123;</div><div class="line">          <span class="string">"type"</span>: <span class="string">"version_conflict_engine_exception"</span>,</div><div class="line">          <span class="string">"reason"</span>: <span class="string">"[test_type][10]: version conflict, document already exists (current version [2])"</span>,</div><div class="line">          <span class="string">"index_uuid"</span>: <span class="string">"220l9S2uSjWUK-G_iIGnBw"</span>,</div><div class="line">          <span class="string">"shard"</span>: <span class="string">"1"</span>,</div><div class="line">          <span class="string">"index"</span>: <span class="string">"test_index"</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      <span class="string">"index"</span>: &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"test_index"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"test_type"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"9"</span>,</div><div class="line">        <span class="string">"_version"</span>: 5,</div><div class="line">        <span class="string">"result"</span>: <span class="string">"updated"</span>,</div><div class="line">        <span class="string">"_shards"</span>: &#123;</div><div class="line">          <span class="string">"total"</span>: 2,</div><div class="line">          <span class="string">"successful"</span>: 1,</div><div class="line">          <span class="string">"failed"</span>: 0</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"created"</span>: <span class="literal">false</span>,</div><div class="line">        <span class="string">"status"</span>: 200</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      <span class="string">"index"</span>: &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"test_index"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"test_type"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"9"</span>,</div><div class="line">        <span class="string">"_version"</span>: 6,</div><div class="line">        <span class="string">"result"</span>: <span class="string">"updated"</span>,</div><div class="line">        <span class="string">"_shards"</span>: &#123;</div><div class="line">          <span class="string">"total"</span>: 2,</div><div class="line">          <span class="string">"successful"</span>: 1,</div><div class="line">          <span class="string">"failed"</span>: 0</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"created"</span>: <span class="literal">false</span>,</div><div class="line">        <span class="string">"status"</span>: 200</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      <span class="string">"update"</span>: &#123;</div><div class="line">        <span class="string">"_index"</span>: <span class="string">"test_index"</span>,</div><div class="line">        <span class="string">"_type"</span>: <span class="string">"test_type"</span>,</div><div class="line">        <span class="string">"_id"</span>: <span class="string">"10"</span>,</div><div class="line">        <span class="string">"_version"</span>: 2,</div><div class="line">        <span class="string">"result"</span>: <span class="string">"noop"</span>,</div><div class="line">        <span class="string">"_shards"</span>: &#123;</div><div class="line">          <span class="string">"total"</span>: 2,</div><div class="line">          <span class="string">"successful"</span>: 1,</div><div class="line">          <span class="string">"failed"</span>: 0</div><div class="line">        &#125;,</div><div class="line">        <span class="string">"status"</span>: 200</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="bulk-size"><a href="#bulk-size" class="headerlink" title="bulk size"></a>bulk size</h2><ul>
+<li><code>1000 ~ 5000</code> </li>
+<li><code>5 ~ 15M</code></li>
+</ul>
 ]]></content>
     
     <summary type="html">
@@ -148,7 +221,7 @@
 &lt;ul&gt;
 &lt;li&gt;Batch query&lt;ul&gt;
 &lt;li&gt;mget&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;bulk &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2701,43 +2774,6 @@
     
     
       <category term="markdown" scheme="https://myhongkongzhen.github.io/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>並發包J.U.C相關--原子類</title>
-    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/04/12/201604121223-%E4%B8%A6%E7%99%BC%E5%8C%85J-U-C%E7%9B%B8%E9%97%9C-%E5%8E%9F%E5%AD%90%E9%A1%9E.html"/>
-    <id>https://myhongkongzhen.github.io/archives/技術/2016/04/12/201604121223-並發包J-U-C相關-原子類.html</id>
-    <published>2016-04-12T04:39:32.000Z</published>
-    <updated>2017-07-26T14:18:44.608Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>最近博客更新的少，不是沒有學習，只是最近都在用手寫筆記，其實自己比起使用電腦等電子產品記錄筆記，還是更加喜歡手寫筆記，一來本身就喜歡寫字，當然字也沒有太好看ww，二來，手寫筆記記憶會比較深刻，三嘛，就是懶了…一懶了，就不願意敲鍵盤了，當然，敲代碼和敲鍵盤打字，可不是同一個概念，所以這裡的懶，就只針對於打字www，不過還是要時常敲敲www<br>java.util.concurrent是基于Queue(AQS)的并发包，而Queue，很多情况下使用到了Atomic操作<br>同時整个J.U.C都是建立在CAS之上的<br>我們可以使用atomic相關類及CAS思想，建立自定義的安全的數據結構</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="ATOMIC相關類："><a href="#ATOMIC相關類：" class="headerlink" title="ATOMIC相關類："></a>ATOMIC相關類：</h3><p><img src="/images/JDK/JUC/juc-atomic.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">基于反射的原子更新字段的值</div><div class="line">AtomicIntegerFieldUpdater&lt;T&gt;</div><div class="line">AtomicLongFieldUpdater&lt;T&gt;</div><div class="line">AtomicReferenceFieldUpdater&lt;T,V&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>指令重排序<br>JVM能够根据处理器的特性（CPU的多级缓存系统、多核处理器等）适当的重新排序机器指令，使机器指令更符合CPU的执行特点，最大限度的发挥机器的性能.</p>
-<p>Happens-before法则<br>如果动作B要看到动作A的执行结果（无论A/B是否在同一个线程里面执行），那么A/B就需要满足happens-before关系.</p>
-<p>CAS 操作<br>乐观锁用到的机制就是CAS，Compare and Swap。</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;最近博客更新的少，不是沒有學習，只是最近都在用手寫筆記，其實自己比起使用電腦等電子產品記錄筆記，還是更加喜歡手寫筆記，一來本身就喜歡寫字，當然字也沒有太好看ww，二來，手寫筆記記憶會比較深刻，三嘛，就是懶了…一懶了，就不願意敲鍵盤了，當然，敲代碼和敲鍵盤打字，可不是同一個概念，所以這裡的懶，就只針對於打字www，不過還是要時常敲敲www&lt;br&gt;java.util.concurrent是基于Queue(AQS)的并发包，而Queue，很多情况下使用到了Atomic操作&lt;br&gt;同時整个J.U.C都是建立在CAS之上的&lt;br&gt;我們可以使用atomic相關類及CAS思想，建立自定義的安全的數據結構&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
-    
-    
-      <category term="JAVA" scheme="https://myhongkongzhen.github.io/tags/JAVA/"/>
-    
-      <category term="JDK1.7" scheme="https://myhongkongzhen.github.io/tags/JDK1-7/"/>
     
   </entry>
   
