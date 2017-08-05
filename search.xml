@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[ELK_documnet consistency & quorum_010]]></title>
+    <url>%2Farchives%2Ftechnology%2F2017%2F08%2F05%2FELK-documnet-consistency-quorum-010.html</url>
+    <content type="text"><![CDATA[document writing consistency quorum Document consistency PUT /index/type/id?consistency=XXX one : primary shard is active all : all primary shard and replic shard are active quorum : default value, most partial shard are active quorum = int ( ( primary + number_of_replicas )/ 2 ) + 1 wait 1min, timeout: 100ms( default ), 30s PUT /index/type/id?timeout=XXX Note: if number of node is less than number of quorum, we cannot do any writing operating. special operating: number_of_replica &gt; 1, quorum is available CONTINUE]]></content>
+      <categories>
+        <category>technology</category>
+      </categories>
+      <tags>
+        <tag>elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[ELK_documnet & shard routing principle_009]]></title>
     <url>%2Farchives%2Ftechnology%2F2017%2F08%2F02%2FELK-documnet-shard-routing-principle-009.html</url>
-    <content type="text"><![CDATA[Document Routing principle Document Routing When client creates document, ES determines which shard of index the document is in. Routing algorithm shard = hash ( routing ) % number_of_primary_shards routing = routing id , ex : document_id ( default num , you can be manually specified. ) hash ( routing) = hash ( document_id ) : hash code mod ( num of primary shards ) -&gt; result is always from zero to [ number_of_primary_shards - 1 ] Continue]]></content>
+    <content type="text"><![CDATA[Document Routing principle Document Routing When client creates document, ES determines which shard of index the document is in. Routing algorithm shard = hash ( routing ) % number_of_primary_shards routing = routing id , ex : document_id ( default num , you can be manually specified. ) hash ( routing) = hash ( document_id ) : hash code mod ( num of primary shards ) -&gt; result is always from zero to [ number_of_primary_shards - 1 ] routing algorithm is base on primary shard. Document ‘CUD’ flow ‘CUD’ operating locate on primary shard.]]></content>
       <categories>
         <category>technology</category>
       </categories>

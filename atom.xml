@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://myhongkongzhen.github.io/"/>
-  <updated>2017-08-03T01:07:19.526Z</updated>
+  <updated>2017-08-05T14:56:43.336Z</updated>
   <id>https://myhongkongzhen.github.io/</id>
   
   <author>
@@ -16,11 +16,70 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ELK_documnet consistency &amp; quorum_010</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/08/05/ELK-documnet-consistency-quorum-010.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/08/05/ELK-documnet-consistency-quorum-010.html</id>
+    <published>2017-08-05T14:22:23.000Z</published>
+    <updated>2017-08-05T14:56:43.336Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>document writing consistency </li>
+<li>quorum</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="Document-consistency"><a href="#Document-consistency" class="headerlink" title="Document consistency"></a><strong>Document consistency</strong></h2><ul>
+<li><strong><em>PUT /index/type/id?consistency=XXX</em></strong><ul>
+<li>one : primary shard is active </li>
+<li>all : all primary shard and replic shard are active </li>
+<li>quorum : default value, most partial shard are active<ul>
+<li><code>quorum = int ( ( primary + number_of_replicas )/ 2 ) + 1</code></li>
+<li>wait 1min, timeout: 100ms( default ), 30s<ul>
+<li><strong><em>PUT /index/type/id?timeout=XXX</em></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li>if number of node is less than number of quorum, we cannot do any writing operating.</li>
+<li>special operating: number_of_replica &gt; 1, quorum is available</li>
+</ul>
+</blockquote>
+<ul>
+<li><em>CONTINUE</em></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;document writing consistency &lt;/li&gt;
+&lt;li&gt;quorum&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="elasticsearch" scheme="https://myhongkongzhen.github.io/tags/elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ELK_documnet &amp; shard routing principle_009</title>
     <link href="https://myhongkongzhen.github.io/archives/technology/2017/08/02/ELK-documnet-shard-routing-principle-009.html"/>
     <id>https://myhongkongzhen.github.io/archives/technology/2017/08/02/ELK-documnet-shard-routing-principle-009.html</id>
     <published>2017-08-02T15:50:27.000Z</published>
-    <updated>2017-08-03T01:07:19.526Z</updated>
+    <updated>2017-08-05T14:21:07.760Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Document Routing principle </p>
@@ -34,13 +93,15 @@
 <li>routing = routing id , ex : document_id ( default num , <em>you can be manually specified</em>. )</li>
 <li>hash ( routing) = hash ( document_id ) : hash code</li>
 <li>mod ( num of primary shards ) -&gt; result is always from <strong>zero</strong> to [ <strong>number_of_primary_shards - 1</strong> ]</li>
+<li>routing algorithm is base on primary shard.</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<h1 id="Document-‘CUD’-flow"><a href="#Document-‘CUD’-flow" class="headerlink" title="Document ‘CUD’ flow"></a>Document ‘CUD’ flow</h1><hr>
 <ul>
-<li><em>Continue</em></li>
+<li>‘CUD’ operating locate on primary shard.<br><img src="http://www.plantuml.com/plantuml/svg/ZPD1JeD058RNp2bUkYy5r4r39YR6hXkwDMccmqkBmWmP1cCrJRo0EzSUm8q7SE5fZ7eBPw3OWgJfXiNC_x_t_JzmNcYcT9cbXEICtx0bWf0npZq8mubY6LBwG9pcAbT9njHwdg-OYZiQHqYDC9Xw0s05v1vnDiJPMHNcQSBPlAYiGPyr2Ygh2gnrqm7oZm3oUu7y6iW_2DIR9QgpAAyFA3W2g3Vcj8wP1mU1UhD4THRbTu1ucg3GBKTjs5vSirjcqEJIN6U9M5PJxA4TijKCXxHfUWpXWePSfbAD5sc9r7Tdc2BNS3chD8HKuyqGJfomIEvn77YKIwdYH31TDmIVJy_VhnzVRuy_xoy4HGpMPFR1toOxfzfebtUhswTG6DF0ZMIf3JresOYXAkjAj9Lmubuej1onv6LcquqW4J7UcIUaaZFxkNVMMOJkHxgFi5I8Wfww4pC84bqquly8jHBEtDbQy9MImlIp8p7mBMUhW-sxgFOgB78f2hIE-ZmSBIWXvwPAyyF-0W00"></li>
 </ul>
 ]]></content>
     
@@ -1162,7 +1223,7 @@
 </li>
 <li><p>用戶相關權限默認值設置</p>
 <ul>
-<li>cd /etc/default | file useradd  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> useradd defaults file</div><div class="line">GROUP=100 # </div><div class="line">HOME=/home</div><div class="line">INACTIVE=-1 # 密碼過期，用戶未禁用之間的期限 </div><div class="line">EXPIRE= # 非活動期限</div><div class="line">SHELL=/bin/bash</div><div class="line">SKEL=/etc/skel</div><div class="line">CREATE_MAIL_SPOOL=yes</div></pre></td></tr></table></figure>
+<li>cd /etc/default | file useradd  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> useradd defaults file</span></div><div class="line">GROUP=100 # </div><div class="line">HOME=/home</div><div class="line">INACTIVE=-1 # 密碼過期，用戶未禁用之間的期限 </div><div class="line">EXPIRE= # 非活動期限</div><div class="line">SHELL=/bin/bash</div><div class="line">SKEL=/etc/skel</div><div class="line">CREATE_MAIL_SPOOL=yes</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -2735,45 +2796,6 @@
     
     
       <category term="LINUX" scheme="https://myhongkongzhen.github.io/tags/LINUX/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Markdown流程圖簡明語法規則</title>
-    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/09/16/201609161830-Markdown%E6%B5%81%E7%A8%8B%E5%9C%96%E7%B0%A1%E6%98%8E%E8%AA%9E%E6%B3%95%E8%A6%8F%E5%89%87.html"/>
-    <id>https://myhongkongzhen.github.io/archives/技術/2016/09/16/201609161830-Markdown流程圖簡明語法規則.html</id>
-    <published>2016-09-16T04:39:32.000Z</published>
-    <updated>2017-07-04T02:08:34.518Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>爲了方便再現編輯MARKDOWN文件，重新學習一下markdown語法知識，基礎的大部分都已掌握，但對於高級用法，比如甘特圖等，還未掌握到要點，這裡記錄一下可行的語法結構。<br>更悲催的是github.io上畫不出來流程圖，也許是沒有寫對github的markdown語法，再問問狗哥~~~</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="Mardown流程圖語法實現"><a href="#Mardown流程圖語法實現" class="headerlink" title="Mardown流程圖語法實現"></a>Mardown流程圖語法實現</h2><h3 id="關鍵字、基本類型"><a href="#關鍵字、基本類型" class="headerlink" title="關鍵字、基本類型"></a>關鍵字、基本類型</h3><ul>
-<li>start </li>
-<li>end </li>
-<li>operation </li>
-<li>subroutine </li>
-<li>condition </li>
-<li>inputoutput</li>
-</ul>
-<h3 id="畫圖標識"><a href="#畫圖標識" class="headerlink" title="畫圖標識"></a>畫圖標識</h3><p>```flow<br><em>語法規則</em><br>```</p>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: 開始:&gt;http://google.com</div><div class="line">e=&gt;end: 結束:&gt;http://www.baidu.com</div><div class="line">op1=&gt;operation: 我的操作</div><div class="line">op2=&gt;operation: 暫停</div><div class="line">sub=&gt;subroutine: 我的子操作</div><div class="line">con1=&gt;condition: 是 or 否:&gt;http:www.google.com</div><div class="line">con2=&gt;condition: Good idea</div><div class="line">io=&gt;inputoutput: catch something...</div><div class="line"></div><div class="line">st-&gt;op1-&gt;con1</div><div class="line">con1(yes)-&gt;con2</div><div class="line">con1(no)-&gt;sub-&gt;op1</div><div class="line">con2(yes)-&gt;io-&gt;e</div><div class="line">con2(no)-&gt;op2-&gt;e</div></pre></td></tr></table></figure>
-<p><img src="/images/markdown/liuchengtu.png"></p>
-<h3 id="流程圖比較複雜，用markdown畫出比較酷玄的流程圖，還是比較麻煩的，而且跟各個平臺有關，github的markdown與什麽大象筆記的markdown語法就不相同，所以，簡單劃一畫，複雜的，還是截圖比較方便ww。"><a href="#流程圖比較複雜，用markdown畫出比較酷玄的流程圖，還是比較麻煩的，而且跟各個平臺有關，github的markdown與什麽大象筆記的markdown語法就不相同，所以，簡單劃一畫，複雜的，還是截圖比較方便ww。" class="headerlink" title="流程圖比較複雜，用markdown畫出比較酷玄的流程圖，還是比較麻煩的，而且跟各個平臺有關，github的markdown與什麽大象筆記的markdown語法就不相同，所以，簡單劃一畫，複雜的，還是截圖比較方便ww。"></a>流程圖比較複雜，用markdown畫出比較酷玄的流程圖，還是比較麻煩的，而且跟各個平臺有關，github的markdown與什麽大象筆記的markdown語法就不相同，所以，簡單劃一畫，複雜的，還是截圖比較方便ww。</h3>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;爲了方便再現編輯MARKDOWN文件，重新學習一下markdown語法知識，基礎的大部分都已掌握，但對於高級用法，比如甘特圖等，還未掌握到要點，這裡記錄一下可行的語法結構。&lt;br&gt;更悲催的是github.io上畫不出來流程圖，也許是沒有寫對github的markdown語法，再問問狗哥~~~&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
-    
-    
-      <category term="markdown" scheme="https://myhongkongzhen.github.io/tags/markdown/"/>
     
   </entry>
   

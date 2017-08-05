@@ -100,10 +100,12 @@
 <meta property="og:site_name" content="あなたがいる 、それだけでも">
 <meta property="og:description" content="Document Routing principle">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-08-03T01:07:19.526Z">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/svg/ZPD1JeD058RNp2bUkYy5r4r39YR6hXkwDMccmqkBmWmP1cCrJRo0EzSUm8q7SE5fZ7eBPw3OWgJfXiNC_x_t_JzmNcYcT9cbXEICtx0bWf0npZq8mubY6LBwG9pcAbT9njHwdg-OYZiQHqYDC9Xw0s05v1vnDiJPMHNcQSBPlAYiGPyr2Ygh2gnrqm7oZm3oUu7y6iW_2DIR9QgpAAyFA3W2g3Vcj8wP1mU1UhD4THRbTu1ucg3GBKTjs5vSirjcqEJIN6U9M5PJxA4TijKCXxHfUWpXWePSfbAD5sc9r7Tdc2BNS3chD8HKuyqGJfomIEvn77YKIwdYH31TDmIVJy_VhnzVRuy_xoy4HGpMPFR1toOxfzfebtUhswTG6DF0ZMIf3JresOYXAkjAj9Lmubuej1onv6LcquqW4J7UcIUaaZFxkNVMMOJkHxgFi5I8Wfww4pC84bqquly8jHBEtDbQy9MImlIp8p7mBMUhW-sxgFOgB78f2hIE-ZmSBIWXvwPAyyF-0W00">
+<meta property="og:updated_time" content="2017-08-05T14:21:07.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK_documnet &amp; shard routing principle_009">
 <meta name="twitter:description" content="Document Routing principle">
+<meta name="twitter:image" content="http://www.plantuml.com/plantuml/svg/ZPD1JeD058RNp2bUkYy5r4r39YR6hXkwDMccmqkBmWmP1cCrJRo0EzSUm8q7SE5fZ7eBPw3OWgJfXiNC_x_t_JzmNcYcT9cbXEICtx0bWf0npZq8mubY6LBwG9pcAbT9njHwdg-OYZiQHqYDC9Xw0s05v1vnDiJPMHNcQSBPlAYiGPyr2Ygh2gnrqm7oZm3oUu7y6iW_2DIR9QgpAAyFA3W2g3Vcj8wP1mU1UhD4THRbTu1ucg3GBKTjs5vSirjcqEJIN6U9M5PJxA4TijKCXxHfUWpXWePSfbAD5sc9r7Tdc2BNS3chD8HKuyqGJfomIEvn77YKIwdYH31TDmIVJy_VhnzVRuy_xoy4HGpMPFR1toOxfzfebtUhswTG6DF0ZMIf3JresOYXAkjAj9Lmubuej1onv6LcquqW4J7UcIUaaZFxkNVMMOJkHxgFi5I8Wfww4pC84bqquly8jHBEtDbQy9MImlIp8p7mBMUhW-sxgFOgB78f2hIE-ZmSBIWXvwPAyyF-0W00">
 
 
 
@@ -457,7 +459,7 @@
                   <span class="post-meta-item-text">Words count in article</span>
                 
                 <span title="Words count in article">
-                  57
+                  72
                 </span>
               
 
@@ -504,13 +506,15 @@
 <li>routing = routing id , ex : document_id ( default num , <em>you can be manually specified</em>. )</li>
 <li>hash ( routing) = hash ( document_id ) : hash code</li>
 <li>mod ( num of primary shards ) -&gt; result is always from <strong>zero</strong> to [ <strong>number_of_primary_shards - 1</strong> ]</li>
+<li>routing algorithm is base on primary shard.</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<h1 id="Document-‘CUD’-flow"><a href="#Document-‘CUD’-flow" class="headerlink" title="Document ‘CUD’ flow"></a>Document ‘CUD’ flow</h1><hr>
 <ul>
-<li><em>Continue</em></li>
+<li>‘CUD’ operating locate on primary shard.<br><img src="http://www.plantuml.com/plantuml/svg/ZPD1JeD058RNp2bUkYy5r4r39YR6hXkwDMccmqkBmWmP1cCrJRo0EzSUm8q7SE5fZ7eBPw3OWgJfXiNC_x_t_JzmNcYcT9cbXEICtx0bWf0npZq8mubY6LBwG9pcAbT9njHwdg-OYZiQHqYDC9Xw0s05v1vnDiJPMHNcQSBPlAYiGPyr2Ygh2gnrqm7oZm3oUu7y6iW_2DIR9QgpAAyFA3W2g3Vcj8wP1mU1UhD4THRbTu1ucg3GBKTjs5vSirjcqEJIN6U9M5PJxA4TijKCXxHfUWpXWePSfbAD5sc9r7Tdc2BNS3chD8HKuyqGJfomIEvn77YKIwdYH31TDmIVJy_VhnzVRuy_xoy4HGpMPFR1toOxfzfebtUhswTG6DF0ZMIf3JresOYXAkjAj9Lmubuej1onv6LcquqW4J7UcIUaaZFxkNVMMOJkHxgFi5I8Wfww4pC84bqquly8jHBEtDbQy9MImlIp8p7mBMUhW-sxgFOgB78f2hIE-ZmSBIWXvwPAyyF-0W00"></li>
 </ul>
 
       
@@ -560,7 +564,7 @@
       </li>
      <li class="post-copyright-author">
         <strong>Post modified:</strong>
-        09:07 Aug 03 2017
+        22:21 Aug 05 2017
       </li>
     <li class="post-copyright-link">
       <strong>Post link:</strong>
@@ -612,6 +616,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/archives/technology/2017/08/05/ELK-documnet-consistency-quorum-010.html" rel="prev" title="ELK_documnet consistency & quorum_010">
+                ELK_documnet consistency & quorum_010 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -696,7 +704,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -718,7 +726,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -798,7 +806,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Document-Routing"><span class="nav-number">1.</span> <span class="nav-text">Document Routing</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Document-Routing"><span class="nav-number">1.</span> <span class="nav-text">Document Routing</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Document-‘CUD’-flow"><span class="nav-number">2.</span> <span class="nav-text">Document ‘CUD’ flow</span></a></li></ol></div>
             
 
           </div>
