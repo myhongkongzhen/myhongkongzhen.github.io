@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://myhongkongzhen.github.io/"/>
-  <updated>2017-08-05T14:59:49.579Z</updated>
+  <updated>2017-08-06T04:54:45.632Z</updated>
   <id>https://myhongkongzhen.github.io/</id>
   
   <author>
@@ -16,11 +16,67 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ELK_搜索引擎_011</title>
+    <link href="https://myhongkongzhen.github.io/archives/technology/2017/08/06/ELK-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E-011.html"/>
+    <id>https://myhongkongzhen.github.io/archives/technology/2017/08/06/ELK-搜索引擎-011.html</id>
+    <published>2017-08-06T04:12:32.000Z</published>
+    <updated>2017-08-06T04:54:45.632Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>introduce search engine<ul>
+<li>_search</li>
+<li>multi-index / type</li>
+</ul>
+</li>
+<li>page<ul>
+<li>deep paging</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="Search"><a href="#Search" class="headerlink" title="Search"></a><strong>Search</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET /_search</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "took": 11,  // request use time (ms)</div><div class="line">  "timed_out": false, // 1min return 2000t, 10s return 20t</div><div class="line">  "_shards": &#123;</div><div class="line">    "total": 11,</div><div class="line">    "successful": 11,</div><div class="line">    "failed": 0</div><div class="line">  &#125;,</div><div class="line">  "hits": &#123;</div><div class="line">    "total": 8, // numbe of return result</div><div class="line">    "max_score": 1, // relativity of search key &amp; return result</div><div class="line">    "hits": [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"_index"</span>: <span class="string">".kibana"</span>,</div><div class="line">        <span class="attr">"_type"</span>: <span class="string">"config"</span>,</div><div class="line">        <span class="attr">"_id"</span>: <span class="string">"5.2.0"</span>,</div><div class="line">        <span class="attr">"_score"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"_source"</span>: &#123;</div><div class="line">          <span class="attr">"buildNum"</span>: <span class="number">14695</span></div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">"_index"</span>: <span class="string">"ecommerce"</span>,</div><div class="line">        <span class="attr">"_type"</span>: <span class="string">"product"</span>,</div><div class="line">        <span class="attr">"_id"</span>: <span class="string">"5"</span>,</div><div class="line">        <span class="attr">"_score"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"_source"</span>: &#123;</div><div class="line">          <span class="attr">"name"</span>: <span class="string">"yunnanbaiyao yagao"</span>,</div><div class="line">          <span class="attr">"desc"</span>: <span class="string">"youxiao yizhi zhongyao"</span>,</div><div class="line">          <span class="attr">"price"</span>: <span class="number">25</span>,</div><div class="line">          <span class="attr">"producer"</span>: <span class="string">"yagao yunnanbaiyao producer"</span>,</div><div class="line">          <span class="attr">"tags"</span>: [</div><div class="line">            <span class="string">"yiyao"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;&#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="multi-index-multi-type"><a href="#multi-index-multi-type" class="headerlink" title="multi-index / multi-type"></a><strong>multi-index / multi-type</strong></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">GET /_search</div><div class="line">GET /index1,index2/_search</div><div class="line">GET /*1,*2/_search</div><div class="line">GET /test_inde/test_type/_search</div><div class="line">GET /index1,index2/type1,type2/_search</div><div class="line">GET /index*/<span class="built_in">type</span>*/_search</div><div class="line">GET /_all/type1,type2/_search</div></pre></td></tr></table></figure>
+<h2 id="page"><a href="#page" class="headerlink" title="page"></a><strong>page</strong></h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">"hits": &#123;</div><div class="line">   "total": 9,</div><div class="line">   "max_score": 1,</div><div class="line">   "hits": []</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GET /test_index/test_type/_search?from=0&amp;size=3 <span class="comment">#0,1,2 page 1</span></div><div class="line">GET /test_index/test_type/_search?from=3&amp;size=3 <span class="comment">#3,4,5 page 2</span></div><div class="line">GET /test_index/test_type/_search?from=6&amp;size=3 <span class="comment">#6,7,8 page 3</span></div></pre></td></tr></table></figure>
+<ul>
+<li><em>CONTINUE</em></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;introduce search engine&lt;ul&gt;
+&lt;li&gt;_search&lt;/li&gt;
+&lt;li&gt;multi-index / type&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;page&lt;ul&gt;
+&lt;li&gt;deep paging&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="technology" scheme="https://myhongkongzhen.github.io/categories/technology/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://myhongkongzhen.github.io/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ELK_documnet consistency &amp; quorum_010</title>
     <link href="https://myhongkongzhen.github.io/archives/technology/2017/08/05/ELK-documnet-consistency-quorum-010.html"/>
     <id>https://myhongkongzhen.github.io/archives/technology/2017/08/05/ELK-documnet-consistency-quorum-010.html</id>
     <published>2017-08-05T14:22:23.000Z</published>
-    <updated>2017-08-05T14:59:49.579Z</updated>
+    <updated>2017-08-05T14:59:49.580Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <ul>
@@ -125,7 +181,7 @@
     <link href="https://myhongkongzhen.github.io/archives/technology/2017/08/01/using-hexo-to-create-github-blog.html"/>
     <id>https://myhongkongzhen.github.io/archives/technology/2017/08/01/using-hexo-to-create-github-blog.html</id>
     <published>2017-08-01T11:05:51.000Z</published>
-    <updated>2017-08-01T11:55:19.439Z</updated>
+    <updated>2017-08-01T11:55:19.440Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Using hexo to create  github blog</p>
@@ -245,7 +301,7 @@
     <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-batch-search-007.html"/>
     <id>https://myhongkongzhen.github.io/archives/technology/2017/07/30/ELK-batch-search-007.html</id>
     <published>2017-07-30T14:23:16.000Z</published>
-    <updated>2017-08-02T15:26:26.278Z</updated>
+    <updated>2017-08-06T04:11:00.456Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <ul>
@@ -273,6 +329,17 @@
 <h2 id="bulk-size"><a href="#bulk-size" class="headerlink" title="bulk size"></a>bulk size</h2><ul>
 <li><code>1000 ~ 5000</code> </li>
 <li><code>5 ~ 15M</code></li>
+</ul>
+<h2 id="bulk-api-json-spatial-format"><a href="#bulk-api-json-spatial-format" class="headerlink" title="bulk api json spatial format"></a>bulk api json spatial format</h2><ul>
+<li><p>one data one line, use ‘\n’</p>
+<ul>
+<li><p>json spatial format VS json format</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"action"</span>: &#123;<span class="attr">"meta"</span>&#125;&#125;</div><div class="line">   &#123;<span class="attr">"data"</span>&#125;</div><div class="line">   &#123;<span class="attr">"action"</span>: &#123;<span class="attr">"meta"</span>&#125;&#125;</div><div class="line">   &#123;<span class="attr">"data"</span>&#125;</div><div class="line">// ---------------------------- </div><div class="line">       [&#123;</div><div class="line">         <span class="attr">"action"</span>: &#123; &#125;,</div><div class="line">         <span class="attr">"data"</span>: &#123; &#125;</div><div class="line">       &#125;]</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Do not need to translate to jsonArray object</strong></p>
+</li>
+</ul>
+</li>
 </ul>
 ]]></content>
     
@@ -567,7 +634,7 @@
     <link href="https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html"/>
     <id>https://myhongkongzhen.github.io/archives/technology/2017/07/29/Kinds-of-search-type.html</id>
     <published>2017-07-29T13:25:15.000Z</published>
-    <updated>2017-07-31T08:10:46.746Z</updated>
+    <updated>2017-07-31T08:10:46.747Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <ul>
@@ -1223,7 +1290,7 @@
 </li>
 <li><p>用戶相關權限默認值設置</p>
 <ul>
-<li>cd /etc/default | file useradd  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span> useradd defaults file</div><div class="line">GROUP=100 # </div><div class="line">HOME=/home</div><div class="line">INACTIVE=-1 # 密碼過期，用戶未禁用之間的期限 </div><div class="line">EXPIRE= # 非活動期限</div><div class="line">SHELL=/bin/bash</div><div class="line">SKEL=/etc/skel</div><div class="line">CREATE_MAIL_SPOOL=yes</div></pre></td></tr></table></figure>
+<li>cd /etc/default | file useradd  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> useradd defaults file</span></div><div class="line">GROUP=100 # </div><div class="line">HOME=/home</div><div class="line">INACTIVE=-1 # 密碼過期，用戶未禁用之間的期限 </div><div class="line">EXPIRE= # 非活動期限</div><div class="line">SHELL=/bin/bash</div><div class="line">SKEL=/etc/skel</div><div class="line">CREATE_MAIL_SPOOL=yes</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -2532,270 +2599,6 @@
     
     
       <category term="English" scheme="https://myhongkongzhen.github.io/tags/English/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux基礎知識 — 001</title>
-    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/10/04/201610041954-Linux-Linux%E5%9F%BA%E7%A4%8E%E7%9F%A5%E8%AD%98-001.html"/>
-    <id>https://myhongkongzhen.github.io/archives/技術/2016/10/04/201610041954-Linux-Linux基礎知識-001.html</id>
-    <published>2016-10-04T12:08:32.000Z</published>
-    <updated>2017-07-04T02:08:34.520Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>Linux基礎知識，在虛擬機下學習，安裝RedHat5 Server<br>斷斷續續學習Linux，總也不得要領，好在對Linux的字符界面情有獨鐘，還是繼續學習下去吧^_^ :bowtie: </p>
-</blockquote>
-<a id="more"></a>
-<h2 id="Vmware-安裝linux"><a href="#Vmware-安裝linux" class="headerlink" title="Vmware 安裝linux:"></a>Vmware 安裝linux:</h2><ul>
-<li><p><strong>通過網絡引導槃安裝Linux及幾處要點</strong><br><img src="/images/Linux/201610042011-createLinuxByCustom.png"><br><img src="/images/Linux/201610042012-installByNet.png"><br><img src="/images/Linux/201610042018-installByBridge.png"><br><img src="/images/Linux/201610042019-installMaxDisk.png"></p>
-</li>
-<li><p><strong>虛擬機安裝linux后，想要利用宿主機器連接網絡，需要配置虛擬網絡，配置方法多種，這裡選擇使用 <em>僑接</em> 方式配置</strong><br><img src="/images/Linux/201610042006-virtualNetworkEditor.png"></p>
-</li>
-<li><p><strong>製作快照</strong><br><img src="/images/Linux/201610042023-createSnapshot.png"><br><img src="/images/Linux/201610042026-manageSnapshot.png"></p>
-</li>
-<li><p><strong>通過命令安裝Ｌｉｎｕｘ</strong><br><img src="/images/Linux/201610112248-installBycommand.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">linux ip=172.168.1.22 netmask=255.255.255.0 gateway=127.0.0.1 dns=172.16.0.1 ks=http://172.16.0.1/class.cfg</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="計算機基礎知識"><a href="#計算機基礎知識" class="headerlink" title="計算機基礎知識"></a>計算機基礎知識</h2><ul>
-<li><h4 id="計算機啓動過程：POST-power-on-and-self-testing-加電自檢"><a href="#計算機啓動過程：POST-power-on-and-self-testing-加電自檢" class="headerlink" title="計算機啓動過程：POST (power on and self testing) 加電自檢"></a>計算機啓動過程：POST (power on and self testing) 加電自檢</h4><ul>
-<li>計算機只是一堆硬件,CPU加載到指令才行執行<ul>
-<li>開機之前，指令在何處存儲？ 光盤、硬盤、移動設備等</li>
-<li>Boot調整加載順序 <ul>
-<li>計算機自擧能力 : BIOS</li>
-<li>ROM : 將此中的指令，映射到内存中，硬件芯片邏輯完成</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>程序：指令 + 數據 <ul>
-<li>載入内存才行執行</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><h4 id="計算機體系結構-馮諾依曼體系結構"><a href="#計算機體系結構-馮諾依曼體系結構" class="headerlink" title="計算機體系結構(馮諾依曼體系結構)"></a>計算機體系結構(馮諾依曼體系結構)</h4><ul>
-<li>運算器 -&gt; 加法運算器、邏輯運算器<ul>
-<li>負責運算</li>
-<li>寄存器：與CPU相同頻率工作</li>
-</ul>
-</li>
-<li>控制器 -&gt; (與運算器合稱 CPU)<ul>
-<li>負責控制運算器到哪取數據進行運算</li>
-<li>接受控制指令：控制總綫</li>
-</ul>
-</li>
-<li>存儲器 -&gt; RAM.内存，易失性設備，編址存儲設備(8bit), 平面編址<ul>
-<li>負責存儲數據、指令<br><strong>運算器從存儲器中拿到數據進行運算，並且把運算的結果還放到存儲器中</strong><ul>
-<li>從存儲器的什麽地方讀</li>
-<li>運算完成后，數據放到存儲器中的什麽位置上去</li>
-</ul>
-</li>
-<li>保存磁信號、轉換成電信號</li>
-</ul>
-</li>
-<li>輸入設備 </li>
-<li>輸出設備 </li>
-</ul>
-</li>
-<li><h4 id="硬件平臺架構"><a href="#硬件平臺架構" class="headerlink" title="硬件平臺架構"></a>硬件平臺架構</h4><ul>
-<li>CPU芯片的不同系列 <em><strong>程序是需要移植的</strong></em><ul>
-<li>ARM</li>
-<li>X86 (Intel or AMD)</li>
-<li>安籐</li>
-<li>alpha</li>
-<li>UltrSparc</li>
-<li>Power</li>
-<li>M68000/M68K</li>
-<li>PowerPC</li>
-</ul>
-</li>
-<li>OS<ul>
-<li>Windows</li>
-<li>Linux</li>
-<li>Unix<ul>
-<li>HP-UX</li>
-<li>Solaris</li>
-<li>AIX</li>
-<li>SCO UNIX</li>
-<li>Unixware</li>
-</ul>
-</li>
-<li>OS/2</li>
-</ul>
-</li>
-<li>MainFrame：大型機<ul>
-<li>Multics：多任務、多功能</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
-<li>中斷：interrupt -&gt; 硬件通知機制<ul>
-<li>外圍設備通過中斷同CPU交互 –&gt; <em>中斷越少越好，CPU性能越高</em></li>
-</ul>
-</li>
-<li>可編程中斷控制器：針腳與CPU相連<ul>
-<li>中斷向量 -&gt; 標示不同設備</li>
-</ul>
-</li>
-<li>前端總綫：FSB</li>
-<li>北喬設備：離CPU較近，連接南橋及其他總綫控制<ul>
-<li><strong>CPU與内存交互、之間有總綫相連，並且需要有控制器</strong></li>
-<li>高速總綫控制器</li>
-</ul>
-</li>
-<li>南橋設備：離CPU較遠，連接外圍設備<ul>
-<li>低速總綫控制器</li>
-</ul>
-</li>
-<li>主頻：赫茲／頻率 -&gt; 一次頻率，完成一次數據事件</li>
-<li>緩存：一級緩存(小，快，造價高，CPU近)、二級緩存…<ul>
-<li>決定CPU性能</li>
-<li>指令緩存</li>
-<li>數據緩存<br><strong>CPU -&gt; 寄存器 -&gt; 一級緩存 -&gt; 二級緩存 -&gt; 内存</strong></li>
-<li>要緩存的數據，遵循程序的局部性原理<ul>
-<li>時間上局部性：上次載入的數據，很快會被再次利用</li>
-<li>空間上局部性：載入一個數據，將附近的數據一同載入</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>程序的移植：底層芯片的不同<ul>
-<li>低級語言<ul>
-<li>機器語言：二進制編程</li>
-<li>微碼：彙編語言(人類容易識別) -&gt; 編譯器<ul>
-<li>仍然與底層芯片緊密關聯</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>高級語言<ul>
-<li>轉換成彙編語言、再翻譯成機器語言 -&gt; 編譯器</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>批處理系統：現代操作系統前身</p>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">jobs1$</span>$$$$jobs2$$$$$</div></pre></td></tr></table></figure>
-</li>
-<li><p>Job：運行的一次完整的計算過程.批處理作業</p>
-</li>
-<li>多任務<ul>
-<li>CPU/Memory <em><strong>切割</strong></em><ul>
-<li>時間驅動：slice 時間片</li>
-<li>分段機制：相對地址</li>
-<li>虛擬地址空間</li>
-<li>操作系統(kernel,内核)：管理硬件資源　-&gt; 負責切割、切換、協調等工作<ul>
-<li>system call</li>
-<li>API</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>保存程序現場，從結束的地方繼續</li>
-<li>進程</li>
-</ul>
-</li>
-<li>庫：一堆的程序，高級的接口 API<ul>
-<li>沒有執行入口，只提供調用接口、被調用執行 call</li>
-</ul>
-</li>
-<li>Shell：人機交互接口<ul>
-<li>GUI : 圖形界面</li>
-<li>GLI : 命令行界面</li>
-</ul>
-</li>
-<li>IDE : Intergratent Devlopt Enverment</li>
-<li>DLL : Dynamic Link Library ==&gt; Windows<ul>
-<li>.so : shared object ==&gt; Linux </li>
-</ul>
-</li>
-<li>CPU四級別：四個同心圓環 、應用程序與内核隔離<ul>
-<li>最内層：0級別、特權級、内核運行</li>
-<li>最外層：其他應用程序</li>
-<li>中間兩層未用</li>
-</ul>
-</li>
-<li>内存碎片</li>
-<li>ABI: Application Binary Interface</li>
-</ul>
-</li>
-<li><h4 id="内核的功能-通用軟件"><a href="#内核的功能-通用軟件" class="headerlink" title="内核的功能 通用軟件"></a>内核的功能 <em>通用軟件</em></h4><ul>
-<li>進程管理</li>
-<li>内存管理</li>
-<li>文件系統</li>
-<li>網絡功能</li>
-<li>硬件驅動</li>
-<li>安全機制</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Unix 系列分支<ul>
-<li>FreeBSD</li>
-<li>OpenBSD</li>
-<li>NetBSD</li>
-<li>…</li>
-</ul>
-</li>
-<li>GNU: GNU IS NOT UNIX.<ul>
-<li>Stallman -&gt; Freedom</li>
-<li>GPL: General Public License<ul>
-<li>Emacs: 文本編輯器</li>
-<li>gcc: GNU C Complier</li>
-<li>bash: shell</li>
-<li>…</li>
-</ul>
-</li>
-<li>LGPL: Lesser</li>
-<li>GPLv2</li>
-<li>GPLv3</li>
-<li>維護軟件</li>
-<li>Linux : Linus維護内核    </li>
-</ul>
-</li>
-<li>Apache</li>
-<li>BSD</li>
-<li>Linux: 發行版 release、編譯成二進制后可運行的系統<ul>
-<li>Redhat (RPM、軟件包管理軟件)<ul>
-<li>CentOS</li>
-<li>Fedora</li>
-<li>Mandriva</li>
-</ul>
-</li>
-<li><strong>Debian</strong> (DPT、軟件包管理軟件)<ul>
-<li>Ubuntu<ul>
-<li>Mint (界面華麗)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>SLS<ul>
-<li>SUSE -&gt; Novell(Netware)<ul>
-<li>Open SUSE</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>…</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;Linux基礎知識，在虛擬機下學習，安裝RedHat5 Server&lt;br&gt;斷斷續續學習Linux，總也不得要領，好在對Linux的字符界面情有獨鐘，還是繼續學習下去吧^_^ :bowtie: &lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
-    
-    
-      <category term="LINUX" scheme="https://myhongkongzhen.github.io/tags/LINUX/"/>
     
   </entry>
   

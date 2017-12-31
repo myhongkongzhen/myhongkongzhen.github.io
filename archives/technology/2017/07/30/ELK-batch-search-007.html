@@ -101,7 +101,7 @@
 <meta property="og:description" content="Batch query mget bulk">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://myhongkongzhen.github.io/images/elasticsearch/019_mget_search.png">
-<meta property="og:updated_time" content="2017-08-02T15:26:26.278Z">
+<meta property="og:updated_time" content="2017-08-06T04:11:00.456Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ELK_batch search_007">
 <meta name="twitter:description" content="Batch query mget bulk">
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">Words count in article</span>
                 
                 <span title="Words count in article">
-                  321
+                  355
                 </span>
               
 
@@ -521,6 +521,17 @@
 <li><code>1000 ~ 5000</code> </li>
 <li><code>5 ~ 15M</code></li>
 </ul>
+<h2 id="bulk-api-json-spatial-format"><a href="#bulk-api-json-spatial-format" class="headerlink" title="bulk api json spatial format"></a>bulk api json spatial format</h2><ul>
+<li><p>one data one line, use ‘\n’</p>
+<ul>
+<li><p>json spatial format VS json format</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;<span class="attr">"action"</span>: &#123;<span class="attr">"meta"</span>&#125;&#125;</div><div class="line">   &#123;<span class="attr">"data"</span>&#125;</div><div class="line">   &#123;<span class="attr">"action"</span>: &#123;<span class="attr">"meta"</span>&#125;&#125;</div><div class="line">   &#123;<span class="attr">"data"</span>&#125;</div><div class="line">// ---------------------------- </div><div class="line">       [&#123;</div><div class="line">         <span class="attr">"action"</span>: &#123; &#125;,</div><div class="line">         <span class="attr">"data"</span>: &#123; &#125;</div><div class="line">       &#125;]</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Do not need to translate to jsonArray object</strong></p>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -569,7 +580,7 @@
       </li>
      <li class="post-copyright-author">
         <strong>Post modified:</strong>
-        23:26 Aug 02 2017
+        12:11 Aug 06 2017
       </li>
     <li class="post-copyright-link">
       <strong>Post link:</strong>
@@ -709,7 +720,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -811,7 +822,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mget"><span class="nav-number">1.</span> <span class="nav-text">_mget</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bulk"><span class="nav-number">2.</span> <span class="nav-text">_bulk</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grammar"><span class="nav-number">2.1.</span> <span class="nav-text">grammar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#operating-types"><span class="nav-number">2.2.</span> <span class="nav-text">operating types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#show-case"><span class="nav-number">2.3.</span> <span class="nav-text">show case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bulk-size"><span class="nav-number">2.4.</span> <span class="nav-text">bulk size</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mget"><span class="nav-number">1.</span> <span class="nav-text">_mget</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bulk"><span class="nav-number">2.</span> <span class="nav-text">_bulk</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grammar"><span class="nav-number">2.1.</span> <span class="nav-text">grammar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#operating-types"><span class="nav-number">2.2.</span> <span class="nav-text">operating types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#show-case"><span class="nav-number">2.3.</span> <span class="nav-text">show case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bulk-size"><span class="nav-number">2.4.</span> <span class="nav-text">bulk size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bulk-api-json-spatial-format"><span class="nav-number">2.5.</span> <span class="nav-text">bulk api json spatial format</span></a></li></ol></li></ol></div>
             
 
           </div>
