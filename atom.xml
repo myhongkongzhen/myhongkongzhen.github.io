@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://myhongkongzhen.github.io/"/>
-  <updated>2017-12-31T16:05:18.227Z</updated>
+  <updated>2018-01-02T16:27:27.898Z</updated>
   <id>https://myhongkongzhen.github.io/</id>
   
   <author>
@@ -16,11 +16,86 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>英文文法的初級理解</title>
+    <link href="https://myhongkongzhen.github.io/archives/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/2018/01/02/201801022306-%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95%E7%9A%84%E5%88%9D%E7%B4%9A%E7%90%86%E8%A7%A3.html"/>
+    <id>https://myhongkongzhen.github.io/archives/英文文法/2018/01/02/201801022306-英文文法的初級理解.html</id>
+    <published>2018-01-02T15:16:50.000Z</published>
+    <updated>2018-01-02T16:27:27.898Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>已經不知道是第幾次看完謝老師的初級文法視頻了，這一次，總算是有了一點小小的心得，總算是理解了文法的概念<br>就像是，一個數學公式，終於明白了他的推導演算過程到最後的結果，而不再是靠死記硬背，不理解他是如何來的，這真是學了二十幾年英語，頭一次，覺得付出有了小小回報了w太開心！</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="初級文法"><a href="#初級文法" class="headerlink" title="初級文法"></a>初級文法</h1><hr>
+<h2 id="重點"><a href="#重點" class="headerlink" title="重點"></a>重點</h2><ul>
+<li>不定式 : to V<ul>
+<li>名詞<ul>
+<li><em>主詞</em></li>
+<li><em>受詞</em></li>
+<li><em>補語</em></li>
+</ul>
+</li>
+<li>形容詞</li>
+<li>副詞</li>
+</ul>
+</li>
+<li>動名詞 : Ving<ul>
+<li>名詞<ul>
+<li><em>主詞</em></li>
+<li><em>受詞</em></li>
+<li><em>補語</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分詞 : 形容詞用法<ul>
+<li>現在分詞 : Ving<ul>
+<li><em>動作進行</em></li>
+<li><em>主動</em></li>
+</ul>
+</li>
+<li>過去分詞 : P.P<ul>
+<li><em>動作完成</em></li>
+<li><em>被動</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>關係代名詞 : <ul>
+<li>形容詞子句 : <em>先行詞 + 關係代名詞</em></li>
+</ul>
+</li>
+<li>連接詞 : <ul>
+<li>對等連接詞</li>
+<li><em>從屬連接詞</em></li>
+</ul>
+</li>
+</ul>
+<h1 id="概覽"><a href="#概覽" class="headerlink" title="概覽"></a>概覽</h1><hr>
+<p><img src="/images/English/201801022306_初級文法.png"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;已經不知道是第幾次看完謝老師的初級文法視頻了，這一次，總算是有了一點小小的心得，總算是理解了文法的概念&lt;br&gt;就像是，一個數學公式，終於明白了他的推導演算過程到最後的結果，而不再是靠死記硬背，不理解他是如何來的，這真是學了二十幾年英語，頭一次，覺得付出有了小小回報了w太開心！&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="英文文法" scheme="https://myhongkongzhen.github.io/categories/%E8%8B%B1%E6%96%87%E6%96%87%E6%B3%95/"/>
+    
+    
+      <category term="English" scheme="https://myhongkongzhen.github.io/tags/English/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2017年終&#39;思想報告&#39;</title>
     <link href="https://myhongkongzhen.github.io/archives/%E7%B8%BD%E7%B5%90/2017/12/31/201712312302-%E5%B9%B4%E7%B5%82-%E6%80%9D%E6%83%B3%E5%A0%B1%E5%91%8A.html"/>
     <id>https://myhongkongzhen.github.io/archives/總結/2017/12/31/201712312302-年終-思想報告.html</id>
     <published>2017-12-31T15:03:00.000Z</published>
-    <updated>2017-12-31T16:05:18.227Z</updated>
+    <updated>2018-01-02T03:56:31.678Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>又是一年，2017再見，2018你好 </p>
@@ -1922,572 +1997,6 @@
     
     
       <category term="English" scheme="https://myhongkongzhen.github.io/tags/English/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux基礎知識 — 002</title>
-    <link href="https://myhongkongzhen.github.io/archives/%E6%8A%80%E8%A1%93/2016/10/17/201610172027-Linux-Linux%E5%9F%BA%E7%A4%8E%E7%9F%A5%E8%AD%98-002.html"/>
-    <id>https://myhongkongzhen.github.io/archives/技術/2016/10/17/201610172027-Linux-Linux基礎知識-002.html</id>
-    <published>2016-10-17T12:50:32.000Z</published>
-    <updated>2017-07-04T02:08:34.522Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<h3 id="Linux的基本原則"><a href="#Linux的基本原則" class="headerlink" title="Linux的基本原則"></a>Linux的基本原則</h3><ol>
-<li>由目的單一的小程序組成；組合小程序完成複雜人物；</li>
-<li>一切皆文件；</li>
-<li>盡量避免捕獲用戶接口；</li>
-<li>配置文件保存為純文本格式。</li>
-</ol>
-</blockquote>
-<a id="more"></a>
-<h2 id="基礎概念"><a href="#基礎概念" class="headerlink" title="基礎概念"></a>基礎概念</h2><hr>
-<ul>
-<li>文件系統 file system<ul>
-<li>層次化管理<ul>
-<li>FHS : Linux文件系統層級標準<ul>
-<li><strong>/boot</strong> : 系統啓動相關的文件<pre><code>- 内核、initrd、grub(bootloader)
-</code></pre><ul>
-<li>initrd* : 操作系統啓動所用的内核<ul>
-<li>應用程序在硬盤上叫做程序，啓動起來之後叫做進程<ul>
-<li>進程啓動起來的外部，啓動起來各個共享庫</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>vmlinuz*</li>
-</ul>
-</li>
-<li><strong>/dev</strong> : devise 設備文件<ul>
-<li>/dev/cdrom</li>
-<li>塊設備 : 隨機設備、可以實現隨機訪問<ul>
-<li>磁盤、硬盤</li>
-<li>數據塊訪問</li>
-</ul>
-</li>
-<li>字符設備 : 綫性設備、按字符為單位訪問<ul>
-<li>顯示器、鼠標</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>/etc</strong> : 配置文件</li>
-<li><strong>/home</strong> : 主目錄 /home/USERNAME<ul>
-<li>/root : root home</li>
-</ul>
-</li>
-<li><strong>/lib</strong> : 庫文件及内核模塊文件<ul>
-<li>被調用的一些封裝好的某些功能,不能單獨運行，沒有程序運行入口</li>
-<li>/lib/modules : 内核模塊<ul>
-<li>靜態庫 .a<ul>
-<li>直接連接到程序地址空間中，作爲程序的一部分而運行的</li>
-</ul>
-</li>
-<li>動態庫 .dll(windows), .so(shared object)<ul>
-<li>只需將共享庫載入内存一份即可,節約内存空間</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>/media</strong> : 挂載點目錄<ul>
-<li>挂載 : 把某個設備與文件系統樹上的某個節點(目錄)關聯起來的過程<ul>
-<li>必須挂載才能使用</li>
-</ul>
-</li>
-<li>通常挂在移動設備</li>
-</ul>
-</li>
-<li><strong>/mnt</strong> : 挂載點目錄<ul>
-<li>通常挂在額外的文件系統，如：第二塊硬盤</li>
-</ul>
-</li>
-<li><strong>/misc</strong> : 雜項</li>
-<li><strong>/opt</strong> : 可選目錄<ul>
-<li>早期用於安裝第三方程序</li>
-</ul>
-</li>
-<li><strong>/proc</strong> : 偽文件系統；内核影射文件<ul>
-<li>空目錄，但啓動后，顯示内核的映像文件</li>
-<li>系統調優、系統監控有關</li>
-</ul>
-</li>
-<li><strong>/sys</strong> : 偽文件系統；硬件設備相關屬性影像文件<ul>
-<li>系統調優、系統監控有關</li>
-</ul>
-</li>
-<li><strong>/tmp</strong> : 臨時文件<ul>
-<li>通常每一個月清理一次</li>
-<li>/var/tmp </li>
-</ul>
-</li>
-<li><strong>/var</strong> : 可變化的文件</li>
-<li><strong>/bin</strong> : 可執行文件, 用戶命令</li>
-<li><strong>/sbin</strong> : 管理命令</li>
-<li><strong>/usr</strong> : universal shared, read-only 全局共享只讀文件<ul>
-<li>/usr/bin</li>
-<li>/usr/sbin</li>
-<li>/usr/lib</li>
-<li>/usr/local : 第三方軟件<ul>
-<li>/usr/local/bin</li>
-<li>/usr/local/sbin</li>
-<li>/usr/local/lib</li>
-<li>/usr/local/etc</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Tree : 樹狀結構<ul>
-<li>絕對路徑</li>
-<li>相對路徑</li>
-</ul>
-</li>
-<li>rootfs : 根文件系統</li>
-</ul>
-</li>
-<li>文件的節點 : index node , inode</li>
-<li>環境變量 : 命名的内存空間<ul>
-<li>變量賦值<ul>
-<li>PATH : 冒號(:)分隔 ==&gt; 命令搜索路徑</li>
-<li>HISTSIZE : 命令歷史緩衝區大小</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>命令格式<ul>
-<li>命令 選項 參數<ul>
-<li>短選項: -<ul>
-<li>多個選項可以組合： -a -b ==&gt; -ab</li>
-</ul>
-</li>
-<li>長選項: --<ul>
-<li>多個選項不可以組合</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>magic number : 標誌程序的執行格式<ul>
-<li>shebang : #!/bin/bash</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>計算機時間<ul>
-<li>晶體震蕩器 ==&gt; 主板、鈕扣電池 ==&gt; 硬件時間、實時時鐘<ul>
-<li>rtc: realtime clock</li>
-</ul>
-</li>
-<li>NTP : 網絡時間協議</li>
-<li>Linux時間 <ul>
-<li>硬件時鐘</li>
-<li>系統時鐘</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>可執行文件的存儲格式<ul>
-<li>Linux : ELF</li>
-<li>Windows : PE</li>
-</ul>
-</li>
-<li>ASCII : 美國國家標準信息交換代碼<ul>
-<li>純文本字符<ul>
-<li>word : 字處理器</li>
-</ul>
-</li>
-<li>128個不同字符，用二進制表示<ul>
-<li>2 ^ 6 = 0,63  = 64</li>
-<li>2 ^ 7 = 0,127 = 128</li>
-<li>000 0000 - 111 1111</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>GPL, BSD, Apache 自由軟件:開源協定，版權描述</li>
-<li>www.kenel.org<ul>
-<li>Linux僅僅是一個内核, 源代碼</li>
-<li>GNU: GNU/Linux</li>
-</ul>
-</li>
-</ul>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><hr>
-<ul>
-<li>目錄管理<ul>
-<li>ls cd pwd mkdir rmdir tree</li>
-</ul>
-</li>
-<li>文件管理<ul>
-<li>touch stat file rm cp mv </li>
-</ul>
-</li>
-<li>時間管理<ul>
-<li>date clock hwclock cal</li>
-</ul>
-</li>
-</ul>
-<hr>
-<ul>
-<li><em><strong>su</strong></em> : switch user<ul>
-<li>su [-l(完全切換)] username</li>
-</ul>
-</li>
-<li><em><strong>passwd</strong></em> : pass word<br>  <strong>密碼複雜性</strong><ol>
-<li>0 ~ 9 ==&gt; 10 ^ 6 (6位密碼)破解次數</li>
-<li>0 ~ 9 + 26 lower char ==&gt; ( 10 + 26 ) ^ 6</li>
-</ol>
-<ul>
-<li>login user : userId</li>
-<li>認證機制   : Authenticatoin</li>
-<li>授權       : Authorization</li>
-<li>審計       : Audition ( LOG )</li>
-</ul>
-</li>
-<li><p><em><strong>ls</strong></em> : list </p>
-<ul>
-<li>目錄 : 文件、路徑影射<ul>
-<li>路徑 : 從指定起始點到目的地所經過的位置</li>
-</ul>
-</li>
-<li>-h : human readable<ul>
-<li>單位轉換 : B–&gt;K–&gt;M–&gt;G–&gt;T-&gt;…</li>
-</ul>
-</li>
-<li>-a : all<ul>
-<li>顯示所有文件、包含以<strong>.(點)</strong>開頭的隱藏文件</li>
-</ul>
-</li>
-<li>-A : all<ul>
-<li>不包含<strong>.(點) &amp; ..(點點)</strong></li>
-</ul>
-</li>
-<li>-d : 顯示目錄自身屬性</li>
-<li>-i : inode<ul>
-<li>顯示每個文件的索引節點號</li>
-</ul>
-</li>
-<li>-r : 逆序顯示文件(自然順序逆序)</li>
-<li>-R : recursive<ul>
-<li>遞歸現實</li>
-</ul>
-</li>
-<li><p>-l : long 長格式、顯示更多屬性 </p>
-  <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- \-rw-r--r-- 1 43984076 1049089   21929 Oct 19 20:29 _viminfo</div></pre></td></tr></table></figure>
-<ul>
-<li>-rwxr-rx-r : 10位 <ul>
-<li>第一位 : 文件類型<ul>
-<li>- : 普通文件(f)</li>
-<li>d  : 目錄文件</li>
-<li>b  : 塊設備文件(block)</li>
-<li>c  : 字符設備文件(character)</li>
-<li>l  : 符號鏈接文件(symbolic link file)</li>
-<li>p  : 命令管道文件(pipe)</li>
-<li>s  : 套接字文件(socket)</li>
-</ul>
-</li>
-<li>后九位 : 文件權限<ul>
-<li>每三位一組</li>
-<li>x : 執行</li>
-<li>r : 讀</li>
-<li>w : 寫</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>1 : 文件被硬連接的次數</li>
-<li>43984076 : owner</li>
-<li>1049089 : group</li>
-<li>21929 : file size (byte)<ul>
-<li>特殊文件不顯示文件大小，而顯示設備號:主設備號(major)和次設備號(minor)</li>
-</ul>
-</li>
-<li>Oct 19 20:29 : timestamp ==&gt; 這裡顯示的是 –&gt; 最近一次被修改的時間<ul>
-<li>每個文件都有三個時間戳</li>
-<li>最近一次被訪問的時間 access</li>
-<li>最近一次被修改的時間 modify<ul>
-<li>文件的内容數據</li>
-</ul>
-</li>
-<li>最近一次被改變的時間 change<ul>
-<li>文件的屬性數據 : 元數據 metadata<ul>
-<li>Ex : 修改文件名</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>_viminfo : 文件名</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><em><strong>pwd</strong></em> : print working directory<ul>
-<li>/ : 斜綫</li>
-<li>\ : Windows ==&gt; 反斜綫</li>
-</ul>
-</li>
-<li><em><strong>cd</strong></em> : change directory <ul>
-<li>home directory : 主目錄、家目錄</li>
-<li># cd ~student : <strong>管理員</strong>去到student <strong>(指定用戶)</strong>用戶的家目錄</li>
-<li>\$ cd - : 當前目錄與上一個目錄之間來回切換</li>
-</ul>
-</li>
-<li><em><strong>type</strong></em> <ul>
-<li><strong>Linux命令類型</strong><ul>
-<li>内置命令 : shell ==&gt; XX is a shell builtin.</li>
-<li>外部命令 : 在文件系統的某個路徑下有與命令名稱相應的可執行文件</li>
-</ul>
-</li>
-<li>\$ type cd ==&gt; 顯示命令屬於哪种命令類型<ul>
-<li>cd is a shell builtin.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><em><strong>hash</strong></em> : 緩存，將用過的命令緩存起來，避免每次到路徑中尋找執行命令<ul>
-<li>O(1) : 時間複雜度 </li>
-</ul>
-</li>
-<li><em><strong>date</strong></em> : 顯示系統時間 <ul>
-<li>\$ date 1021195416.27 (默認格式：MMDDhhmmCCYY.ss)</li>
-<li>\$ date +%D</li>
-<li>\$ date +”Today is %Y-%M-%d.”</li>
-<li>\$ date +%s (UTC:格林尼治時間)</li>
-</ul>
-</li>
-<li><em><strong>clock</strong></em> : 顯示硬件時間</li>
-<li><em><strong>hwclock</strong></em><ul>
-<li>hwclock -w 將系統時間同步到硬件時間</li>
-<li>hwclock -s 讀取硬件時間到系統時間</li>
-</ul>
-</li>
-<li><em><strong>man</strong></em> : 獲取命令使用幫助<ul>
-<li>\$ man ls</li>
-<li>\$ man cd ==&gt; 内部命令、顯示的是對應的shell幫助</li>
-<li>分章節 (常見章節8個)<ol>
-<li>用戶命令(/bin, /usr/bin, /usr/local/bin)</li>
-<li>系統調用</li>
-<li>庫調用 </li>
-<li>特殊文件(如：設備文件,設備的訪問入口存在，沒有存儲内容)</li>
-<li>文件格式(解釋：配置文件的語法)</li>
-<li>遊戲</li>
-<li>雜項, Miscellaneous</li>
-<li>管理命令(/sbin, /usr/sbin, /usr/local/sbin)</li>
-</ol>
-</li>
-<li>\$ man 2 read ==&gt; 顯示第二章節的内容</li>
-</ul>
-</li>
-<li><em><strong>help</strong></em> : 獲取内部命令的使用幫助 <ul>
-<li>\$ help cd</li>
-<li>或者使用 --help</li>
-<li><em><strong>info</strong></em> : 在綫命令手冊，命令歷史</li>
-<li>/usr/share/doc ==&gt;内核幫助文檔</li>
-</ul>
-</li>
-<li><em><strong>whatis</strong></em>  : 顯示命令摘要<ul>
-<li>\$ whatis read ==&gt; 顯示read命令在哪些章節中</li>
-</ul>
-</li>
-<li><em><strong>cal</strong></em> : calendar 日曆</li>
-<li><em><strong>echo</strong></em> : 默認有換行符<ul>
-<li>echo -e “This is a dog.\nI like it.”<ul>
-<li>-e 開啓轉義字符功能</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><em><strong>print</strong></em> : 默認沒有換行符<ul>
-<li>printf “This is a dog.\n”</li>
-</ul>
-</li>
-<li><em><strong>mkdir</strong></em> <ul>
-<li>mkdir -pv ./jwuzz/y ==&gt; 遞歸創建不存在的目錄,並顯示詳細信息</li>
-<li>-v 詳細信息</li>
-<li>mkdir -pv /home/jwuzz/{x,z} ==&gt; 同時創建x、y兩個目錄<ul>
-<li>‘{ }’花括號展開</li>
-</ul>
-</li>
-<li>mkdir -pv /home/jwuzz/{a,b}_{c,d}<ul>
-<li>/home/jwuzz/a_c</li>
-<li>/home/jwuzz/a_d</li>
-<li>/home/jwuzz/b_c</li>
-<li>/home/jwuzz/b_d</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><em><strong>tree</strong></em>  : 察看目錄樹 </li>
-<li><em><strong>rmdir</strong></em>  : remove directory 只能用於刪除空目錄</li>
-<li><em><strong>touch</strong></em>  : 本不是用來創建文件的，但卻可以創建文件<ul>
-<li><em>change file timestamps</em></li>
-<li>touch newfile</li>
-<li>touch -c newfile ==&gt;如果文件不存在，不創建</li>
-<li>-a change only the access time</li>
-<li>-m change only the modification time</li>
-<li>-t CCYYMMddhhmm.ss ==&gt; 指定時間</li>
-</ul>
-</li>
-<li><em><strong>stat</strong></em> 顯示文件或文件系統的狀態信息<ul>
-<li>stat filename<blockquote>
-<p>File: ‘a’<br>Size: 0               Blocks: 0          IO Block: 65536  regular empty file<br>Device: 74e2337eh/1960981374d   Inode: 24769797950777130  Links: 1<br>Access: (0644/-rw-r–r–)  Uid: (2826018/43984076)   Gid: (1049089/ UNKNOWN)<br>Access: 2016-10-21 22:21:19.408805800 +0800<br>Modify: 2016-10-21 22:21:19.408805800 +0800<br>Change: 2016-10-21 22:21:19.408805800 +0800<br> Birth: 2016-10-21 22:21:02.279975700 +0800</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><em><strong>rm</strong></em> : remove <ul>
-<li>rm -rfv *</li>
-<li>-i ==&gt; 交互式</li>
-<li>-f ==&gt; 強制</li>
-<li>-r ==&gt;遞歸刪除(目錄下的所有文件)</li>
-</ul>
-</li>
-<li><em><strong>alias</strong></em> <ul>
-<li>\rm ==&gt; 使用rm自身命令，而不是使用別名后的命令</li>
-</ul>
-</li>
-<li><em><strong>cp</strong></em> : copy<ul>
-<li>複製一個文件到一個文件</li>
-<li>複製多個文件到一個目錄</li>
-<li>cp /etc/passwd /tmp ==&gt; /tmp/passwd</li>
-<li>cp /etc/passwd /tmp/test ==&gt; /tmp/test</li>
-<li>-R(or -r)  (遞默認不複製目)錄歸複製init.d下的所有文件及其子文件夾下的文件</li>
-<li>-f force 強制複製</li>
-<li>-i 目標存在，則提示是否覆蓋</li>
-<li>-p preserve(保留)mode,ownership,timestamps</li>
-<li>-a archive、歸檔存放，用於備份，保留複製文件的所有屬性</li>
-<li>-P(or -d) 複製文件如果為連接文件，則保存連接文件自有屬性</li>
-<li>-L 複製文件如果是連接文件，則複製的是文件本身，而不是連接文件</li>
-</ul>
-</li>
-<li><em><strong>mv</strong></em> : move<ul>
-<li>-t cp -t DEST SRC (先指定目標、再指定源)</li>
-</ul>
-</li>
-<li><em><strong>install</strong></em> copy files and set attributes<ul>
-<li>創建、複製文件</li>
-<li>-m 指定複製后的權限<ul>
-<li>不指定時，複製后的文件默認有x執行權限</li>
-</ul>
-</li>
-<li>-d 創建目錄，不能複製目錄<ul>
-<li>install -d /tmp/{a,b}/c ==&gt; 創建多個目錄/tmp/a/c,/tmp/b/c</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><em><strong>cat</strong></em> 察看文本文件<ul>
-<li>-n 顯示行號 (類似于vim的set nu)</li>
-<li>-E show ends顯示每行的結束符<ul>
-<li>Linux 行結束符是\$</li>
-<li>Windows 行結束符為\$<cr></cr></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><em><strong>tac</strong></em> 與cat相同，但從尾部向頭部顯示，逆序顯示</li>
-<li><em><strong>less</strong></em> 分屏察看，可向前向後<ul>
-<li>space / b / CR / k / /？(the same as ‘man’)</li>
-</ul>
-</li>
-<li><em><strong>more</strong></em> 分屏察看，只能向後<ul>
-<li>space / b / CR</li>
-</ul>
-</li>
-<li><em><strong>head</strong></em> 察看文件前N行，默認n = 10<ul>
-<li>-n N 指定顯示N行</li>
-</ul>
-</li>
-<li><em><strong>tail</strong></em> 察看文件后N行，默認n = 10<ul>
-<li>-n N</li>
-<li>-f 監控日誌神器^_^</li>
-</ul>
-</li>
-<li><em><strong>cut</strong></em> <ul>
-<li>-d 指定分隔符</li>
-<li>-f 顯示第幾個字段<ul>
-<li>-f 1 <strong>,</strong>3 顯示第一個 <em><strong>和</strong></em>第三個字段</li>
-<li>-f 1 <strong>-</strong>3 顯示第一個 <em><strong>到</strong></em>第三個字段</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><em><strong><del>join</del></strong></em> 文本拼接,不常用</li>
-<li><em><strong>sort</strong></em> 文本排序<ul>
-<li>默認字符自然順序升序排序</li>
-<li>-n 按數值排序</li>
-<li>-r 逆序排序</li>
-<li>-t 指定分隔符、按照指定字段排序</li>
-<li>-k 指定字段<ul>
-<li>\$ sort protocols -t’ ‘ -k2 -n</li>
-</ul>
-</li>
-<li>-u 只顯示唯一一個，去重復</li>
-<li>-f 忽略字符大小寫</li>
-</ul>
-</li>
-<li><em><strong>uniq</strong></em> 報告或略過重復的行<br>   <strong>如果重復的行不相鄰，則linux不認爲是重復的行</strong><ul>
-<li>-d 只顯示重復的行(1)</li>
-<li>-D 顯示重復的行(2)</li>
-<li>-c count重復的行</li>
-</ul>
-</li>
-<li><em><strong>wc</strong></em> word count<blockquote>
-<p>19  18 113 ddd   </p>
-<ul>
-<li>行 單詞 字節</li>
-<li>-l 行(19)</li>
-<li>-c or -m 字節(113)</li>
-<li>-w 單詞(18)</li>
-<li>-L 最長的一行包含的字符</li>
-</ul>
-</blockquote>
-</li>
-<li><em><strong>tr</strong></em> translate or delete char 轉換或刪除,逐個字符處理<ul>
-<li>tr ab AB ==&gt; 將小寫ab換成大寫AB, 字符一一對應，而不是AB當作整體替換</li>
-<li>tr ab AB &lt; /etc/passwd ==&gt; 利用輸入重定向將文件中的小寫ab換成大寫AB</li>
-<li>tr ‘a-z’ ‘A-Z’ ==&gt; 範圍替換</li>
-<li>-d 刪除字符集中出現的所有字符</li>
-</ul>
-</li>
-<li><em><strong>history</strong></em> 命令歷史 <ul>
-<li>-c clear history</li>
-<li>-d 刪除指定位置的history<ul>
-<li>history -d 500 10 ==&gt; 刪除從500開始的10個history</li>
-</ul>
-</li>
-<li>-w 將緩衝區的history保存到歷史文件中</li>
-</ul>
-</li>
-<li><em><strong>clear</strong></em> 清屏</li>
-</ul>
-<hr>
-<hr>
-<hr>
-<h1 id="TODO-…"><a href="#TODO-…" class="headerlink" title="TODO …"></a>TODO …</h1>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;h3 id=&quot;Linux的基本原則&quot;&gt;&lt;a href=&quot;#Linux的基本原則&quot; class=&quot;headerlink&quot; title=&quot;Linux的基本原則&quot;&gt;&lt;/a&gt;Linux的基本原則&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;由目的單一的小程序組成；組合小程序完成複雜人物；&lt;/li&gt;
-&lt;li&gt;一切皆文件；&lt;/li&gt;
-&lt;li&gt;盡量避免捕獲用戶接口；&lt;/li&gt;
-&lt;li&gt;配置文件保存為純文本格式。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="技術" scheme="https://myhongkongzhen.github.io/categories/%E6%8A%80%E8%A1%93/"/>
-    
-    
-      <category term="LINUX" scheme="https://myhongkongzhen.github.io/tags/LINUX/"/>
     
   </entry>
   
